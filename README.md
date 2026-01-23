@@ -9,7 +9,7 @@ $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
 - for more info on **Quadratic Equation** visit: [Definition of Quadratic Equation](https://en.wikipedia.org/wiki/Quadratic_equation)
 
-## Compile and Run
+### Compile and Run
 ``` bash
 g++ quadratic_equation.cpp -o quadratic && ./quadratic 
 ```
