@@ -29,6 +29,7 @@ int main()
     }
     else 
     {
+        // quadratic equation
         double root1 = (-b + std::sqrt(discriminant)) / (2 * a);
         double root2 = (-b - std::sqrt(discriminant)) / (2 * a);
 
