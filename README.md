@@ -5,6 +5,6 @@
 
 $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
-- Where the variable $$x$$ represents an unknown number, and $$a, b, c$$ represents know numbers, where $$ a != 0$$.
+- Where the variable $$x$$ represents an unknown number, and $$a, b, c$$ represents know numbers, where $$a != 0$$.
 
-- for more info on **Quadratic Equation** visit: [Wikipedia][https://en.wikipedia.org/wiki/Quadratic_equation#:~:text=A%20quadratic%20equation%20whose%20coefficients,value%2C%20called%20a%20double%20root.]
+- for more info on **Quadratic Equation** visit: [Wikipedia][https://en.wikipedia.org/wiki/Quadratic_equation]
