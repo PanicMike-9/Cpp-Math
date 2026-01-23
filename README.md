@@ -5,6 +5,11 @@
 
 $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
-- Where the variable $$x$$ represents an unknown number, and $$a, b, c$$ represents know numbers, where $$a != 0$$.
+- Where the variable $$x$$ represents an unknown number, and $$a, b, c$$ represents know numbers, where $$a!=0$$.
 
 - for more info on **Quadratic Equation** visit: [Definition of Quadratic Equation](https://en.wikipedia.org/wiki/Quadratic_equation)
+
+## Compile and Run
+``` bash
+g++ quadratic_equation.cpp -o quadratic && ./quadratic 
+```
