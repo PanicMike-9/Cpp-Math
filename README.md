@@ -7,4 +7,4 @@ $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
 - Where the variable $$x$$ represents an unknown number, and $$a, b, c$$ represents know numbers, where $$a != 0$$.
 
-- for more info on **Quadratic Equation** visit: [Wikipedia](https://en.wikipedia.org/wiki/Quadratic_equation)
+- for more info on **Quadratic Equation** visit: [Definition of Quadratic Equation](https://en.wikipedia.org/wiki/Quadratic_equation)
