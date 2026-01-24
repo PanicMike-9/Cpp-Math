@@ -13,3 +13,14 @@ $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 ``` bash
 g++ quadratic_equation.cpp -o quadratic && ./quadratic 
 ```
+## Pythagorean Theorem
+- In mathematics, the **Pythagorean theorem** or **Pythagoras's theorem** is a fundamental relation in **Euclidean Geometry** between the three sides of a **right angle**. It states that the area of the square whose sides is the **hypotenuse** is equal to the sum of the areas of the square on the other two sides. The theorem can be written as an equation:
+
+$$a^{2}+b^{2}=c^{2}$$
+
+- for more info on **Pythagorean Theorem** visit: [Definition of Pythagorean Theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem)
+
+### Compile and Run
+``` bash
+g++ pythagorean_theorem.cpp -o pythagorean && ./pythagorean 
+```
