@@ -24,3 +24,5 @@ $$a^{2}+b^{2}=c^{2}$$
 ``` bash
 g++ pythagorean_theorem.cpp -o pythagorean && ./pythagorean 
 ```
+## PI
+
