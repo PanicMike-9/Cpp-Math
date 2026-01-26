@@ -31,3 +31,7 @@ $$\pi ={\frac {C}{d}}$$
 
 - for more info on **Pi** visit: [Definition of Pi](https://en.wikipedia.org/wiki/Pi)
 
+### Compile and Run
+``` bash
+g++ circle_solver.cpp -o pi && ./pi 
+```
