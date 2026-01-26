@@ -25,11 +25,15 @@ $$a^{2}+b^{2}=c^{2}$$
 g++ pythagorean_theorem.cpp -o pythagorean && ./pythagorean 
 ```
 ## PI 
-- *π* is commonly  defined as the ratio of a circle's circumference $$C$$ to its diametere $$d$$:
+- *π* is commonly  defined as the ratio of a circle's circumference $$C$$ to its diameter $$d$$:
 
-$$\pi ={\frac {C}{d}}$$
+- The program provides the diameter, circumference, and area using:
 
-- for more info on **Pi** visit: [Definition of Pi](https://en.wikipedia.org/wiki/Pi)
+$$d = 2r$$
+$$C = 2\pi r$$
+$$A = \pi r{2}$$
+
+- for more info on $$\pi$$ visit: [Definition of Pi](https://en.wikipedia.org/wiki/Pi)
 
 ### Compile and Run
 ``` bash
