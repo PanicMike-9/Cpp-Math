@@ -37,5 +37,5 @@ $$A = \pi r{2}$$
 
 ### Compile and Run
 ``` bash
-g++ circle_solver.cpp -o pi && ./pi 
+g++ circle_solver.cpp -o circlesolver && ./circlesolver 
 ```
