@@ -39,3 +39,4 @@ $$A = \pi r{2}$$
 ``` bash
 g++ circle_solver.cpp -o circlesolver && ./circlesolver 
 ```
+## Linear Interpolation(LERP)
