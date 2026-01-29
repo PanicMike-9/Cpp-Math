@@ -38,7 +38,7 @@ int main()
     {
         std::cerr << "Error: Values too large!" << '\n';
     }
-    catch (const std::runtime_error&)
+    catch (const std::runtime_error& e)
     {
         std::cerr << "Logic error: " << e.what() << '\n';
     }
