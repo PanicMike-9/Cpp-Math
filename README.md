@@ -40,4 +40,13 @@ $$A = \pi r{2}$$
 g++ circle_solver.cpp -o circlesolver && ./circlesolver 
 ```
 ## Linear Interpolation
--
+- Linear interpolation is a method of curve fitting using linear polynomials to construct new data points within the range of discrete set of known points, the **precise method** 
+
+$$lerp(a, b, t) = a + (b - a) * t$$
+
+- for more info on Linear interpolation visit: [Definition of LERP](https://en.wikipedia.org/wiki/Linear_interpolation)
+
+### Compile and Run
+``` bash
+g++ linear_interpolation.cpp -o lerp && ./lerp 
+```
