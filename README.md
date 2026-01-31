@@ -24,7 +24,7 @@ $$a^{2}+b^{2}=c^{2}$$
 ``` bash
 g++ pythagorean_theorem.cpp -o pythagorean && ./pythagorean 
 ```
-## PI 
+## Circle Solver 
 - *π* is commonly  defined as the ratio of a circle's circumference $$C$$ to its diameter $$d$$:
 
 - The program provides the diameter, circumference, and area using:
@@ -40,3 +40,4 @@ $$A = \pi r{2}$$
 g++ circle_solver.cpp -o circlesolver && ./circlesolver 
 ```
 ## Linear Interpolation
+-
