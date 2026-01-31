@@ -30,8 +30,6 @@ int main()
         std::cout << "b: " << b << '\n';
         std::cout << "Hypotenuse: "
                   << std::fixed << std::setprecision(2) << c << '\n';
-        std::cout << "Raw Hypotenuse: "
-                  << std::defaultfloat << std::setprecision(6) << c << '\n';
     }
 }
 
