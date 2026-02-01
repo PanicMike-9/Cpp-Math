@@ -1,5 +1,5 @@
 # Math Equations in C++
-
+ljajsd;lfujapsofuopauspfouapsdofj
 ## Quadratic Equation
 - In mathematics, a quadratic equation is an equation that can be rearranged in standardform as:
 
