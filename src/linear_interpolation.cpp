@@ -49,7 +49,7 @@ void run_lerp()
     }
 }
 
-// inverse linear interpolation/normalization
+// inverse linear interpolation/min-max normalization
 float calculate_inverse_lerp(float start_value, float end_value, float value)
 {
     float range = end_value - start_value;
@@ -96,6 +96,17 @@ void run_inverse_lerp()
     {
         std::cerr << "An unknown error occurred!\n";
     }
+}
+
+double calculate_clamp(double value, double min_val, double max_val)
+{
+    if(min_val > max_val) 
+        throw std::runtime_error("minimum value cannot be larger than maximum value!)";
+
+    if(value < min_val) return min_val;
+    if(value > max_val) return max_val;
+
+    return value;
 }
 
 int main()
