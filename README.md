@@ -50,3 +50,21 @@ $$lerp(a, b, t) = a + (b - a) * t$$
 ``` bash
 g++ linear_interpolation.cpp -o lerp && ./lerp 
 ```
+## Min-Max Normalization
+- Also know as min-max scaling, rescaling is the simplest method and consists in rescaling the range of features to scale teh range in [0, 1] or [-1, 1]. The general formula for a min-max normalization is:
+$$ x={\frac {x-{\text{min}}(x)}{{\text{max}}(x)-{\text{min}}(x)}}$$
+
+- for more info on min-max normalization visit [Definition of min-max normalization](https://en.wikipedia.org/wiki/Feature_scaling)
+
+## Compile and Run
+``` C++
+// in linear_interpolation.cpp
+// in main run_inverse_lerp function
+void run_inverse_lerp();
+```
+and then
+
+``` bash
+g++ linear_interpolation.cpp -o lerp && ./lerp
+```
+
