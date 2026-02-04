@@ -2,7 +2,7 @@
 #include <string>
 #include <stdexcept>
 
-// linear interpolaion
+// linear interpolaion curve fitting
 float calculate_lerp(float start_value, float end_value, float time)
 {
     if(time < 0.0f || time > 1.0f) 
@@ -10,6 +10,39 @@ float calculate_lerp(float start_value, float end_value, float time)
     
     return (1.0f - time) * start_value + time * end_value;
 }
+
+// inverse linear interpolation/min-max normalization
+float calculate_inverse_lerp(float start_value, float end_value, float value)
+{
+    float range = end_value - start_value;
+    if(range == 0.0f)
+        throw std::runtime_error("cannot divide with 0");
+
+    return (value - start_value) / range;
+}
+
+// clamp between two values
+double calculate_clamp(double value, double min_val, double max_val)
+{
+    if(min_val > max_val) 
+        throw std::runtime_error("minimum value cannot be larger than maximum value!)";
+
+    if(value < min_val) return min_val;
+    if(value > max_val) return max_val;
+
+    return value;
+}
+
+// remap
+
+int main()
+{
+    run_inverse_lerp();
+    return 0;
+}
+
+/*
+// ** function testers ** 
 
 void run_lerp() 
 {
@@ -47,16 +80,6 @@ void run_lerp()
     {
         std::cerr << "An unknow error occurred!\n";
     }
-}
-
-// inverse linear interpolation/min-max normalization
-float calculate_inverse_lerp(float start_value, float end_value, float value)
-{
-    float range = end_value - start_value;
-    if(range == 0.0f)
-        throw std::runtime_error("cannot divide with 0");
-
-    return (value - start_value) / range;
 }
 
 void run_inverse_lerp()
@@ -97,20 +120,4 @@ void run_inverse_lerp()
         std::cerr << "An unknown error occurred!\n";
     }
 }
-
-double calculate_clamp(double value, double min_val, double max_val)
-{
-    if(min_val > max_val) 
-        throw std::runtime_error("minimum value cannot be larger than maximum value!)";
-
-    if(value < min_val) return min_val;
-    if(value > max_val) return max_val;
-
-    return value;
-}
-
-int main()
-{
-    run_inverse_lerp();
-    return 0;
-}
+ */
