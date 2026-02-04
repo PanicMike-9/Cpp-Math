@@ -34,6 +34,11 @@ double calculate_clamp(double value, double min_val, double max_val)
 }
 
 // remap
+float calculate_remap(float value, float old_min, float old_max, 
+    float new_min, float new_max)
+{
+    
+}
 
 int main()
 {
