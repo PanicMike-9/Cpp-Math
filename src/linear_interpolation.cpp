@@ -25,7 +25,7 @@ float calculate_inverse_lerp(float start_value, float end_value, float value)
 double calculate_clamp(double value, double min_val, double max_val)
 {
     if(min_val > max_val) 
-        throw std::runtime_error("minimum value cannot be larger than maximum value!)";
+        throw std::runtime_error("minimum value cannot be larger than maximum value!");
 
     if(value < min_val) return min_val;
     if(value > max_val) return max_val;
@@ -37,12 +37,40 @@ double calculate_clamp(double value, double min_val, double max_val)
 float calculate_remap(float value, float old_min, float old_max, 
     float new_min, float new_max)
 {
-    
+    float t = calculate_inverse_lerp(old_min, old_max, value);
+
+    float t_clamped = calculate_clamp(t, 0.0, 1.0);
+
+    return calculate_lerp(new_min, new_max, t_clamped);
 }
 
 int main()
 {
-    run_inverse_lerp();
+    std::string input;
+    
+    std::cout << "Enter value: ";
+    std::getline(std::cin, input);
+    const float value = std::stof(input);
+
+    std::cout << "Enter old min: ";
+    std::getline(std::cin, input);
+    const float old_min = std::stof(input);
+
+    std::cout << "Enter old max: ";
+    std::getline(std::cin, input);
+    const float old_max = std::stof(input);
+
+    std::cout << "Enter new min: ";
+    std::getline(std::cin, input);
+    const float new_min = std::stof(input);
+
+    std::cout << "Enter new max: ";
+    std::getline(std::cin, input);
+    const float new_max = std::stof(input);
+
+    std::cout << "Remapped value: " << calculate_remap(value, old_min,  old_max, 
+            new_min, new_max) << '\n';
+
     return 0;
 }
 
