@@ -6,7 +6,6 @@
 #include <stdexcept>
 #include <cmath>
 
-
 // linear interpolaion curve fitting
 float calculate_lerp(float start_value, float end_value, float time)
 {
@@ -44,7 +43,7 @@ float calculate_remap(float value, float old_min, float old_max,
 {
     float t = calculate_inverse_lerp(old_min, old_max, value);
 
-    float t_clamped = calculate_clamp(t, 0.0, 1.0);
+    float t_clamped = calculate_clamp(t, 0.0f, 1.0f);
 
     return calculate_lerp(new_min, new_max, t_clamped);
 }
