@@ -1,6 +1,11 @@
-#include <iostream>
-#include <string>
+// header guards
+#ifndef INTERPOLATION_UTILS_HPP
+#define INTERPOLATION_UTILS_HPP
+
+// includes
 #include <stdexcept>
+#include <cmath>
+
 
 // linear interpolaion curve fitting
 float calculate_lerp(float start_value, float end_value, float time)
@@ -44,113 +49,4 @@ float calculate_remap(float value, float old_min, float old_max,
     return calculate_lerp(new_min, new_max, t_clamped);
 }
 
-int main()
-{
-    std::string input;
-    
-    std::cout << "Enter value: ";
-    std::getline(std::cin, input);
-    const float value = std::stof(input);
-
-    std::cout << "Enter old min: ";
-    std::getline(std::cin, input);
-    const float old_min = std::stof(input);
-
-    std::cout << "Enter old max: ";
-    std::getline(std::cin, input);
-    const float old_max = std::stof(input);
-
-    std::cout << "Enter new min: ";
-    std::getline(std::cin, input);
-    const float new_min = std::stof(input);
-
-    std::cout << "Enter new max: ";
-    std::getline(std::cin, input);
-    const float new_max = std::stof(input);
-
-    std::cout << "Remapped value: " << calculate_remap(value, old_min,  old_max, 
-            new_min, new_max) << '\n';
-
-    return 0;
-}
-
-/*
-// ** function testers ** 
-
-void run_lerp() 
-{
-    std::string input;
-
-    try 
-    {
-        std::cout << "Enter start: ";
-        std::getline(std::cin, input);
-        const float start = std::stof(input);
-
-        std::cout << "Enter end: ";
-        std::getline(std::cin, input);
-        const float end = std::stof(input);
-
-        std::cout << "Enter time: ";
-        std::getline(std::cin, input);
-        const float time = std::stof(input);
-
-        std::cout << "LERP: " << calculate_lerp(start, end, time) << '\n';
-    }
-    catch (const std::invalid_argument&)
-    {
-        std::cerr << "Error: Input contains non-numeric characters" << '\n';
-    }
-    catch (const std::out_of_range&)
-    {
-        std::cerr << "Error: Values too large!" << '\n';
-    }
-    catch (const std::runtime_error& e)
-    {
-        std::cerr << "Logic error: " << e.what() << '\n';
-    }
-    catch (...)
-    {
-        std::cerr << "An unknow error occurred!\n";
-    }
-}
-
-void run_inverse_lerp()
-{
-    std::string input; 
-
-    try 
-    {
-        std::cout << "Enter start: ";
-        std::getline(std::cin, input);
-        const float start = std::stof(input);
-
-        std::cout << "Enter end: ";
-        std::getline(std::cin, input);
-        const float end = std::stof(input);
-
-        std::cout << "Enter value: ";
-        std::getline(std::cin, input);
-        const float value = std::stof(input);
-
-        std::cout << "Inverse lerp: " << calculate_inverse_lerp(start, end, value)
-                  << '\n';
-    }
-    catch (const std::invalid_argument&)
-    {
-        std::cerr << "Error: Input contains non-numeric characters\n";
-    }
-    catch (const std::out_of_range&)
-    {
-        std::cerr << "Error: Values too large!\n";
-    }
-    catch (const std::runtime_error& e)
-    {
-        std::cerr << "Runtime error: " << e.what() << '\n';
-    }
-    catch (...)
-    {
-        std::cerr << "An unknown error occurred!\n";
-    }
-}
- */
+#endif // INTERPOLATION_UTILS_HPP
