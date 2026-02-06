@@ -4,10 +4,13 @@
 
 // includes
 #include <stdexcept>
-#include <cmath>
+#include <cmath> // for future updates
+
+namespace vmath
+{
 
 // linear interpolaion curve fitting
-float calculate_lerp(float start_value, float end_value, float time)
+inline float calculate_lerp(float start_value, float end_value, float time)
 {
     if(time < 0.0f || time > 1.0f) 
         throw std::runtime_error("Time must be between 0.0 and 1.0");
@@ -16,7 +19,7 @@ float calculate_lerp(float start_value, float end_value, float time)
 }
 
 // inverse linear interpolation/min-max normalization
-float calculate_inverse_lerp(float start_value, float end_value, float value)
+inline float calculate_inverse_lerp(float value, float start_value, float end_value)
 {
     float range = end_value - start_value;
     if(range == 0.0f)
@@ -26,7 +29,7 @@ float calculate_inverse_lerp(float start_value, float end_value, float value)
 }
 
 // clamp between two values
-double calculate_clamp(double value, double min_val, double max_val)
+inline float calculate_clamp(float value, float min_val, float max_val)
 {
     if(min_val > max_val) 
         throw std::runtime_error("minimum value cannot be larger than maximum value!");
@@ -38,7 +41,7 @@ double calculate_clamp(double value, double min_val, double max_val)
 }
 
 // remap
-float calculate_remap(float value, float old_min, float old_max, 
+inline float calculate_remap(float value, float old_min, float old_max, 
     float new_min, float new_max)
 {
     float t = calculate_inverse_lerp(old_min, old_max, value);
@@ -47,5 +50,7 @@ float calculate_remap(float value, float old_min, float old_max,
 
     return calculate_lerp(new_min, new_max, t_clamped);
 }
+
+} // namespace vmath
 
 #endif // INTERPOLATION_UTILS_HPP
