@@ -20,17 +20,23 @@ class Vector2
            return std::sqrt(x * x + y * y);  
         }
 
-        // normalize magnitude
+        // normalize magnitude aka unit vector
         Vector2 normalize() const
         {
             float mag = length();
 
-                if(mag == 0) throw std::runtime_error("cannot divide with 0!\n");
+            if(mag == 0) throw std::runtime_error("cannot divide with 0!\n");
 
-                float new_x = x / mag;
-                float new_y = y / mag;
+            float new_x = x / mag;
+            float new_y = y / mag;
 
-                return Vector2(new_x, new_y);
+            return Vector2(new_x, new_y);
+        }
+
+        // dot product
+        float dot(const Vector2& other) const
+        {
+            return (x * other.x) + (y * other.y);
         }
 };
 
