@@ -39,7 +39,7 @@ class Vector2
             return (x * other.x) + (y * other.y);
         }
 
-        // distance between two points (high precision, not good for big calculations)
+        // actual distance in units (uses std::sqrt, slower and easier to read) 
         float distance(const Vector2& other) const
         {
             float delta_x = other.x - x;
@@ -48,12 +48,24 @@ class Vector2
             return std::sqrt(delta_x * delta_x + delta_y * delta_y);
         }
 
+        // returns distance sqaured (no std::sqrt, faster, use for range and comparison)
         float distance_squared(const Vector2& other) const
         {
             float delta_x = other.x - x;
             float delta_y = other.y - y;
 
             return (delta_x * delta_x) + (delta_y * delta_y);
+        }
+
+        // multiply two vectors with a scalar value
+        Vector2 multiply(float scalar) const
+        {
+            return Vector2(x * scalar, y * scalar);
+        }
+
+        Vector2 add(const Vector2& other) const
+        {
+            return Vector2(x + other.x, y + other.y);
         }
 };
 
