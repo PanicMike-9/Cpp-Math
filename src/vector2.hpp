@@ -38,6 +38,23 @@ class Vector2
         {
             return (x * other.x) + (y * other.y);
         }
+
+        // distance between two points (high precision, not good for big calculations)
+        float distance(const Vector2& other) const
+        {
+            float delta_x = other.x - x;
+            float delta_y = other.y - y;
+
+            return std::sqrt(delta_x * delta_x + delta_y * delta_y);
+        }
+
+        float distance_squared(const Vector2& other) const
+        {
+            float delta_x = other.x - x;
+            float delta_y = other.y - y;
+
+            return (delta_x * delta_x) + (delta_y * delta_y);
+        }
 };
 
 #endif
