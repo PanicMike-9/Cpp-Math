@@ -57,15 +57,22 @@ class Vector2
             return (delta_x * delta_x) + (delta_y * delta_y);
         }
 
-        // multiply two vectors with a scalar value
-        Vector2 multiply(float scalar) const
+        // operator add
+        Vector2 operator+(const Vector2& other) const
         {
-            return Vector2(x * scalar, y * scalar);
+            return Vector2{x + other.x, y + other.y};
         }
 
-        Vector2 add(const Vector2& other) const
+        // operator multiply
+        Vector2 operator*(float scalar) const
         {
-            return Vector2(x + other.x, y + other.y);
+            return Vector2{x * scalar, y * scalar};
+        }
+
+        // operator minus
+        Vector2 operator-(const Vector2& other) const
+        {
+            return Vector2{x - other.x, y - other.y};
         }
 };
 
