@@ -80,6 +80,12 @@ class Vector2
         {
             return Vector2{x - other.x, y - other.y};
         }
+
+        // comparison == operator
+        bool operator==(const Vector2& other) const
+        {
+            return (x == other.x && y == other.y);
+        }
 };
 
 #endif
