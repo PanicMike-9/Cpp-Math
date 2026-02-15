@@ -95,10 +95,19 @@ class Vector2
             return *this;
         }
 
+        // assignment operator *=
         Vector2& operator*=(const Vector2& other)
         {
             x *= other.x;
             y *= other.y;
+            return *this;
+        }
+
+        // assignment operator -=
+        Vector2& operator-=(const Vector2& other)
+        {
+            x -= other.x;
+            y -= other.y;
             return *this;
         }
 };
