@@ -1,4 +1,8 @@
-#include <iostream>
+// header guards
+#ifndef CLIP_TO_MAX_HPP
+#define CLIP_TO_MAX_HPP
+
+// includes
 #include <algorithm>
 #include <stdexcept>
 
@@ -19,11 +23,4 @@ int clip(int value)
     return clip_to_max;
 }
 
-int main() 
-{
-    int my_value = 0;
-    std::cout << "Value? ";
-    std::cin >> my_value;
-    std::cout << "My value: " << clip(my_value) << '\n';
-    return 0;
-}
+#endif
