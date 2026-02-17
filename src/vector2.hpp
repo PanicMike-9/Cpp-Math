@@ -25,7 +25,7 @@ class Vector2
         {
             float mag = length();
 
-            if(mag == 0) throw std::runtime_error("cannot divide with 0!\n");
+            if(mag == 0) throw std::runtime_error("Division by zero!\n");
 
             float new_x = x / mag;
             float new_y = y / mag;
@@ -108,6 +108,27 @@ class Vector2
         {
             x -= other.x;
             y -= other.y;
+            return *this;
+        }
+
+        // assignment operator /=
+        Vector2& operator/=(const Vector2& other)
+        {
+            try
+            {
+                if(other.x == 0 || other.y == 0) 
+                    throw std::runtime_error("Division by zero!\n");
+
+                    x /= other.x;
+                    y /= other.y;
+            }
+            catch(const std::exception& e)
+            {
+                x = 0.0f;
+                y = 0.0f;
+                std::cout << "error: " << e.what();
+            }
+
             return *this;
         }
 };
