@@ -63,9 +63,9 @@ class Vector2
             return Vector2{x + other.x, y + other.y};
         }
 
-        Vector2 operator+(float add) const
+        Vector2 operator+(float scalar) const
         {
-            return Vector2{x + add, y + add};
+            return Vector2{x + scalar, y + scalar};
         }
 
         // operator multiply with a scalar value
