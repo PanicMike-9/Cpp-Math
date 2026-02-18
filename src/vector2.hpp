@@ -63,6 +63,11 @@ class Vector2
             return Vector2{x + other.x, y + other.y};
         }
 
+        Vector2 operator+(float add) const
+        {
+            return Vector2{x + add, y + add};
+        }
+
         // operator multiply with a scalar value
         Vector2 operator*(float scalar) const
         {
