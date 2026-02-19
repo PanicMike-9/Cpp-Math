@@ -68,22 +68,63 @@ class Vector2
             return Vector2{x + scalar, y + scalar};
         }
 
-        // operator multiply with a scalar value
-        Vector2 operator*(float scalar) const
-        {
-            return Vector2{x * scalar, y * scalar};
-        }
-
-        // operator mutliply for vectors
+        // operator mutliply 
         Vector2 operator*(const Vector2& other) const
         {
             return Vector2{x * other.x, y * other.y};
+        }
+
+        Vector2 operator*(float scalar) const
+        {
+            return Vector2{x * scalar, y * scalar};
         }
 
         // operator minus
         Vector2 operator-(const Vector2& other) const
         {
             return Vector2{x - other.x, y - other.y};
+        }
+
+        Vector2 operator-(float scalar) const
+        {
+            return Vector2{x - scalar, y - scalar};
+        }
+
+        // operator divide
+        Vector2 operator/(const Vector2& other) const
+        {
+            try 
+            {
+                if(other.x == 0 || other.y == 0)
+                {
+                    throw std::runtime_error("Division by zero!\n");
+                }
+
+                return Vector2{x / other.x, y / other.y};
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << "error: " << e.what();
+                return Vector2{0.0f, 0.0f};
+            }
+        }
+
+        Vector2 operator/(float scalar) const
+        {
+            try
+            {
+                if(scalar == 0.0f)
+                {
+                    throw std::runtime_error("Division by zero!\n");
+                }
+
+                return Vector2{x / scalar, y / scalar};
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << "error: " << e.what();
+                return Vector2{0.0f, 0.0f};
+            }
         }
 
         // comparison == operator
@@ -129,9 +170,8 @@ class Vector2
             }
             catch(const std::exception& e)
             {
-                x = 0.0f;
-                y = 0.0f;
                 std::cout << "error: " << e.what();
+                return Vector2{0.0f, 0.0f};
             }
 
             return *this;
