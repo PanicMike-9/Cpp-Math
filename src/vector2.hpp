@@ -170,10 +170,10 @@ class Vector2
             }
             catch(const std::exception& e)
             {
+                x = 0.0f;
+                y = 0.0f;
                 std::cout << "error: " << e.what();
-                return Vector2{0.0f, 0.0f};
             }
-
             return *this;
         }
 };
