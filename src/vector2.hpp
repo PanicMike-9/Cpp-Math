@@ -90,6 +90,12 @@ class Vector2
             return Vector2{x - scalar, y - scalar};
         }
 
+        // unary -()
+        Vector2 operator-() const
+        {
+            return Vector2{-x, -y};
+        }
+
         // operator divide
         Vector2 operator/(const Vector2& other) const
         {
@@ -175,6 +181,12 @@ class Vector2
                 std::cout << "error: " << e.what();
             }
             return *this;
+        }
+
+        // assignment operator !=
+        bool operator!=(const Vector2& other) const
+        {
+            return !(*this == other);
         }
 };
 
