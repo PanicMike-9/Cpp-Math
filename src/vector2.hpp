@@ -14,10 +14,16 @@ class Vector2
         // constructor
         Vector2(float x_c, float y_c) : x(x_c), y(y_c) {}
 
-        // find magnitude
+        // find magnitude (sqaured)
+        float length_squared() const
+        {
+            return (x * x + y * y);
+        }
+
+        // find magnitude (with square root)
         float length() const
         {
-           return std::sqrt(x * x + y * y);  
+           return std::sqrt(length_squared());  
         }
 
         // normalize magnitude aka unit vector
