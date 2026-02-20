@@ -121,6 +121,7 @@ class Vector2
             }
         }
 
+        // operator / with safety
         Vector2 operator/(float scalar) const
         {
             try
