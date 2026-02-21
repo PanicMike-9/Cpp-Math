@@ -12,22 +12,22 @@ class Vector2
         float y;
 
         // constructor
-        Vector2(float x_c, float y_c) : x(x_c), y(y_c) {}
+        constexpr Vector2(float x_c, float y_c) : x(x_c), y(y_c) {}
 
         // find magnitude (sqaured)
-        float length_squared() const
+        constexpr float length_squared() const
         {
             return (x * x + y * y);
         }
 
         // find magnitude (with square root)
-        float length() const
+        constexpr float length() const
         {
            return std::sqrt(length_squared());  
         }
 
         // normalize magnitude aka unit vector
-        Vector2 normalize() const
+        constexpr Vector2 normalize() const
         {
             float mag = length();
 
@@ -40,13 +40,13 @@ class Vector2
         }
 
         // dot product
-        float dot(const Vector2& other) const
+        constexpr float dot(const Vector2& other) const
         {
             return (x * other.x) + (y * other.y);
         }
 
         // actual distance in units (uses std::sqrt, slower and easier to read) 
-        float distance(const Vector2& other) const
+        constexpr float distance(const Vector2& other) const
         {
             float delta_x = other.x - x;
             float delta_y = other.y - y;
@@ -55,7 +55,7 @@ class Vector2
         }
 
         // returns distance sqaured (no std::sqrt, faster, use for range and comparison)
-        float distance_squared(const Vector2& other) const
+        constexpr float distance_squared(const Vector2& other) const
         {
             float delta_x = other.x - x;
             float delta_y = other.y - y;
@@ -64,46 +64,46 @@ class Vector2
         }
 
         // operator add
-        Vector2 operator+(const Vector2& other) const
+        constexpr Vector2 operator+(const Vector2& other) const
         {
             return Vector2{x + other.x, y + other.y};
         }
 
-        Vector2 operator+(float scalar) const
+        constexpr Vector2 operator+(float scalar) const
         {
             return Vector2{x + scalar, y + scalar};
         }
 
         // operator mutliply 
-        Vector2 operator*(const Vector2& other) const
+        constexpr Vector2 operator*(const Vector2& other) const
         {
             return Vector2{x * other.x, y * other.y};
         }
 
-        Vector2 operator*(float scalar) const
+        constexpr Vector2 operator*(float scalar) const
         {
             return Vector2{x * scalar, y * scalar};
         }
 
         // operator minus
-        Vector2 operator-(const Vector2& other) const
+        constexpr Vector2 operator-(const Vector2& other) const
         {
             return Vector2{x - other.x, y - other.y};
         }
 
-        Vector2 operator-(float scalar) const
+        constexpr Vector2 operator-(float scalar) const
         {
             return Vector2{x - scalar, y - scalar};
         }
 
         // unary -()
-        Vector2 operator-() const
+        constexpr Vector2 operator-() const
         {
             return Vector2{-x, -y};
         }
 
         // operator divide
-        Vector2 operator/(const Vector2& other) const
+        constexpr Vector2 operator/(const Vector2& other) const
         {
             try 
             {
@@ -122,7 +122,7 @@ class Vector2
         }
 
         // operator / with safety
-        Vector2 operator/(float scalar) const
+        constexpr Vector2 operator/(float scalar) const
         {
             try
             {
@@ -141,13 +141,13 @@ class Vector2
         }
 
         // comparison == operator
-        bool operator==(const Vector2& other) const
+        constexpr bool operator==(const Vector2& other) const
         {
             return (x == other.x && y == other.y);
         }
 
         // assignment operator +=
-        Vector2& operator+=(const Vector2& other)
+        constexpr Vector2& operator+=(const Vector2& other)
         {
             x += other.x;
             y += other.y;
@@ -155,7 +155,7 @@ class Vector2
         }
 
         // assignment operator *=
-        Vector2& operator*=(const Vector2& other)
+        constexpr Vector2& operator*=(const Vector2& other)
         {
             x *= other.x;
             y *= other.y;
@@ -163,7 +163,7 @@ class Vector2
         }
 
         // assignment operator -=
-        Vector2& operator-=(const Vector2& other)
+        constexpr Vector2& operator-=(const Vector2& other)
         {
             x -= other.x;
             y -= other.y;
@@ -171,7 +171,7 @@ class Vector2
         }
 
         // assignment operator /=
-        Vector2& operator/=(const Vector2& other)
+        constexpr Vector2& operator/=(const Vector2& other)
         {
             try
             {
@@ -191,7 +191,7 @@ class Vector2
         }
 
         // assignment operator !=
-        bool operator!=(const Vector2& other) const
+        constexpr bool operator!=(const Vector2& other) const
         {
             return !(*this == other);
         }
