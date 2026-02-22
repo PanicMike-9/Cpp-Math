@@ -20,7 +20,7 @@ inline float lerp(float start_value, float end_value, float time)
 }
 
 // inverse linear interpolation/min-max normalization
-inline float inverse_lerp(float value, float start_value, float end_value)
+inline float inverse_lerp(float start_value, float end_value, float value)
 {
     float range = end_value - start_value;
     if(range == 0.0f)
