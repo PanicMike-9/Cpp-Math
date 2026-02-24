@@ -4,9 +4,12 @@
 #include <vector>
 #include <string>
 
-struct MandelBrot
+using MB = Mandelbrot; // type alias for MandelBrot
+
+struct Mandelbrot
 {
-} Mb;
+    std::vector<int> image;
+};
 
 int main() 
 {
