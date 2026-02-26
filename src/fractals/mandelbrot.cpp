@@ -30,7 +30,7 @@ using MB = MandelBrot; // type alias
 
 int main() 
 {
-    std::cout << "No error!\n";
+    std::cout << "no errors!\n";
     return 0;
 }
 
