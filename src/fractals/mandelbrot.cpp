@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-class Mandelbrot
+class MandelBrot
 {
     public:
         std::vector<int> image;
@@ -26,9 +26,11 @@ class Mandelbrot
         }
 };
 
+using MB = MandelBrot; // type alias 
+
 int main() 
 {
-    std::cout << "working!\n";
+    std::cout << "No error!\n";
     return 0;
 }
 
