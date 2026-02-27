@@ -24,6 +24,19 @@ class MandelBrot
         {
             image.resize(width * height);
         }
+
+        // render method
+        void render_fractal()
+        {
+            for(int y = 0; y < height; ++y)
+            {
+                for(int x = 0; x < width; ++x)
+                {
+                    std::complex<double> c(real_min + (real_max - real_min) * x / width,
+                                           img_min + (img_max - img_min) * y / height);
+                }
+            }
+        }
 };
 
 using MB = MandelBrot; // type alias 
