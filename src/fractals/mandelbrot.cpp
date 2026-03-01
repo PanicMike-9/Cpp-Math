@@ -71,7 +71,17 @@ using MB = MandelBrot; // type alias
 
 int main() 
 {
-    std::cout << "no errors!\n";
+    int width, height, max_iteration;
+    std::cout << "Enter width, height and max_iteration in order: ";
+    std::cin >> width >> height >> max_iteration;
+
+    std::cout << "Generating Mandelbrot Set\n";
+    MB fractal1 = MB(width, height, max_iteration);
+    fractal1.render_fractal();
+
+    std::cout << "Saving image!\n";
+    fractal1.save("my_first_fractal.ppm");
+
     return 0;
 }
 
