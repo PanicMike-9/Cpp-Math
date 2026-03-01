@@ -9,10 +9,10 @@ class MandelBrot
     public:
         std::vector<int> image;
 
-        double real_min = -2;
-        double real_max = 2;
-        double img_min = -1.5;
-        double img_max = 1.5;
+        double real_min = -1;
+        double real_max = 1;
+        double img_min = -0.5;
+        double img_max = 0.5;
 
         int width;
         int height;
@@ -49,7 +49,7 @@ class MandelBrot
             }
         }
 
-        void save(const std::string &file_name)
+        void save_gray_scale(const std::string &file_name)
         {
             std::ofstream ofs(file_name, std::ios::binary);
 
@@ -69,19 +69,22 @@ class MandelBrot
 
 using MB = MandelBrot; // type alias 
 
-int main() 
+void output()
 {
     int width, height, max_iteration;
     std::cout << "Enter width, height and max_iteration in order: ";
     std::cin >> width >> height >> max_iteration;
 
     std::cout << "Generating Mandelbrot Set\n";
-    MB fractal1 = MB(width, height, max_iteration);
-    fractal1.render_fractal();
+    MB fractal = MB(width, height, max_iteration);
+    fractal.render_fractal();
 
     std::cout << "Saving image!\n";
-    fractal1.save("my_first_fractal.ppm");
+    fractal.save_gray_scale("gray_scale_mandelbrot.ppm");
+}
 
+int main() 
+{
     return 0;
 }
 
