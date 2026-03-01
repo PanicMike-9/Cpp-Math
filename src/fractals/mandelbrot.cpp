@@ -32,7 +32,7 @@ class MandelBrot
             {
                 for(int x = 0; x < width; ++x)
                 {
-                    // map each pixel on the complex plain
+                    // map each pixel on the complex plane
                     std::complex<double> c(real_min + (real_max - real_min) * x / width,
                                            img_min + (img_max - img_min) * y / height);
                     std::complex<double> z = 0;
