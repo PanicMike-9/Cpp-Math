@@ -48,6 +48,23 @@ class MandelBrot
                 }
             }
         }
+
+        void save(const std::string &file_name)
+        {
+            std::ofstream ofs(file_name, std::ios::binary);
+
+            ofs << "P5\n" << width << ' ' << height << "\n255\n";
+
+            for(int i = 0; i < width * height; ++i)
+            {
+                int iteration_num = image[i];
+                unsigned char color = 
+                    static_cast<unsigned char>(255 * iteration_num / max_iteration);
+                ofs << color;
+            }
+
+            ofs.close();
+        }
 };
 
 using MB = MandelBrot; // type alias 
