@@ -9,6 +9,7 @@ class MandelBrot
     public:
         std::vector<int> image;
 
+        // these values zooms into the set
         double real_min = -1;
         double real_max = 1;
         double img_min = -0.5;
