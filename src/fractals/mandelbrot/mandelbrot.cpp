@@ -50,7 +50,7 @@ class MandelBrot
             }
         }
 
-        void save_gray_scale(const std::string &file_name)
+        void save_gray_scale(const std::string& file_name)
         {
             std::ofstream ofs(file_name, std::ios::binary);
 
@@ -65,6 +65,11 @@ class MandelBrot
             }
 
             ofs.close();
+        }
+
+        void save_color(const std::string& file_name)
+        {
+            // todo: add P6 file format, and render set with color
         }
 };
 
