@@ -69,6 +69,9 @@ class MandelBrot
 
         void save_color(const std::string& file_name)
         {
+            std::ofstream ofs(file_name, std::ios::binary);
+
+            ofs << "P6\n" << width << ' ' << height;
             // todo: add P6 file format, and render set with color
         }
 };
