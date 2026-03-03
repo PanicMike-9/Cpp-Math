@@ -14,7 +14,6 @@ class MandelBrot
         double real_max = 1;
         double img_min = -1.5;
         double img_max = 1.5;
-
         int width;
         int height;
         const int max_iteration;
@@ -41,7 +40,7 @@ class MandelBrot
 
                     while (std::abs(z) <= 2 && iterator < max_iteration)
                     {
-                        z = z * z + c;
+                        z = (z * z) + c;
                         iterator++;
                     }
 
@@ -88,9 +87,9 @@ class MandelBrot
                 }
                 else
                 {
-                    r = (iteration_num * 7 + 20) % 256;
-                    g = (iteration_num * 9 + 100) % 256;
-                    b = (iteration_num * 13 + 200) % 256;
+                    r = (iteration_num * 5) % 256;
+                    g = (iteration_num * 7) % 256;
+                    b = (iteration_num * 23) % 256;
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
                 ofs.write(reinterpret_cast<char*>(&g), 1);
