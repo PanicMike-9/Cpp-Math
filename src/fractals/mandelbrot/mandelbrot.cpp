@@ -11,7 +11,7 @@ class MandelBrot
 
         // these values zooms into the set
         double real_min = -2;
-        double real_max = 2;
+        double real_max = 1;
         double img_min = -1.5;
         double img_max = 1.5;
 
@@ -50,6 +50,7 @@ class MandelBrot
             }
         }
 
+        // save in pgm format
         void save_gray_scale(const std::string& file_name)
         {
             std::ofstream ofs(file_name, std::ios::binary);
@@ -67,12 +68,36 @@ class MandelBrot
             ofs.close();
         }
 
+        // save in ppm format
         void save_color(const std::string& file_name)
         {
             std::ofstream ofs(file_name, std::ios::binary);
 
-            ofs << "P6\n" << width << ' ' << height;
-            // todo: add P6 file format, and render set with color
+            ofs << "P6\n" << width << ' ' << height << "\n255\n";
+
+            for(int i = 0; i < width * height; ++i)
+            {
+                int iteration_num = image[i];
+                unsigned char r, g, b;
+                if(iteration_num == max_iteration)
+                {
+                    // main set color
+                    r = 0;
+                    g = 0;
+                    b = 0;
+                }
+                else
+                {
+                    r = (iteration_num * 7 + 20) % 256;
+                    g = (iteration_num * 9 + 100) % 256;
+                    b = (iteration_num * 13 + 200) % 256;
+                }
+                ofs.write(reinterpret_cast<char*>(&r), 1);
+                ofs.write(reinterpret_cast<char*>(&g), 1);
+                ofs.write(reinterpret_cast<char*>(&b), 1);
+            }
+
+            ofs.close();
         }
 };
 
@@ -89,12 +114,26 @@ void output()
     fractal.render_fractal();
 
     std::cout << "Saving image!\n";
-    fractal.save_gray_scale("gray_scale_mandelbrot.ppm");
+    fractal.save_gray_scale("gray_scale_mandelbrot.pgm");
+}
+
+void output_color()
+{
+    int width, height, max_iteration;
+    std::cout << "Enter width, height and max_iteration in order: ";
+    std::cin >> width >> height >> max_iteration;
+
+    std::cout << "Generating Mandelbrot Set\n";
+    MB fractal = MB(width, height, max_iteration);
+    fractal.render_fractal();
+
+    std::cout << "Saving image!\n";
+    fractal.save_color("color_mandelbrot.ppm");
 }
 
 int main() 
 {
-    output();
+    output_color();
     return 0;
 }
 
