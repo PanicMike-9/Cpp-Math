@@ -98,6 +98,13 @@ class MandelBrot
 
             ofs.close();
         }
+
+        /*
+         * Todo *
+         * Add function to create multiple formulas
+         * create new git branch for testing new functions
+         * fix the aspect ratio problem(the stretch)
+         */
 };
 
 using MB = MandelBrot; // type alias 
