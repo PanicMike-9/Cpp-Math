@@ -36,6 +36,7 @@ class MandelBrot
                     std::complex<double> c(real_min + (real_max - real_min) * x / width,
                                            img_min + (img_max - img_min) * y / height);
                     std::complex<double> z = 0;
+
                     int iterator = 0;
 
                     while (std::abs(z) <= 2 && iterator < max_iteration)
@@ -82,13 +83,14 @@ class MandelBrot
                 {
                     // main set color
                     r = 0;
-                    g = 0;
+                    g = 0;                    
                     b = 0;
                 }
                 else
                 {
-                    r = (iteration_num * 5) % 256;
-                    g = (iteration_num * 7) % 256;
+                    // purple red mix palette
+                    r = (iteration_num * 17) % 256;
+                    g = (iteration_num * 3) % 256;
                     b = (iteration_num * 23) % 256;
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
