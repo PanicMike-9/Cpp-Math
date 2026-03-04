@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <complex>
+#include <cmath>
 #include <vector>
 #include <string>
 
@@ -88,10 +89,12 @@ class MandelBrot
                 }
                 else
                 {
-                    // purple red mix palette
-                    r = (iteration_num * 17) % 256;
-                    g = (iteration_num * 3) % 256;
-                    b = (iteration_num * 23) % 256;
+                    // color palette smoothening using std::cos()
+                    double t = (double)iteration_num / max_iteration;
+
+                    r = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.0))));
+                    g = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.33))));
+                    b = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.67))));
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
                 ofs.write(reinterpret_cast<char*>(&g), 1);
