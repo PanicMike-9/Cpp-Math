@@ -11,10 +11,10 @@ class MandelBrot
         std::vector<int> image;
 
         // these values zooms into the set
-        double real_min = -2;
+        double real_min = -2.5;
         double real_max = 1;
-        double img_min = -1.5;
-        double img_max = 1.5;
+        double img_min = -1;
+        double img_max = 1;
         int width;
         int height;
         const int max_iteration;
@@ -36,7 +36,7 @@ class MandelBrot
                     // map each pixel on the complex plane
                     // mandelbrot set logic
                     std::complex<double> c(real_min + (real_max - real_min) * x / width,
-                                           img_min + (img_max - img_min) * y / height);
+                                           img_max - (img_max - img_min) * y / height);
                     std::complex<double> z = 0;
 
                     // Julia set logic
