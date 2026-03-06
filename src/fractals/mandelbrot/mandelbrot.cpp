@@ -5,6 +5,11 @@
 #include <vector>
 #include <string>
 
+// multiple fractal formulas
+enum class fractalType
+{
+};
+
 class MandelBrot
 {
     public:
@@ -98,9 +103,9 @@ class MandelBrot
                     // color palette smoothening using std::cos()
                     double t = (double)iteration_num / max_iteration;
 
-                    r = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.0))));
-                    g = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.33))));
-                    b = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.67))));
+                    r = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.2))));
+                    g = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.63))));
+                    b = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.97))));
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
                 ofs.write(reinterpret_cast<char*>(&g), 1);
