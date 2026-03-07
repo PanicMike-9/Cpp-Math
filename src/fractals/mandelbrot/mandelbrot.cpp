@@ -8,6 +8,8 @@
 // multiple fractal formulas
 enum class fractalType
 {
+    mandelbrot,
+    julia_set
 };
 
 class MandelBrot
