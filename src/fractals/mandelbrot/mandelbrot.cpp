@@ -6,7 +6,7 @@
 #include <string>
 
 // multiple fractal formulas
-enum class fractalType
+enum class FractalType
 {
     mandelbrot,
     julia_set
@@ -17,14 +17,21 @@ class MandelBrot
     public:
         std::vector<int> image;
 
-        // these values zooms into the set
+        // complex plane values
         double real_min = -2.5;
         double real_max = 1;
         double img_min = -1;
         double img_max = 1;
+
+        // width and height for the fractal set
         int width;
         int height;
+
+        // max amount of iteration
         const int max_iteration;
+
+        // enum class for multiple formulas
+        FractalType curr_fractal_type = FractalType::mandelbrot;
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -32,6 +39,7 @@ class MandelBrot
         {
             image.resize(width * height);
         }
+
 
         // render method
         void render_fractal()
