@@ -51,20 +51,24 @@ class MandelBrot
                     std::complex<double> c;
                     std::complex<double> z;
 
+                    // compute real and img values
+                    double compute_real = (real_min + (real_max - real_min) * x / width);
+                    double compute_img = (img_max - (img_max - img_min) * y / height);
+
+                    std::complex<double> pixel(compute_real, compute_img);
+
                     // switch fractal formula
                     switch(curr_fractal_type)
                     {
                         case FractalType::mandelbrot: 
-                            c = std::complex<double>(real_min + (real_max - real_min) * x / width,
-                                                     img_max - (img_max - img_min) * y / height);
+                            c = pixel;
                             z = 0;
                         break;
 
                         case FractalType::julia_set:
                             real_min = -0.2, real_max = 0.2;
                             img_min = -0.2, img_max = 0.2;
-                            z = std::complex<double>(real_min + (real_max - real_min) * x / width,
-                                                     img_max - (img_max - img_min) * y / height);
+                            z = pixel;
                             c = std::complex<double>(-0.8, 0.156);
                         break;
                     }
