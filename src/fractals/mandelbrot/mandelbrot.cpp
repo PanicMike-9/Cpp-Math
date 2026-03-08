@@ -31,7 +31,7 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::mandelbrot;
+        FractalType curr_fractal_type = FractalType::julia_set;
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -39,7 +39,6 @@ class MandelBrot
         {
             image.resize(width * height);
         }
-
 
         // render method
         void render_fractal()
@@ -49,15 +48,26 @@ class MandelBrot
                 for(int x = 0; x < width; ++x)
                 {
                     // map each pixel on the complex plane
-                    // mandelbrot set logic
-                    std::complex<double> c(real_min + (real_max - real_min) * x / width,
-                                           img_max - (img_max - img_min) * y / height);
-                    std::complex<double> z = 0;
+                    std::complex<double> c;
+                    std::complex<double> z;
 
-                    // Julia set logic
-                    //std::complex<double> z(real_min + (real_max - real_min) * x / width,
-                    //                       img_min + (img_max - img_min) * y / height);
-                    //std::complex<double> c{-0.8, 0.156};
+                    // switch fractal formula
+                    switch(curr_fractal_type)
+                    {
+                        case FractalType::mandelbrot: 
+                            c = std::complex<double>(real_min + (real_max - real_min) * x / width,
+                                                     img_max - (img_max - img_min) * y / height);
+                            z = 0;
+                        break;
+
+                        case FractalType::julia_set:
+                            real_min = -0.2, real_max = 0.2;
+                            img_min = -0.2, img_max = 0.2;
+                            z = std::complex<double>(real_min + (real_max - real_min) * x / width,
+                                                     img_max - (img_max - img_min) * y / height);
+                            c = std::complex<double>(-0.8, 0.156);
+                        break;
+                    }
 
                     int iterator = 0;
 
