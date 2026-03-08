@@ -4,6 +4,7 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <chrono> // for each render time
 
 // multiple fractal formulas
 enum class FractalType
@@ -141,9 +142,10 @@ class MandelBrot
 
         /*
          * Todo *
-         * Add function to create multiple formulas
-         * create new git branch for testing new functions
-         * fix the aspect ratio problem(the stretch)
+         * Add function to create multiple formulas ✅
+         * add time bench mark using chrono ❌
+         * fix the aspect ratio problem(the stretch) ❌
+         * add zoom logic ❌
          */
 };
 
