@@ -34,12 +34,16 @@ class MandelBrot
         // enum class for multiple formulas
         FractalType curr_fractal_type = FractalType::julia_set;
 
+        // measure render time
+
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
             : width(width_c), height(height_c), max_iteration(max_iteration_c) 
         {
             image.resize(width * height);
         }
+
+        // start time
 
         // render method
         void render_fractal()
@@ -86,6 +90,8 @@ class MandelBrot
                 }
             }
         }
+
+        // end timer
 
         // save in pgm format
         void save_gray_scale(const std::string& file_name)
@@ -159,10 +165,19 @@ void output()
 
     std::cout << "Generating Mandelbrot Set\n";
     MB fractal = MB(width, height, max_iteration);
+
+    auto start_rt = std::chrono::steady_clock::now();
+
     fractal.render_fractal();
+
+    auto end_rt = std::chrono::steady_clock::now();
+
+    auto duration_rt = std::chrono::duration_cast<std::chrono::seconds>(end_rt - start_rt);
 
     std::cout << "Saving image!\n";
     fractal.save_gray_scale("gray_scale_mandelbrot.pgm");
+
+    std::cout << "Total render duration(ms): " << duration_rt.count() << '\n';
 }
 
 void output_color()
@@ -173,10 +188,20 @@ void output_color()
 
     std::cout << "Generating Mandelbrot Set\n";
     MB fractal = MB(width, height, max_iteration);
+    
+    // calculate function duration
+    auto start_rt = std::chrono::steady_clock::now();
+    
     fractal.render_fractal();
+
+    auto end_rt = std::chrono::steady_clock::now();
+
+    auto duration_rt = std::chrono::duration_cast<std::chrono::seconds>(end_rt - start_rt);
 
     std::cout << "Saving image!\n";
     fractal.save_color("color_mandelbrot.ppm");
+
+    std::cout << "Total render duration: " << duration_rt.count() << " seconds" << '\n';
 }
 
 int main() 
