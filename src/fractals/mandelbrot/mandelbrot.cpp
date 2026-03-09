@@ -70,7 +70,9 @@ class MandelBrot
                             real_min = -0.2, real_max = 0.2;
                             img_min = -0.2, img_max = 0.2;
                             z = pixel;
-                            c = std::complex<double>(-0.8, 0.156);
+                            // try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
+                            c = std::complex<double>(-0.4, 0.6);
+;
                         break;
                     }
 
