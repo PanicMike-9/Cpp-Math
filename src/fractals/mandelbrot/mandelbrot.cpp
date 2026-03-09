@@ -34,16 +34,12 @@ class MandelBrot
         // enum class for multiple formulas
         FractalType curr_fractal_type = FractalType::julia_set;
 
-        // measure render time
-
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
             : width(width_c), height(height_c), max_iteration(max_iteration_c) 
         {
             image.resize(width * height);
         }
-
-        // start time
 
         // render method
         void render_fractal()
@@ -90,8 +86,6 @@ class MandelBrot
                 }
             }
         }
-
-        // end timer
 
         // save in pgm format
         void save_gray_scale(const std::string& file_name)
@@ -166,6 +160,7 @@ void output()
     std::cout << "Generating Mandelbrot Set\n";
     MB fractal = MB(width, height, max_iteration);
 
+    // calculate function duration
     auto start_rt = std::chrono::steady_clock::now();
 
     fractal.render_fractal();
