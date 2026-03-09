@@ -169,10 +169,10 @@ void output()
 
     auto duration_rt = std::chrono::duration_cast<std::chrono::seconds>(end_rt - start_rt);
 
+    std::cout << "Total render duration(ms): " << duration_rt.count() << 's' << '\n';
+
     std::cout << "Saving image!\n";
     fractal.save_gray_scale("gray_scale_mandelbrot.pgm");
-
-    std::cout << "Total render duration(ms): " << duration_rt.count() << '\n';
 }
 
 void output_color()
@@ -193,10 +193,11 @@ void output_color()
 
     auto duration_rt = std::chrono::duration_cast<std::chrono::seconds>(end_rt - start_rt);
 
+    std::cout << "Total render duration: " << duration_rt.count() << 's' << '\n';
+
     std::cout << "Saving image!\n";
     fractal.save_color("color_mandelbrot.ppm");
 
-    std::cout << "Total render duration: " << duration_rt.count() << " seconds" << '\n';
 }
 
 int main() 
