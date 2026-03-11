@@ -18,11 +18,20 @@ class MandelBrot
     public:
         std::vector<int> image;
 
-        // complex plane values
-        double real_min = -2.5;
-        double real_max = 1;
-        double img_min = -1;
-        double img_max = 1;
+        double center_real = -0.75;
+        double center_img = 0.0;
+        double real_span = 3.5;
+
+        // complex plane real values
+        double real_min = center_real - real_span/2;
+        double real_max = center_real + real_span/2;
+
+        double aspect_ratio = static_cast<double>(height) / static_cast<double>(width);
+        double img_span = real_span * aspect_ratio;
+
+        // complex plane imaginary values
+        double img_min = center_img - img_span / 2;
+        double img_max = center_img + img_span / 2;
 
         // width and height for the fractal set
         int width;
@@ -32,7 +41,7 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::julia_set;
+        FractalType curr_fractal_type = FractalType::mandelbrot;
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -53,8 +62,8 @@ class MandelBrot
                     std::complex<double> z;
 
                     // compute real and img values
-                    double compute_real = (real_min + (real_max - real_min) * x / width);
-                    double compute_img = (img_max - (img_max - img_min) * y / height);
+                    double compute_real = (real_min + (real_max - real_min) * static_cast<double>(x) / width);
+                    double compute_img = (img_max - (img_max - img_min) * static_cast<double>(y) / height);
 
                     std::complex<double> pixel(compute_real, compute_img);
 
@@ -67,11 +76,9 @@ class MandelBrot
                         break;
 
                         case FractalType::julia_set:
-                            real_min = -0.2, real_max = 0.2;
-                            img_min = -0.2, img_max = 0.2;
                             z = pixel;
                             // try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
-                            c = std::complex<double>(-0.4, 0.6);
+                            c = std::complex<double>(0.285, 0.01);
 ;
                         break;
                     }
@@ -145,7 +152,7 @@ class MandelBrot
         /*
          * Todo *
          * Add function to create multiple formulas ✅
-         * add time bench mark using chrono ❌
+         * add time bench mark using chrono ✅
          * fix the aspect ratio problem(the stretch) ❌
          * add zoom logic ❌
          */
