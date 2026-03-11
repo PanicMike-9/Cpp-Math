@@ -23,9 +23,9 @@ class MandelBrot
         int height;
 
         // centered real and imaginary values
-        double center_real = -0.75;
-        double center_img = 0.0;
-        double real_span = 3.5;
+        double center_real = -0.7436; // og: -0.75
+        double center_img = 0.1318; // og: 0.0
+        double real_span = 0.02; // og: 3.5
 
         // complex plane real values
         double real_min = center_real - real_span/2;
@@ -79,7 +79,7 @@ class MandelBrot
                         case FractalType::julia_set:
                             z = pixel;
                             // try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
-                            c = std::complex<double>(0.285, 0.01);
+                            c = std::complex<double>(-0.4, 0.6);
 ;
                         break;
                     }
