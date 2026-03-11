@@ -6,11 +6,15 @@
 #include <string>
 #include <chrono> // for each render time
 
+// global constexpr
+constexpr double PI = 3.141592653589793;
+constexpr double TAU = 2.0 * PI;
+
 // multiple fractal formulas
 enum class FractalType
 {
     mandelbrot,
-    julia_set
+    julia
 };
 
 class MandelBrot
@@ -76,7 +80,7 @@ class MandelBrot
                             z = 0;
                         break;
 
-                        case FractalType::julia_set:
+                        case FractalType::julia:
                             z = pixel;
                             // try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
                             c = std::complex<double>(-0.4, 0.6);
@@ -122,6 +126,9 @@ class MandelBrot
 
             ofs << "P6\n" << width << ' ' << height << "\n255\n";
 
+            // performance trick
+            double inv_max_iteration = 1.0 / max_iteration;
+
             for(int i = 0; i < width * height; ++i)
             {
                 int iteration_num = image[i];
@@ -136,11 +143,11 @@ class MandelBrot
                 else
                 {
                     // color palette smoothening using std::cos()
-                    double t = (double)iteration_num / max_iteration;
+                    double t = iteration_num * inv_max_iteration;
 
-                    r = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.99))));
-                    g = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.2))));
-                    b = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.75))));
+                    r = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + 0.99))));
+                    g = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + 0.2))));
+                    b = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + 0.75))));
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
                 ofs.write(reinterpret_cast<char*>(&g), 1);
@@ -209,6 +216,7 @@ void output_color()
     std::cout << "Saving image!\n";
     fractal.save_color("color_mandelbrot.ppm");
     
+    // values for debugging
     std::cout << "--- Check Values ---"             << '\n' 
               << "real_min: " << fractal.real_min   << '\n'
               << "real_max: " << fractal.real_max   << '\n'
