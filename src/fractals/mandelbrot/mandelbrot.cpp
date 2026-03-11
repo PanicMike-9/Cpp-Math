@@ -17,6 +17,38 @@ enum class FractalType
     julia
 };
 
+// choose from multiple types
+enum class PaletteType
+{
+    sunset,
+    ocean,
+    fire,
+    neon
+};
+
+// palette phases struct
+struct Palette
+{
+    double r_phase;
+    double g_phase;
+    double b_phase;
+};
+
+// palette switching
+Palette get_palette(PaletteType type)
+{
+    switch(type)
+    {
+        case PaletteType::sunset: return {0.99, 0.2, 0.75};
+        case PaletteType::ocean: return {0.1, 0.4, 0.7};
+        case PaletteType::fire: return {0.0, 0.1, 0.2};
+        case PaletteType::neon: return {0.8, 0.5, 0.3};
+    }
+
+    // fallback
+    return {0.1, 0.4, 0.7};
+}
+
 class MandelBrot
 {
     public:
@@ -27,9 +59,9 @@ class MandelBrot
         int height;
 
         // centered real and imaginary values
-        double center_real = -0.7436; // og: -0.75
-        double center_img = 0.1318; // og: 0.0
-        double real_span = 0.02; // og: 3.5
+        double center_real = -0.75; // og: -0.75
+        double center_img = 0.0; // og: 0.0
+        double real_span = 3.5; // og: 3.5
 
         // complex plane real values
         double real_min = center_real - real_span/2;
@@ -47,6 +79,9 @@ class MandelBrot
 
         // enum class for multiple formulas
         FractalType curr_fractal_type = FractalType::mandelbrot;
+
+        // custom palette
+        Palette palette = get_palette(PaletteType::fire);
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -145,9 +180,9 @@ class MandelBrot
                     // color palette smoothening using std::cos()
                     double t = iteration_num * inv_max_iteration;
 
-                    r = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + 0.99))));
-                    g = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + 0.2))));
-                    b = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + 0.75))));
+                    r = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.r_phase))));
+                    g = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.g_phase))));
+                    b = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.b_phase))));
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
                 ofs.write(reinterpret_cast<char*>(&g), 1);
@@ -163,6 +198,8 @@ class MandelBrot
          * add time bench mark using chrono ✅
          * fix the aspect ratio problem(the stretch) ✅ 
          * add zoom logic ❌
+         * add a struct Palette❌
+         * add a enum class PaletteType❌
          */
 };
 
@@ -174,7 +211,7 @@ void output()
     std::cout << "Enter width, height and max_iteration in order: ";
     std::cin >> width >> height >> max_iteration;
 
-    std::cout << "Generating Mandelbrot Set\n";
+    std::cout << "Generating Fractal...\n";
     MB fractal = MB(width, height, max_iteration);
 
     // calculate function duration
@@ -199,7 +236,7 @@ void output_color()
     std::cin >> width >> height >> max_iteration;
 
 
-    std::cout << "Generating Mandelbrot Set\n";
+    std::cout << "Generating Fractal...\n";
     MB fractal = MB(width, height, max_iteration);
     
     // calculate function duration
