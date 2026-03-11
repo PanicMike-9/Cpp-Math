@@ -162,7 +162,7 @@ class MandelBrot
          * Todo *
          * Add function to create multiple formulas ✅
          * add time bench mark using chrono ✅
-         * fix the aspect ratio problem(the stretch) ❌
+         * fix the aspect ratio problem(the stretch) ✅ 
          * add zoom logic ❌
          */
 };
@@ -221,7 +221,6 @@ void output_color()
 
 int main() 
 {
-
     output_color();
     return 0;
 }
