@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> 
 #include <fstream>
 #include <complex>
 #include <cmath>
@@ -18,6 +18,11 @@ class MandelBrot
     public:
         std::vector<int> image;
 
+        // width and height for the fractal set
+        int width;
+        int height;
+
+        // centered real and imaginary values
         double center_real = -0.75;
         double center_img = 0.0;
         double real_span = 3.5;
@@ -32,10 +37,6 @@ class MandelBrot
         // complex plane imaginary values
         double img_min = center_img - img_span / 2;
         double img_max = center_img + img_span / 2;
-
-        // width and height for the fractal set
-        int width;
-        int height;
 
         // max amount of iteration
         const int max_iteration;
@@ -117,6 +118,14 @@ class MandelBrot
         // save in ppm format
         void save_color(const std::string& file_name)
         {
+                // custom debugging output(remove later)
+                std::cout << "--- Check Values ---" << '\n' 
+                          << "real_min: " << real_min << '\n'
+                          << "real_max: " << real_max << '\n'
+                          << "img_min: " << img_min << '\n'
+                          << "img_max: " << img_max << '\n'
+                          << "real_span: " << real_span << '\n';
+
             std::ofstream ofs(file_name, std::ios::binary);
 
             ofs << "P6\n" << width << ' ' << height << "\n255\n";
@@ -127,7 +136,7 @@ class MandelBrot
                 unsigned char r, g, b;
                 if(iteration_num == max_iteration)
                 {
-                    // main set color
+                    // colors the set black
                     r = 0;
                     g = 0;                    
                     b = 0;
@@ -137,9 +146,9 @@ class MandelBrot
                     // color palette smoothening using std::cos()
                     double t = (double)iteration_num / max_iteration;
 
-                    r = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.2))));
-                    g = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.63))));
-                    b = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.97))));
+                    r = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.99))));
+                    g = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.2))));
+                    b = (int)(255 * (0.5 + 0.5 * std::cos(6.2831 * (t + 0.75))));
                 }
                 ofs.write(reinterpret_cast<char*>(&r), 1);
                 ofs.write(reinterpret_cast<char*>(&g), 1);
@@ -190,6 +199,7 @@ void output_color()
     std::cout << "Enter width, height and max_iteration in order: ";
     std::cin >> width >> height >> max_iteration;
 
+
     std::cout << "Generating Mandelbrot Set\n";
     MB fractal = MB(width, height, max_iteration);
     
@@ -211,7 +221,7 @@ void output_color()
 
 int main() 
 {
+
     output_color();
     return 0;
 }
-
