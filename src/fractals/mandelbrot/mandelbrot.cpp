@@ -118,14 +118,6 @@ class MandelBrot
         // save in ppm format
         void save_color(const std::string& file_name)
         {
-                // custom debugging output(remove later)
-                std::cout << "--- Check Values ---" << '\n' 
-                          << "real_min: " << real_min << '\n'
-                          << "real_max: " << real_max << '\n'
-                          << "img_min: " << img_min << '\n'
-                          << "img_max: " << img_max << '\n'
-                          << "real_span: " << real_span << '\n';
-
             std::ofstream ofs(file_name, std::ios::binary);
 
             ofs << "P6\n" << width << ' ' << height << "\n255\n";
@@ -216,6 +208,14 @@ void output_color()
 
     std::cout << "Saving image!\n";
     fractal.save_color("color_mandelbrot.ppm");
+    
+    std::cout << "--- Check Values ---"             << '\n' 
+              << "real_min: " << fractal.real_min   << '\n'
+              << "real_max: " << fractal.real_max   << '\n'
+              << "img_min: " << fractal.img_min     << '\n'
+              << "img_max: " << fractal.img_max     << '\n'
+              << "real_span: " << fractal.real_span << '\n';
+
 
 }
 
