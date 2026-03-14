@@ -225,7 +225,7 @@ void output()
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Please enter valid values!\n";
+        std::cout << "Values either exceed the max limits or are invalid please try again!\n";
         std::cout << "Enter width, height and max_iteration in order: ";
     }
 
@@ -271,7 +271,7 @@ void output_color()
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Values either exceed the max limits or are in valid please try again!\n";
+        std::cout << "Values either exceed the max limits or are invalid please try again!\n";
         std::cout << "Enter width, height and max_iteration in order: ";
     }
 
