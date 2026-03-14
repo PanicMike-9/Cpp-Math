@@ -235,8 +235,19 @@ void output_color()
 {
     int width, height, max_iteration;
     std::cout << "Enter width, height and max_iteration in order: ";
-    std::cin >> width >> height >> max_iteration;
 
+    // input validation
+    while(true)
+    {
+        if(std::cin >> width >> height >> max_iteration && width > 0 && height > 0 && max_iteration > 0)
+        {
+            break;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Please enter valid values!\n";
+        std::cout << "Enter width, height and max_iteration in order: ";
+    }
 
     std::cout << "Generating Fractal...\n";
     MB fractal = MB(width, height, max_iteration);
