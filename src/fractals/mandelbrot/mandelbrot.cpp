@@ -200,8 +200,9 @@ class MandelBrot
          * add time bench mark using chrono ✅
          * fix the aspect ratio problem(the stretch) ✅ 
          * add zoom logic ❌
-         * add a struct Palette❌
-         * add a enum class PaletteType❌
+         * add a struct Palette✅
+         * add a enum class PaletteType✅
+         * add input validation✅
          */
 };
 
@@ -211,7 +212,19 @@ void output()
 {
     int width, height, max_iteration;
     std::cout << "Enter width, height and max_iteration in order: ";
-    std::cin >> width >> height >> max_iteration;
+
+    // input validation
+    while(true)
+    {
+        if(std::cin >> width >> height >> max_iteration && width > 0 && height > 0 && max_iteration > 0)
+        {
+            break;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Please enter valid values!\n";
+        std::cout << "Enter width, height and max_iteration in order: ";
+    }
 
     std::cout << "Generating Fractal...\n";
     MB fractal = MB(width, height, max_iteration);
@@ -229,6 +242,14 @@ void output()
 
     std::cout << "Saving image!\n";
     fractal.save_gray_scale("gray_scale_mandelbrot.pgm");
+
+    // values for debugging
+    std::cout << "--- Check Values ---"               << '\n' 
+              << "real_min: "  << fractal.real_min    << '\n'
+              << "real_max: "  << fractal.real_max    << '\n'
+              << "img_min: "   << fractal.img_min     << '\n'
+              << "img_max: "   << fractal.img_max     << '\n'
+              << "real_span: " << fractal.real_span   << '\n';
 }
 
 void output_color()
@@ -267,14 +288,12 @@ void output_color()
     fractal.save_color("color_mandelbrot.ppm");
     
     // values for debugging
-    std::cout << "--- Check Values ---"             << '\n' 
-              << "real_min: " << fractal.real_min   << '\n'
-              << "real_max: " << fractal.real_max   << '\n'
-              << "img_min: " << fractal.img_min     << '\n'
-              << "img_max: " << fractal.img_max     << '\n'
-              << "real_span: " << fractal.real_span << '\n';
-
-
+    std::cout << "--- Check Values ---"               << '\n' 
+              << "real_min: "  << fractal.real_min    << '\n'
+              << "real_max: "  << fractal.real_max    << '\n'
+              << "img_min: "   << fractal.img_min     << '\n'
+              << "img_max: "   << fractal.img_max     << '\n'
+              << "real_span: " << fractal.real_span   << '\n';
 }
 
 int main() 
