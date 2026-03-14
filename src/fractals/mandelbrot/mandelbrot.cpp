@@ -4,6 +4,7 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <limits>
 #include <chrono> // for each render time
 
 // global constexpr
@@ -216,7 +217,9 @@ void output()
     // input validation
     while(true)
     {
-        if(std::cin >> width >> height >> max_iteration && width > 0 && height > 0 && max_iteration > 0)
+        if(std::cin >> width >> height >> max_iteration && 
+                width > 0 && height > 0 && max_iteration > 0 && 
+                width <= 5000 && height <= 5000 && max_iteration <= 1500)
         {
             break;
         }
@@ -260,13 +263,15 @@ void output_color()
     // input validation
     while(true)
     {
-        if(std::cin >> width >> height >> max_iteration && width > 0 && height > 0 && max_iteration > 0)
+        if(std::cin >> width >> height >> max_iteration && 
+                width > 0 && height > 0 && max_iteration > 0 && 
+                width <= 5000 && height <= 5000 && max_iteration <= 1500)
         {
             break;
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Please enter valid values!\n";
+        std::cout << "Values either exceed the max limits or are in valid please try again!\n";
         std::cout << "Enter width, height and max_iteration in order: ";
     }
 
