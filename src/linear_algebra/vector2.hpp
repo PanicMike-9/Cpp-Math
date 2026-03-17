@@ -42,22 +42,16 @@ class Vector2
             return (x * other.x) + (y * other.y);
         }
 
-        // actual distance in units (uses std::sqrt, slower and easier to read) 
+        // calculate distance
         constexpr float distance(const Vector2& other) const
         {
-            float delta_x = other.x - x;
-            float delta_y = other.y - y;
-
-            return std::sqrt(delta_x * delta_x + delta_y * delta_y);
+            return (*this - other).length();
         }
 
-        // returns distance sqaured (no std::sqrt, faster, use for range and comparison)
+        // returns distance sqaured 
         constexpr float distance_squared(const Vector2& other) const
         {
-            float delta_x = other.x - x;
-            float delta_y = other.y - y;
-
-            return (delta_x * delta_x) + (delta_y * delta_y);
+            return (*this - other).length_squared();
         }
 
         // operator add
