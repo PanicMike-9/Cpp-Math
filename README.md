@@ -43,7 +43,7 @@ g++ circle_solver.cpp -o circlesolver && ./circlesolver
 
 - A lightweight, header-only C++ class for handling 2D vectors. This class provides the basic functions to understand how the Vector2 class works with basic functions like distance and distance squared to dot product and similar
 
-### how to use it
+### Quick Test
 ``` C++
 //main.cpp
 #include <iostream>
