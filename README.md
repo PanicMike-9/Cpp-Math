@@ -61,7 +61,7 @@ int main()
     return 0;
 } 
 ```
-- More detailed tests are here: [linear_algebra/test_vector2.cpp](./linear_algebra/test_vector2.cpp)
+- More detailed tests are here: [linear_algebra/test_vector2.cpp](./src/linear_algebra/test_vector2.cpp)
 
 ### compile and run
 ``` bash
