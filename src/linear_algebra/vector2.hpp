@@ -31,13 +31,10 @@ class Vector2
         constexpr Vector2 normalize() const
         {
             float mag = length();
+            assert(mag > 0.0f && "Vector2: Division by zero!");
 
-            if(mag == 0) throw std::runtime_error("Division by zero!\n");
-
-            float new_x = x / mag;
-            float new_y = y / mag;
-
-            return Vector2(new_x, new_y);
+            float inv = 1.0f / mag;
+            return Vector2(x * inv, y * inv);
         }
 
         // dot product
