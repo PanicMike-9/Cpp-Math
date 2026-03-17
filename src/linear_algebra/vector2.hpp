@@ -1,5 +1,6 @@
 #include <cmath>
 #include <stdexcept>
+#include <cassert> // for assert
 
 // header guards
 #ifndef VECTOR2_HPP
@@ -105,39 +106,14 @@ class Vector2
         // operator divide
         constexpr Vector2 operator/(const Vector2& other) const
         {
-            try 
-            {
-                if(other.x == 0 || other.y == 0)
-                {
-                    throw std::runtime_error("Division by zero!\n");
-                }
-
-                return Vector2{x / other.x, y / other.y};
-            }
-            catch(const std::exception& e)
-            {
-                std::cout << "error: " << e.what();
-                return Vector2{0.0f, 0.0f};
-            }
+            assert(other.x != 0.0f && other.y != 0.0f && "Vector2: Division by zero!");
+            return Vector2{x / other.x, y / other.y};
         }
 
-        // operator / with safety
         constexpr Vector2 operator/(float scalar) const
         {
-            try
-            {
-                if(scalar == 0.0f)
-                {
-                    throw std::runtime_error("Division by zero!\n");
-                }
-
-                return Vector2{x / scalar, y / scalar};
-            }
-            catch(const std::exception& e)
-            {
-                std::cout << "error: " << e.what();
-                return Vector2{0.0f, 0.0f};
-            }
+            assert(scalar != 0.0f && "Vector2: Division by zero!");
+            return Vector2{x / scalar, y / scalar};
         }
 
         // comparison == operator
@@ -173,20 +149,18 @@ class Vector2
         // assignment operator /=
         constexpr Vector2& operator/=(const Vector2& other)
         {
-            try
-            {
-                if(other.x == 0 || other.y == 0) 
-                    throw std::runtime_error("Division by zero!\n");
+            assert(other.x != 0.0f && other.y != 0.0f && "Vector2: Division by zero!");
+            x /= other.x;
+            y /= other.y;
+            return *this;
+        }
 
-                    x /= other.x;
-                    y /= other.y;
-            }
-            catch(const std::exception& e)
-            {
-                x = 0.0f;
-                y = 0.0f;
-                std::cout << "error: " << e.what();
-            }
+        constexpr Vector2& operator/=(float scalar)
+        {
+            assert(scalar != 0.0f && "Vector2: Division by zero!");
+            float inv = 1.0f / scalar;
+            x *= inv;
+            y *= inv;
             return *this;
         }
 
