@@ -61,6 +61,8 @@ int main()
     return 0;
 } 
 ```
+- More detailed tests are here: [linear_algebra/test_vector2.cpp](./linear_algebra/test_vector2.cpp)
+
 ### compile and run
 ``` bash
 g++ main.cpp -o run && ./run
