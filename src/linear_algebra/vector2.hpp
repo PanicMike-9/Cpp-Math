@@ -13,7 +13,7 @@ class Vector2
         float y;
 
         // constructor
-        constexpr Vector2(float x_c, float y_c) : x(x_c), y(y_c) {}
+        constexpr Vector2(float x, float y) : x{x}, y{y} {}
 
         // find magnitude (sqaured)
         constexpr float length_squared() const
