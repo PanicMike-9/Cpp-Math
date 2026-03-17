@@ -61,3 +61,7 @@ int main()
     return 0;
 } 
 ```
+### compile and run
+``` bash
+g++ main.cpp -o run && ./run
+```
