@@ -39,3 +39,25 @@ $$a = \pi r{2}$$
 ``` bash
 g++ circle_solver.cpp -o circlesolver && ./circlesolver 
 ```
+## Vector2
+
+- A lightweight, header-only C++ class for handling 2D vectors. This class provides the basic functions to understand how the Vector2 class works with basic functions like distance and distance squared to dot product and similar
+
+### how to use it
+``` C++
+//main.cpp
+#include <iostream>
+#include "vector2.hpp"
+
+int main()
+{
+    Vector2 test_vec(3.0f, 4.0f);
+    std::cout << "Test length\n"
+              << "x: " << test_vec.x << '\n'
+              << "y: " << test_vec.y << '\n'
+              << "Length: " << test_vec.length() << '\n'
+              << "Length squared: " << test_vec.length_squared() << '\n';
+    
+    return 0;
+} 
+```
