@@ -1,5 +1,4 @@
 #include <cmath>
-#include <stdexcept>
 #include <cassert> // for assert
 
 // header guards
