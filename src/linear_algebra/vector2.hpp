@@ -1,4 +1,5 @@
 #include <cmath>
+#include <numbers>
 #include <cassert> // for assert
 
 // header guards
@@ -52,6 +53,17 @@ class Vector2
         constexpr float distance_squared(const Vector2& other) const
         {
             return (*this - other).length_squared();
+        }
+
+        // rotate
+        Vector2 rotate(float angle) const
+        {
+            float radians = angle * (std::numbers::pi_v<float> / 180);
+            
+            float new_x = x * std::cos(radians) - y * std::sin(radians);
+            float new_y = x * std::sin(radians) + y * std::cos(radians);
+
+            return Vector2(new_x, new_y);
         }
 
         // operator add
