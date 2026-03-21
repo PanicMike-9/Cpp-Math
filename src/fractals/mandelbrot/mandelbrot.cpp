@@ -277,6 +277,9 @@ void output_color()
 
     std::cout << "Generating Fractal...\n";
     MB fractal = MB(width, height, max_iteration);
+
+    // custom file name
+    std::string file_name;
     
     // calculate function duration
     auto start_rt = std::chrono::steady_clock::now();
@@ -289,26 +292,19 @@ void output_color()
 
     std::cout << "Total render duration: " << duration_rt.count() << 's' << '\n';
 
-    std::cout << "Saving image!\n";
-
-    // custom file name
-    std::string file_name;
-
+    // unqiue fractal file name
     switch(fractal.curr_fractal_type)
     {
-        case FractalType::mandelbrot: 
-            file_name = "Mandelbrot.ppm";
-            break;
+        case FractalType::mandelbrot: file_name = "Mandelbrot.ppm"; break;
 
-        case FractalType::julia: 
-            file_name = "Julia_set.ppm";
-            break;
+        case FractalType::julia: file_name = "Julia_set.ppm"; break;
 
-        default:
-            file_name = "unknown_fractal.ppm";
-                break;
+        default: file_name = "unknown_fractal.ppm"; break;
     }
 
+    std::cout << "Saving image to: " << file_name << '\n';
+
+    // save file
     fractal.save_color(file_name);
     
     // values for debugging
