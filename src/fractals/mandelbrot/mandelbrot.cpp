@@ -81,10 +81,10 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::mandelbrot;
+        FractalType curr_fractal_type = FractalType::julia;
 
         // custom palette
-        Palette palette = get_palette(PaletteType::fire);
+        Palette palette = get_palette(PaletteType::neon);
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -290,7 +290,26 @@ void output_color()
     std::cout << "Total render duration: " << duration_rt.count() << 's' << '\n';
 
     std::cout << "Saving image!\n";
-    fractal.save_color("color_mandelbrot.ppm");
+
+    // custom file name
+    std::string file_name;
+
+    switch(fractal.curr_fractal_type)
+    {
+        case FractalType::mandelbrot: 
+            file_name = "Mandelbrot.ppm";
+            break;
+
+        case FractalType::julia: 
+            file_name = "Julia_set.ppm";
+            break;
+
+        default:
+            file_name = "unknown_fractal.ppm";
+                break;
+    }
+
+    fractal.save_color(file_name);
     
     // values for debugging
     std::cout << "--- Check Values ---"               << '\n' 
