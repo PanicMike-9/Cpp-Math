@@ -122,7 +122,6 @@ class MandelBrot
                             z = pixel;
                             // try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
                             c = std::complex<double>(-0.4, 0.6);
-;
                         break;
                     }
 
