@@ -1,10 +1,11 @@
 #include <cmath>
-#include <numbers>
 #include <cassert> // for assert
 
 // header guards
 #ifndef VECTOR2_HPP
 #define VECTOR2_HPP
+
+constexpr const float PI = 3.14159265358979323846f;
 
 class Vector2 
 {
@@ -58,7 +59,7 @@ class Vector2
         // rotate
         Vector2 rotate(float angle) const
         {
-            float radians = angle * (std::numbers::pi_v<float> / 180);
+            float radians = angle * (PI / 180);
             
             float new_x = x * std::cos(radians) - y * std::sin(radians);
             float new_y = x * std::sin(radians) + y * std::cos(radians);

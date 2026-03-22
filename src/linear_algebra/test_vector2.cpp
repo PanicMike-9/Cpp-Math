@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "vector2.hpp"
 
 void test_length()
@@ -75,16 +74,42 @@ void test_operator_overloads()
               << "v5.y: " << v5.y << '\n';
 }
 
+void test_rotate()
+{
+    Vector2 v1(10.0f, 20.0f);
+    Vector2 v2(5.0f, 10.0f);
+
+    float angle = 10; // 10 degrees
+
+    Vector2 v1_rot = v1.rotate(angle);
+    Vector2 v2_rot = v2.rotate(angle);
+
+    std::cout << "Initial Vector values\n" 
+              << "v1 x: " << v1.x << '\n'
+              << "v1 y: " << v1.y << '\n'
+              << "v2 x: " << v2.x << '\n'
+              << "v2 y: " << v2.y << '\n';
+
+    std::cout << "Rotate by angle: " << angle << '\n';
+
+    std::cout << "Rotated vector values\n"
+              << "v1_rot x: " <<  v1_rot.x << '\n'
+              << "v1_rot y: " <<  v1_rot.y << '\n'
+              << "v2_rot x: " <<  v2_rot.x << '\n'
+              << "v2_rot y: " <<  v2_rot.y << '\n';
+}
+
 int main()
 {
-    std::cout << "=================== test_length() ===================\n";
-    test_length();
-    std::cout << "=================== test_normalize() ===================\n";
-    test_normalize();
-    std::cout << "=================== test_dot_product() ===================\n";
-    test_dot_product();
-    std::cout << "=================== test_operator_overloads() ===================\n";
-    test_operator_overloads();
-    std::cout << "=================== end ===================\n";
+//    std::cout << "=================== test_length() ===================\n";
+//    test_length();
+//    std::cout << "=================== test_normalize() ===================\n";
+//    test_normalize();
+//    std::cout << "=================== test_dot_product() ===================\n";
+//    test_dot_product();
+//    std::cout << "=================== test_operator_overloads() ===================\n";
+//    test_operator_overloads();
+//    std::cout << "=================== end ===================\n";
+    test_rotate();
     return 0;
 }
