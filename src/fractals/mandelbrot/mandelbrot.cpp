@@ -25,7 +25,7 @@ enum class PaletteType
     ocean,
     fire,
     neon,
-    no_type
+    my_color
 };
 
 // palette phases struct
@@ -45,7 +45,7 @@ Palette get_palette(PaletteType type)
         case PaletteType::ocean: return {0.1, 0.4, 0.7};
         case PaletteType::fire: return {0.0, 0.1, 0.2};
         case PaletteType::neon: return {0.8, 0.5, 0.3};
-        case PaletteType::no_type: return {0.14, 0.21, 0.67};
+        case PaletteType::my_color: return {0.14, 0.21, 0.67};
     }
 
     // fallback
