@@ -17,7 +17,9 @@ enum class FractalType
 {
     mandelbrot,
     julia_classic,
-    //julia_dendrite, 
+    julia_flower,
+    julia_cone,
+    julia_spiral, 
 };
 
 // choose from multiple types
@@ -83,7 +85,7 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::julia_classic;
+        FractalType curr_fractal_type = FractalType::julia_spiral;
 
         // custom palette
         Palette palette = get_palette(PaletteType::ocean);
@@ -123,6 +125,21 @@ class MandelBrot
                         case FractalType::julia_classic:
                             z = pixel;
                             c = std::complex<double>(-0.8, 0.156);
+                        break;
+
+                        case FractalType::julia_flower:
+                            z = pixel;
+                            c = std::complex<double>(0.35, 0.35);
+                        break;
+
+                        case FractalType::julia_cone:
+                            z = pixel;
+                            c = std::complex<double>(-0.4, 0.6);
+                        break;
+                        
+                        case FractalType::julia_spiral:
+                            z = pixel;
+                            c = std::complex<double>(0.285, 0.01);
                         break;
                     }
 
@@ -296,10 +313,12 @@ void output_color()
     switch(fractal.curr_fractal_type)
     {
         case FractalType::mandelbrot: file_name = "Mandelbrot.ppm"; break;
+        case FractalType::julia_classic: file_name = "Julia_classic.ppm"; break;
+        case FractalType::julia_flower: file_name = "Julia_flower.ppm"; break;
+        case FractalType::julia_cone: file_name = "Julia_cone.ppm"; break;
+        case FractalType::julia_spiral: file_name = "Julia_spiral.ppm"; break;
 
-        case FractalType::julia_classic: file_name = "Julia_set.ppm"; break;
-
-        default: file_name = "unknown_fractal.ppm"; break;
+        default: file_name = "Unknown_fractal.ppm"; break;
     }
 
     std::cout << "Saving image to: " << file_name << '\n';
