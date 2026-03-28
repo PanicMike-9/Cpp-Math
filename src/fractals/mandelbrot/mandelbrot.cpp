@@ -12,10 +12,12 @@ constexpr double PI = 3.141592653589793;
 constexpr double TAU = 2.0 * PI;
 
 // multiple fractal formulas
+// try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
 enum class FractalType
 {
     mandelbrot,
-    julia
+    julia_classic,
+    //julia_dendrite, 
 };
 
 // choose from multiple types
@@ -81,10 +83,10 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::julia;
+        FractalType curr_fractal_type = FractalType::julia_classic;
 
         // custom palette
-        Palette palette = get_palette(PaletteType::neon);
+        Palette palette = get_palette(PaletteType::ocean);
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -118,10 +120,9 @@ class MandelBrot
                             z = 0;
                         break;
 
-                        case FractalType::julia:
+                        case FractalType::julia_classic:
                             z = pixel;
-                            // try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
-                            c = std::complex<double>(-0.4, 0.6);
+                            c = std::complex<double>(-0.8, 0.156);
                         break;
                     }
 
@@ -296,7 +297,7 @@ void output_color()
     {
         case FractalType::mandelbrot: file_name = "Mandelbrot.ppm"; break;
 
-        case FractalType::julia: file_name = "Julia_set.ppm"; break;
+        case FractalType::julia_classic: file_name = "Julia_set.ppm"; break;
 
         default: file_name = "unknown_fractal.ppm"; break;
     }
