@@ -12,7 +12,6 @@ constexpr double PI = 3.141592653589793;
 constexpr double TAU = 2.0 * PI;
 
 // multiple fractal formulas
-// try julia set formula: (0.285, 0.01), (-0.4, 0.6), (-0.70176, 0.3842)
 enum class FractalType
 {
     mandelbrot,
@@ -66,9 +65,9 @@ class MandelBrot
         int height;
 
         // centered real and imaginary values
-        double center_real = -0.75; // og: -0.75
-        double center_img = 0.0; // og: 0.0
-        double real_span = 3.5; // og: 3.5
+        double center_real = -0.75; 
+        double center_img = 0.0; 
+        double real_span = 3.5; 
 
         // complex plane real values
         double real_min = center_real - real_span/2;
