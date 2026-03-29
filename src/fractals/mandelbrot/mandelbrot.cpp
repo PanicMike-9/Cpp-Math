@@ -69,7 +69,7 @@ Palette get_palette(PaletteType type)
     return {0.1, 0.4, 0.7};
 }
 
-// camera for the set(defaults to mandelbrot set)
+// camera for the set(centers mandelbrot set)
 struct FractalView
 {
     double center_real{-0.75}; 
@@ -86,7 +86,7 @@ class MandelBrot
         int width;
         int height;
 
-        // FractalView for julia set centering(does not work for mandelbrot)
+        // FractalView for julia set centering(mandelbrot is shifted to left)
         FractalView julia_view{ 0.0, 0.0, 3.0 };
 
         // complex plane real values
