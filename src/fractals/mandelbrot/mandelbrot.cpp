@@ -19,6 +19,8 @@ enum class FractalType
     julia_flower,
     julia_cone,
     julia_spiral, 
+    julia_snake, 
+    julia_silver_ratio, 
 };
 
 // choose from multiple types
@@ -28,7 +30,13 @@ enum class PaletteType
     ocean,
     fire,
     neon,
-    my_color
+    blue_green,
+    orange_valley,
+    rainbow,
+    fire_ice,
+    elec_magenta,
+    emerald,
+    elec_blue,
 };
 
 // palette phases struct
@@ -45,10 +53,16 @@ Palette get_palette(PaletteType type)
     switch(type)
     {
         case PaletteType::sunset: return {0.99, 0.2, 0.75};
-        case PaletteType::ocean: return {0.1, 0.4, 0.7};
-        case PaletteType::fire: return {0.0, 0.1, 0.2};
-        case PaletteType::neon: return {0.8, 0.5, 0.3};
-        case PaletteType::my_color: return {0.14, 0.21, 0.67};
+        case PaletteType::ocean: return {0.10, 0.40, 0.70};
+        case PaletteType::fire: return {0.00, 0.10, 0.20};
+        case PaletteType::neon: return {0.80, 0.50, 0.30};
+        case PaletteType::blue_green: return {0.04, 0.99, 0.25};
+        case PaletteType::orange_valley: return {1.00, 0.20, 0.30};
+        case PaletteType::rainbow: return {0.00, 0.33, 0.67};
+        case PaletteType::fire_ice: return {0.00, 0.05, 0.05};
+        case PaletteType::elec_magenta: return {0.10, 0.50, 0.10};
+        case PaletteType::emerald: return {0.50, 0.20, 0.25};
+        case PaletteType::elec_blue: return {0.50, 0.10, 0.00};
     }
 
     // fallback
@@ -84,10 +98,10 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::julia_spiral;
+        FractalType curr_fractal_type = FractalType::julia_silver_ratio;
 
         // custom palette
-        Palette palette = get_palette(PaletteType::ocean);
+        Palette palette = get_palette(PaletteType::rainbow);
 
         // explicit constructor
         MandelBrot(int width_c, int height_c, int max_iteration_c)
@@ -140,6 +154,14 @@ class MandelBrot
                             z = pixel;
                             c = std::complex<double>(0.285, 0.01);
                         break;
+
+                        case FractalType::julia_snake:
+                            z = pixel;
+                            c = std::complex<double>(-0.835, 0.2321);
+                            
+                        case FractalType::julia_silver_ratio:
+                            z = pixel;
+                            c = std::complex<double>(-0.75, 0.11);
                     }
 
                     int iterator = 0;
@@ -316,6 +338,8 @@ void output_color()
         case FractalType::julia_flower: file_name = "Julia_flower.ppm"; break;
         case FractalType::julia_cone: file_name = "Julia_cone.ppm"; break;
         case FractalType::julia_spiral: file_name = "Julia_spiral.ppm"; break;
+        case FractalType::julia_snake: file_name = "Julia_snake.ppm"; break;
+        case FractalType::julia_silver_ratio: file_name = "Julia_demj.ppm"; break;
 
         default: file_name = "Unknown_fractal.ppm"; break;
     }
