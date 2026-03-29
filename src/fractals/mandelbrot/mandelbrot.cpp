@@ -8,7 +8,7 @@
 #include <chrono> // for each render time
 
 // global constexpr
-constexpr double PI = 3.141592653589793;
+constexpr double PI  = 3.141592653589793;
 constexpr double TAU = 2.0 * PI;
 
 // multiple fractal formulas
@@ -52,22 +52,30 @@ Palette get_palette(PaletteType type)
 {
     switch(type)
     {
-        case PaletteType::sunset: return {0.99, 0.2, 0.75};
-        case PaletteType::ocean: return {0.10, 0.40, 0.70};
-        case PaletteType::fire: return {0.00, 0.10, 0.20};
-        case PaletteType::neon: return {0.80, 0.50, 0.30};
-        case PaletteType::blue_green: return {0.04, 0.99, 0.25};
+        case PaletteType::sunset:        return {0.99, 0.20, 0.75};
+        case PaletteType::ocean:         return {0.10, 0.40, 0.70};
+        case PaletteType::fire:          return {0.00, 0.10, 0.20};
+        case PaletteType::neon:          return {0.80, 0.50, 0.30};
+        case PaletteType::blue_green:    return {0.04, 0.99, 0.25};
         case PaletteType::orange_valley: return {1.00, 0.20, 0.30};
-        case PaletteType::rainbow: return {0.00, 0.33, 0.67};
-        case PaletteType::fire_ice: return {0.00, 0.05, 0.05};
-        case PaletteType::elec_magenta: return {0.10, 0.50, 0.10};
-        case PaletteType::emerald: return {0.50, 0.20, 0.25};
-        case PaletteType::elec_blue: return {0.50, 0.10, 0.00};
+        case PaletteType::rainbow:       return {0.00, 0.33, 0.67};
+        case PaletteType::fire_ice:      return {0.00, 0.05, 0.05};
+        case PaletteType::elec_magenta:  return {0.10, 0.50, 0.10};
+        case PaletteType::emerald:       return {0.50, 0.20, 0.25};
+        case PaletteType::elec_blue:     return {0.50, 0.10, 0.00};
     }
 
     // fallback
     return {0.1, 0.4, 0.7};
 }
+
+// camera for the set(defaults to mandelbrot set)
+struct FractalView
+{
+    double center_real{-0.75}; 
+    double center_img{0.0}; 
+    double real_span{3.5}; 
+};
 
 class MandelBrot
 {
@@ -78,27 +86,25 @@ class MandelBrot
         int width;
         int height;
 
-        // centered real and imaginary values
-        double center_real = -0.75; 
-        double center_img = 0.0; 
-        double real_span = 3.5; 
+        // FractalView for julia set centering(does not work for mandelbrot)
+        FractalView julia_view{ 0.0, 0.0, 3.0 };
 
         // complex plane real values
-        double real_min = center_real - real_span/2;
-        double real_max = center_real + real_span/2;
+        double real_min = julia_view.center_real - julia_view.real_span/2;
+        double real_max = julia_view.center_real + julia_view.real_span/2;
 
         double aspect_ratio = static_cast<double>(height) / static_cast<double>(width);
-        double img_span = real_span * aspect_ratio;
+        double img_span = julia_view.real_span * aspect_ratio;
 
         // complex plane imaginary values
-        double img_min = center_img - img_span / 2;
-        double img_max = center_img + img_span / 2;
+        double img_min = julia_view.center_img - img_span / 2;
+        double img_max = julia_view.center_img + img_span / 2;
 
         // max amount of iteration
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::julia_silver_ratio;
+        FractalType curr_fractal_type = FractalType::julia_snake;
 
         // custom palette
         Palette palette = get_palette(PaletteType::rainbow);
@@ -158,10 +164,12 @@ class MandelBrot
                         case FractalType::julia_snake:
                             z = pixel;
                             c = std::complex<double>(-0.835, 0.2321);
+                        break;
                             
                         case FractalType::julia_silver_ratio:
                             z = pixel;
                             c = std::complex<double>(-0.75, 0.11);
+                        break;
                     }
 
                     int iterator = 0;
@@ -290,7 +298,7 @@ void output()
               << "real_max: "  << fractal.real_max    << '\n'
               << "img_min: "   << fractal.img_min     << '\n'
               << "img_max: "   << fractal.img_max     << '\n'
-              << "real_span: " << fractal.real_span   << '\n';
+              << "real_span: " << fractal.julia_view.real_span   << '\n';
 }
 
 void output_color()
@@ -333,13 +341,13 @@ void output_color()
     // unqiue fractal file name
     switch(fractal.curr_fractal_type)
     {
-        case FractalType::mandelbrot: file_name = "Mandelbrot.ppm"; break;
-        case FractalType::julia_classic: file_name = "Julia_classic.ppm"; break;
-        case FractalType::julia_flower: file_name = "Julia_flower.ppm"; break;
-        case FractalType::julia_cone: file_name = "Julia_cone.ppm"; break;
-        case FractalType::julia_spiral: file_name = "Julia_spiral.ppm"; break;
-        case FractalType::julia_snake: file_name = "Julia_snake.ppm"; break;
-        case FractalType::julia_silver_ratio: file_name = "Julia_demj.ppm"; break;
+        case FractalType::mandelbrot:         file_name = "Mandelbrot.ppm";         break;
+        case FractalType::julia_classic:      file_name = "Julia_classic.ppm";      break;
+        case FractalType::julia_flower:       file_name = "Julia_flower.ppm";       break;
+        case FractalType::julia_cone:         file_name = "Julia_cone.ppm";         break;
+        case FractalType::julia_spiral:       file_name = "Julia_spiral.ppm";       break;
+        case FractalType::julia_snake:        file_name = "Julia_snake.ppm";        break;
+        case FractalType::julia_silver_ratio: file_name = "Julia_silver_ratio.ppm"; break;
 
         default: file_name = "Unknown_fractal.ppm"; break;
     }
@@ -355,7 +363,7 @@ void output_color()
               << "real_max: "  << fractal.real_max    << '\n'
               << "img_min: "   << fractal.img_min     << '\n'
               << "img_max: "   << fractal.img_max     << '\n'
-              << "real_span: " << fractal.real_span   << '\n';
+              << "real_span: " << fractal.julia_view.real_span   << '\n';
 }
 
 int main() 
