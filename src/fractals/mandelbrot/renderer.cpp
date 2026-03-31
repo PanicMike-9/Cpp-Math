@@ -77,7 +77,7 @@ struct FractalView
     double real_span{3.5}; 
 };
 
-class MandelBrot
+class Mandelbrot
 {
     public:
         std::vector<int> image;
@@ -113,7 +113,7 @@ class MandelBrot
         Palette palette = get_palette(PaletteType::rainbow);
 
         // explicit constructor
-        MandelBrot(int width, int height, int max_iteration, double zoom_factor)
+        Mandelbrot(int width, int height, int max_iteration, double zoom_factor)
             : width{width}, height{height}, max_iteration{max_iteration}, zoom_factor{zoom_factor} 
         {
             image.resize(width * height);
@@ -256,7 +256,7 @@ class MandelBrot
          */
 };
 
-using MB = MandelBrot; // type alias 
+using MB = Mandelbrot; // type alias 
 
 void output()
 {
