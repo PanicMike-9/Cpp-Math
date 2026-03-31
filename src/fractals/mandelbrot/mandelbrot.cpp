@@ -189,7 +189,7 @@ class MandelBrot
         }
 
         // save in pgm format
-        void save_gray_scale(const std::string& file_name)
+        void render_gray_scale(const std::string& file_name)
         {
             std::ofstream ofs(file_name, std::ios::binary);
 
@@ -207,7 +207,7 @@ class MandelBrot
         }
 
         // save in ppm format
-        void save_color(const std::string& file_name)
+        void render_color(const std::string& file_name)
         {
             std::ofstream ofs(file_name, std::ios::binary);
 
@@ -249,7 +249,7 @@ class MandelBrot
          * Add function to create multiple formulas ✅
          * add time bench mark using chrono ✅
          * fix the aspect ratio problem(the stretch) ✅ 
-         * add zoom logic ❌
+         * add zoom logic ✅
          * add a struct Palette✅
          * add a enum class PaletteType✅
          * add input validation✅
@@ -294,7 +294,7 @@ void output()
     std::cout << "Total render duration(ms): " << duration_rt.count() << 's' << '\n';
 
     std::cout << "Saving image!\n";
-    fractal.save_gray_scale("gray_scale_mandelbrot.pgm");
+    fractal.render_gray_scale("gray_scale_mandelbrot.pgm");
 
     // values for debugging
     std::cout << "--- Check Values ---"               << '\n' 
@@ -360,7 +360,7 @@ void output_color()
     std::cout << "Saving image to: " << file_name << '\n';
 
     // save file
-    fractal.save_color(file_name);
+    fractal.render_color(file_name);
     
     // values for debugging
     std::cout << "--- Check Values ---"               << '\n' 
