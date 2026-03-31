@@ -86,8 +86,11 @@ class MandelBrot
         int width;
         int height;
 
+        // zoom factor
+        double zoom_factor{0.0};
+
         // FractalView for julia set centering(mandelbrot is shifted to left)
-        FractalView julia_view{ 0.0, 0.0, 3.0 };
+        FractalView julia_view{ 0.00, 0.00, (3.5 * zoom_factor) };
 
         // complex plane real values
         double real_min = julia_view.center_real - julia_view.real_span/2;
@@ -104,14 +107,14 @@ class MandelBrot
         const int max_iteration;
 
         // enum class for multiple formulas
-        FractalType curr_fractal_type = FractalType::julia_snake;
+        FractalType curr_fractal_type = FractalType::julia_classic;
 
         // custom palette
         Palette palette = get_palette(PaletteType::rainbow);
 
         // explicit constructor
-        MandelBrot(int width_c, int height_c, int max_iteration_c)
-            : width(width_c), height(height_c), max_iteration(max_iteration_c) 
+        MandelBrot(int width, int height, int max_iteration, double zoom_factor)
+            : width{width}, height{height}, max_iteration{max_iteration}, zoom_factor{zoom_factor} 
         {
             image.resize(width * height);
         }
@@ -258,14 +261,15 @@ using MB = MandelBrot; // type alias
 void output()
 {
     int width, height, max_iteration;
-    std::cout << "Enter width, height and max_iteration in order: ";
+    double zoom_value;
+    std::cout << "Enter width, height, max_iteration & zoom by in order: ";
 
     // input validation
     while(true)
     {
-        if(std::cin >> width >> height >> max_iteration && 
-                width > 0 && height > 0 && max_iteration > 0 && 
-                width <= 5000 && height <= 5000 && max_iteration <= 1500)
+        if(std::cin >> width >> height >> max_iteration >> zoom_value && 
+                width > 0 && height > 0 && max_iteration > 0 && zoom_value > 0 && 
+                width <= 5000 && height <= 5000 && max_iteration <= 1500 && zoom_value <= 1)
         {
             break;
         }
@@ -276,7 +280,7 @@ void output()
     }
 
     std::cout << "Generating Fractal...\n";
-    MB fractal = MB(width, height, max_iteration);
+    MB fractal = MB(width, height, max_iteration, zoom_value);
 
     // calculate function duration
     auto start_rt = std::chrono::steady_clock::now();
@@ -304,14 +308,15 @@ void output()
 void output_color()
 {
     int width, height, max_iteration;
-    std::cout << "Enter width, height and max_iteration in order: ";
+    double zoom_value;
+    std::cout << "Enter width, height, max_iteration & zoom by in order: ";
 
     // input validation
     while(true)
     {
-        if(std::cin >> width >> height >> max_iteration && 
-                width > 0 && height > 0 && max_iteration > 0 && 
-                width <= 5000 && height <= 5000 && max_iteration <= 1500)
+        if(std::cin >> width >> height >> max_iteration >> zoom_value && 
+                width > 0 && height > 0 && max_iteration > 0 && zoom_value > 0 && 
+                width <= 5000 && height <= 5000 && max_iteration <= 1500 && zoom_value <= 1)
         {
             break;
         }
@@ -322,7 +327,7 @@ void output_color()
     }
 
     std::cout << "Generating Fractal...\n";
-    MB fractal = MB(width, height, max_iteration);
+    MB fractal = MB(width, height, max_iteration, zoom_value);
 
     // custom file name
     std::string file_name;
