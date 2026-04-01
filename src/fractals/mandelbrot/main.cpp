@@ -36,7 +36,7 @@ void generate_frames()
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEase try again!\n";
+        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEASE TRY AGAIN!\n";
         std::cout << "ENTER WIDTH, HEIGHT AND MAX_ITERATION IN ORDER: ";
     }
 
@@ -85,7 +85,7 @@ void output_color()
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEase try again!\n";
+        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEASE TRY AGAIN!\n";
         std::cout << "ENTER WIDTH, HEIGHT AND MAX_ITERATION IN ORDER: ";
     }
 
