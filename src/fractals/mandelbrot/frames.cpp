@@ -46,7 +46,7 @@ void generate_zoom()
 
         // filename with index
         char filename[100];
-        sprintf(filename, "frame_%04d.ppm", frame);
+        sprintf(filename, "frm_%04d.ppm", frame);
 
         fractal.render_color(filename);
     } 
