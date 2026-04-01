@@ -10,18 +10,18 @@ using MB = Mandelbrot;
 // function prototype
 void output_gray_scale();
 void output_color();
-void render_animation(int width, int height, int max_iteration, double base_zoom, int total_frames);
+void generate_frames(int width, int height, int max_iteration, double base_zoom, int total_frames);
 
 int main() 
 {
-    render_animation(800, 600, 200, 1.0, 60);
+    generate_frames(800, 600, 200, 1.0, 60);
     return 0;
 }
 
-
-void render_animation(int width, int height, int max_iteration, double base_zoom, int total_frames)
+// generate multiple frames
+void generate_frames(int width, int height, int max_iteration, double base_zoom, int total_frames)
 {
-    std::cout << "Animation in progress...\n";
+    std::cout << "GENERATING FRAMES...\n";
 
     auto start_anim = std::chrono::steady_clock::now();
 
@@ -44,16 +44,16 @@ void render_animation(int width, int height, int max_iteration, double base_zoom
 
     auto duration_anim = std::chrono::duration_cast<std::chrono::seconds>(end_anim - start_anim);
 
-    std::cout << "Total animation render duration: " << duration_anim.count() << "s \n";
+    std::cout << "TOTAL ANIMATION RENDER DURATION: " << duration_anim.count() << "s \n";
 
-    std::cout << "Animation completed!\n";
+    std::cout << "FRAME GENERATION COMPLETED!\n";
 }
 
 void output_color()
 {
     int width, height, max_iteration;
     double zoom_value;
-    std::cout << "Enter width, height, max_iteration & zoom by in order: ";
+    std::cout << "ENTER WIDTH, HEIGHT, MAX_ITERATION & ZOOM BY IN ORDER: ";
 
     // input validation
     while(true)
@@ -66,11 +66,11 @@ void output_color()
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Values either exceed the max limits or are invalid please try again!\n";
-        std::cout << "Enter width, height and max_iteration in order: ";
+        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEase try again!\n";
+        std::cout << "ENTER WIDTH, HEIGHT AND MAX_ITERATION IN ORDER: ";
     }
 
-    std::cout << "Generating Fractal...\n";
+    std::cout << "GENERATING FRACTAL...\n";
     MB fractal = MB(width, height, max_iteration, zoom_value);
 
     // custom file name
@@ -85,7 +85,7 @@ void output_color()
 
     auto duration_rt = std::chrono::duration_cast<std::chrono::seconds>(end_rt - start_rt);
 
-    std::cout << "Total render duration: " << duration_rt.count() << 's' << '\n';
+    std::cout << "TOTAL RENDER DURATION: " << duration_rt.count() << 's' << '\n';
 
     // unqiue fractal file name
     switch(fractal.curr_fractal_type)
@@ -101,7 +101,7 @@ void output_color()
         default: file_name = "Unknown_fractal.ppm"; break;
     }
 
-    std::cout << "Saving image to: " << file_name << '\n';
+    std::cout << "SAVING IMAGE TO: " << file_name << '\n';
 
     // save file
     fractal.render_color(file_name);
@@ -119,7 +119,7 @@ void output_gray_scale()
 {
     int width, height, max_iteration;
     double zoom_value;
-    std::cout << "Enter width, height, max_iteration & zoom by in order: ";
+    std::cout << "ENTER WIDTH, HEIGHT, MAX_ITERATION & ZOOM BY IN ORDER: ";
 
     // input validation
     while(true)
@@ -132,11 +132,11 @@ void output_gray_scale()
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Values either exceed the max limits or are invalid please try again!\n";
-        std::cout << "Enter width, height and max_iteration in order: ";
+        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEASE TRY AGAIN!\n";
+        std::cout << "ENTER WIDTH, HEIGHT AND MAX_ITERATION IN ORDER: ";
     }
 
-    std::cout << "Generating Fractal...\n";
+    std::cout << "GENERATING FRACTAL...\n";
     MB fractal = MB(width, height, max_iteration, zoom_value);
 
     // calculate function duration
@@ -148,9 +148,9 @@ void output_gray_scale()
 
     auto duration_rt = std::chrono::duration_cast<std::chrono::seconds>(end_rt - start_rt);
 
-    std::cout << "Total render duration(ms): " << duration_rt.count() << 's' << '\n';
+    std::cout << "TOTAL RENDER DURATION(MS): " << duration_rt.count() << 's' << '\n';
 
-    std::cout << "Saving image!\n";
+    std::cout << "SAVING IMAGE!\n";
     fractal.render_gray_scale("gray_scale_mandelbrot.pgm");
 
     // values for debugging
