@@ -46,7 +46,7 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     view.real_span = 3.0 * zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::julia_silver_ratio;
+    curr_fractal_type = FractalType::julia_classic;
     
     // set fractal color palette
     palette = get_palette(PaletteType::rainbow);
