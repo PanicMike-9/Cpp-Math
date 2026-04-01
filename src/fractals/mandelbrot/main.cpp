@@ -10,17 +10,36 @@ using MB = Mandelbrot;
 // function prototype
 void output_gray_scale();
 void output_color();
-void generate_frames(int width, int height, int max_iteration, double base_zoom, int total_frames);
+void generate_frames();
 
 int main() 
 {
-    generate_frames(800, 600, 200, 1.0, 60);
+    generate_frames();
     return 0;
 }
 
 // generate multiple frames
-void generate_frames(int width, int height, int max_iteration, double base_zoom, int total_frames)
+void generate_frames()
 {
+    int width, height, max_iteration, total_frames;
+    double base_zoom;
+    std::cout << "ENTER WIDTH, HEIGHT, MAX_ITERATION, BASE_ZOOM && TOTAL_FRAMES IN ORDER: ";
+
+    // input validation
+    while(true)
+    {
+        if(std::cin >> width >> height >> max_iteration >> base_zoom >> total_frames &&
+                width > 0 && height > 0 && max_iteration > 0 && base_zoom > 0 && total_frames > 0 &&  
+                width <= 5000 && height <= 5000 && max_iteration <= 1500 && base_zoom <= 1.00 && total_frames <= 150)
+        {
+            break;
+        }
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "VALUES EITHER EXCEED THE MAX LIMITS OR ARE INVALID PLEase try again!\n";
+        std::cout << "ENTER WIDTH, HEIGHT AND MAX_ITERATION IN ORDER: ";
+    }
+
     std::cout << "GENERATING FRAMES...\n";
 
     auto start_anim = std::chrono::steady_clock::now();
