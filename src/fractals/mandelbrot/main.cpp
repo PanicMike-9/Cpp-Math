@@ -2,7 +2,7 @@
 
 int main() 
 {
-    generate_frames();
+    generate_zoom();
     return 0;
 }
 

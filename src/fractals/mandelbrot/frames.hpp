@@ -5,7 +5,7 @@
 using MB = Mandelbrot;  
 
 // function definitions
-void generate_frames();
+void generate_zoom();
 
 /*
  * right now these functions aren't required

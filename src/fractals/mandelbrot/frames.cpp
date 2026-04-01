@@ -6,7 +6,7 @@
 #include "frames.hpp"
 
 // multiple images with different zoom values
-void generate_frames()
+void generate_zoom()
 {
     int width, height, max_iteration, total_frames;
     double base_zoom;
