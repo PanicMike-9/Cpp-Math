@@ -109,29 +109,21 @@ void output_color()
     // unqiue fractal file name
     switch(fractal.curr_fractal_type)
     {
-        case FractalType::mandelbrot:         file_name = "Mandelbrot.ppm";         break;
-        case FractalType::julia_classic:      file_name = "Julia_classic.ppm";      break;
-        case FractalType::julia_flower:       file_name = "Julia_flower.ppm";       break;
-        case FractalType::julia_cone:         file_name = "Julia_cone.ppm";         break;
-        case FractalType::julia_spiral:       file_name = "Julia_spiral.ppm";       break;
-        case FractalType::julia_snake:        file_name = "Julia_snake.ppm";        break;
-        case FractalType::julia_silver_ratio: file_name = "Julia_silver_ratio.ppm"; break;
+        case  FractalType::mandelbrot:          file_name  =  "Mandelbrot.ppm";          break;
+        case  FractalType::julia_classic:       file_name  =  "Julia_classic.ppm";       break;
+        case  FractalType::julia_flower:        file_name  =  "Julia_flower.ppm";        break;
+        case  FractalType::julia_cone:          file_name  =  "Julia_cone.ppm";          break;
+        case  FractalType::julia_spiral:        file_name  =  "Julia_spiral.ppm";        break;
+        case  FractalType::julia_snake:         file_name  =  "Julia_snake.ppm";         break;
+        case  FractalType::julia_silver_ratio:  file_name  =  "Julia_silver_ratio.ppm";  break;
 
-        default: file_name = "Unknown_fractal.ppm"; break;
+        default:  file_name  =  "Unknown_fractal.ppm";  break;
     }
 
     std::cout << "SAVING IMAGE TO: " << file_name << '\n';
 
     // save file
     fractal.render_color(file_name);
-    
-    // values for debugging
-    std::cout << "--- Check Values ---"               << '\n' 
-              << "real_min: "  << fractal.real_min    << '\n'
-              << "real_max: "  << fractal.real_max    << '\n'
-              << "img_min: "   << fractal.img_min     << '\n'
-              << "img_max: "   << fractal.img_max     << '\n'
-              << "real_span: " << fractal.view.real_span   << '\n';
 }
 
 void output_gray_scale()
@@ -171,12 +163,4 @@ void output_gray_scale()
 
     std::cout << "SAVING IMAGE!\n";
     fractal.render_gray_scale("gray_scale_mandelbrot.pgm");
-
-    // values for debugging
-    std::cout << "--- Check Values ---"               << '\n' 
-              << "real_min: "  << fractal.real_min    << '\n'
-              << "real_max: "  << fractal.real_max    << '\n'
-              << "img_min: "   << fractal.img_min     << '\n'
-              << "img_max: "   << fractal.img_max     << '\n'
-              << "real_span: " << fractal.view.real_span   << '\n';
 }
