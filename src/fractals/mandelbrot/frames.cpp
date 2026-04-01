@@ -60,6 +60,7 @@ void generate_frames()
     std::cout << "FRAME GENERATION COMPLETED!\n";
 }
 
+/*
 // single image in color
 void output_color()
 {
@@ -158,3 +159,4 @@ void output_gray_scale()
     std::cout << "SAVING IMAGE!\n";
     fractal.render_gray_scale("gray_scale_mandelbrot.pgm");
 }
+*/
