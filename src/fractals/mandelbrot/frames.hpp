@@ -6,6 +6,7 @@ using MB = Mandelbrot;
 
 // function definitions
 void generate_zoom();
+void generate_parametric();
 
 /*
  * right now these functions aren't required

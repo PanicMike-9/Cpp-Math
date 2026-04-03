@@ -60,6 +60,18 @@ void generate_zoom()
     std::cout << "FRAME GENERATION COMPLETED!\n";
 }
 
+void generate_parametric()
+{
+    /*
+     * TODO: Add parametric changes in the formula in the loop
+     */
+    int width, height, max_iteration, total_frames;
+
+    for(int frame = 0; frame < total_frames; ++frame)
+    {
+    }
+}
+
 /*
 // single image in color
 void output_color()
