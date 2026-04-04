@@ -85,7 +85,7 @@ class Mandelbrot
         // custom palette
         Palette palette;
 
-        Mandelbrot(int width, int height, int max_iteration, double zoom_factor);
+        Mandelbrot(int width, int height, int max_iteration, double zoom_factor = 1.0);
         void render_fractal();
         void render_gray_scale(const std::string& file_name);
         void render_color(const std::string& file_name);
