@@ -41,12 +41,12 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     image.resize(width * height);
 
     // base fractal set view values
-    view.center_real = 0.0;
+    view.center_real = -0.8;
     view.center_img = 0.0;
     view.real_span = 3.0 * zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::julia_spiral;
+    curr_fractal_type = FractalType::mandelbrot;
     
     // set fractal color palette
     palette = get_palette(PaletteType::orange_valley);
@@ -86,8 +86,6 @@ void Mandelbrot::render_fractal()
                 case FractalType::mandelbrot: 
                     c = pixel;
                     z = 0;
-                break;
-
                 break;
 
                 case FractalType::julia_classic:
@@ -160,7 +158,7 @@ void Mandelbrot::render_color(const std::string& file_name)
 
     ofs << "P6\n" << width << ' ' << height << "\n255\n";
 
-    // performance trick
+    // convert division to multiplication
     double inv_max_iteration = 1.0 / max_iteration;
 
     for(int i = 0; i < width * height; ++i)
@@ -169,20 +167,21 @@ void Mandelbrot::render_color(const std::string& file_name)
         unsigned char r, g, b;
         if(iteration_num == max_iteration)
         {
-            // colors the set black
+            // main set color black
             r = 0;
-            g = 0;                    
+            g = 0;
             b = 0;
         }
         else
         {
-            // color palette smoothening using std::cos()
             double t = iteration_num * inv_max_iteration;
 
-            r = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.r_phase))));
-            g = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.g_phase))));
-            b = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.b_phase))));
+            // color palette smoothening using std::sin()
+            r = (int)(255 * (0.5 + 0.5 * std::sin(TAU * (t + palette.r_phase))));
+            g = (int)(255 * (0.5 + 0.5 * std::sin(TAU * (t + palette.g_phase))));
+            b = (int)(255 * (0.5 + 0.5 * std::sin(TAU * (t + palette.b_phase))));
         }
+
         ofs.write(reinterpret_cast<char*>(&r), 1);
         ofs.write(reinterpret_cast<char*>(&g), 1);
         ofs.write(reinterpret_cast<char*>(&b), 1);
