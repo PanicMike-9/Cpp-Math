@@ -46,10 +46,10 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     view.real_span = 3.0 * zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::mandelbrot;
+    curr_fractal_type = FractalType::julia_spiral;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::rainbow);
+    palette = get_palette(PaletteType::orange_valley);
 }
 
 // render method
@@ -123,6 +123,7 @@ void Mandelbrot::render_fractal()
 
             int iterator = 0;
 
+            // main formula loop
             while (std::abs(z) <= 2 && iterator < max_iteration)
             {
                 z = (z * z) + c;
