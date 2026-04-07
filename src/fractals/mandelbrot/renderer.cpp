@@ -41,7 +41,7 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     image.resize(width * height);
 
     // base fractal set view values
-    view.center_real = -0.8;
+    view.center_real = -0.8; // new experiment, change the camera position to view different parts of the set
     view.center_img = 0.0;
     view.real_span = 3.0 * zoom_factor;
 
