@@ -41,15 +41,18 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     image.resize(width * height);
 
     // base fractal set view values
-    view.center_real = -0.8; // new experiment, change the camera position to view different parts of the set
-    view.center_img = 0.0;
+    //view.center_real = -0.8; // new experiment, change the camera position to view different parts of the set
+    //view.center_real = 0.0; // original values
+    view.center_real = -0.5; // experimental value for different parts of Julia set
+    view.center_img = 0.1;
+    //view.center_img = 0.0; // original values
     view.real_span = 3.0 * zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::mandelbrot;
+    curr_fractal_type = FractalType::julia_classic;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::orange_valley);
+    palette = get_palette(PaletteType::rainbow);
 }
 
 // render method

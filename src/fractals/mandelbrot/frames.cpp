@@ -17,7 +17,7 @@ void generate_zoom()
     {
         if(std::cin >> width >> height >> max_iteration >> base_zoom >> total_frames &&
                 width > 0 && height > 0 && max_iteration > 0 && base_zoom > 0 && total_frames > 0 &&  
-                width <= 5000 && height <= 5000 && max_iteration <= 1500 && base_zoom <= 1.00 && total_frames <= 150)
+                width <= 5120 && height <= 5120 && max_iteration <= 1500 && base_zoom <= 1.00 && total_frames <= 150)
         {
             break;
         }
