@@ -7,6 +7,9 @@
 
 constexpr const float PI = 3.14159265358979323846f;
 
+namespace vmath
+{
+
 class Vector2 
 {
     public:
@@ -173,5 +176,7 @@ class Vector2
             return !(*this == other);
         }
 };
+
+} // namespace vmath
 
 #endif
