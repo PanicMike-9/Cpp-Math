@@ -3,22 +3,22 @@
 #include <cmath>
 #include <cassert> // for assert
 
+namespace vmath
+{
+
 constexpr const float PI = 3.14159265358979323846f;
 
-// find degree
+// convert radians to degrees
 inline constexpr float rad_to_deg(float radians)
 {
     return radians * (180.0f / PI);
 }
 
-// find radian
+//convert degrees to radians
 inline constexpr float deg_to_rad(float degrees)
 {
     return degrees * (PI / 180.0f);
 }
-
-namespace vmath
-{
 
 class Vector2 
 {
