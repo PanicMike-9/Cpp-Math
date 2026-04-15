@@ -1,9 +1,7 @@
+#pragma once
+
 #include <cmath>
 #include <cassert> // for assert
-
-// header guards
-#ifndef VECTOR2_HPP
-#define VECTOR2_HPP
 
 constexpr const float PI = 3.14159265358979323846f;
 
@@ -204,4 +202,3 @@ class Vector2
 
 } // namespace vmath
 
-#endif
