@@ -7,6 +7,18 @@
 
 constexpr const float PI = 3.14159265358979323846f;
 
+// find degree
+inline constexpr float rad_to_deg(float radians)
+{
+    return radians * (180.0f / PI);
+}
+
+// find radian
+inline constexpr float deg_to_rad(float degrees)
+{
+    return degrees * (PI / 180.0f);
+}
+
 namespace vmath
 {
 
@@ -26,13 +38,13 @@ class Vector2
         }
 
         // find magnitude (with square root)
-        constexpr float length() const
+        inline float length() const
         {
            return std::sqrt(length_squared());  
         }
 
         // normalize magnitude aka unit vector
-        constexpr Vector2 normalize() const
+        inline Vector2 normalize() const
         {
             float mag = length();
             assert(mag > 0.0f && "Vector2: Division by zero!");
@@ -48,7 +60,7 @@ class Vector2
         }
 
         // calculate distance
-        constexpr float distance(const Vector2& other) const
+        inline float distance(const Vector2& other) const
         {
             return (*this - other).length();
         }
@@ -60,14 +72,27 @@ class Vector2
         }
 
         // rotate
-        Vector2 rotate(float angle) const
+        inline Vector2 rotate(float angle) const
         {
-            float radians = angle * (PI / 180);
-            
-            float new_x = x * std::cos(radians) - y * std::sin(radians);
-            float new_y = x * std::sin(radians) + y * std::cos(radians);
+            float radians = deg_to_rad(angle);
 
-            return Vector2(new_x, new_y);
+            float cos_a = std::cos(radians);
+            float sin_a = std::sin(radians);
+            
+            return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
+        }
+
+        // find angle between two vectors
+        inline float angle_between(const Vector2& other) const
+        {
+            float calculate_dot = this->dot(other);
+            float mag_a = this->length();
+            float mag_b = other.length();
+
+            float cos_theta = calculate_dot / (mag_a * mag_b);
+            float inv_cosine = acos(cos_theta);
+
+            return rad_to_deg(inv_cosine);
         }
 
         // operator add
