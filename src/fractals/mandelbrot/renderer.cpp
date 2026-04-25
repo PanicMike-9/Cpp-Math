@@ -52,7 +52,7 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     curr_fractal_type = FractalType::julia_classic;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::rainbow);
+    palette = get_palette(PaletteType::orange_valley);
 }
 
 // render method
@@ -171,9 +171,9 @@ void Mandelbrot::render_color(const std::string& file_name)
         if(iteration_num == max_iteration)
         {
             // main set color black
-            r = 0;
-            g = 0;
-            b = 0;
+            r = 1;
+            g = 1;
+            b = 1;
         }
         else
         {
