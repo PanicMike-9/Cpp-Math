@@ -52,7 +52,7 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     curr_fractal_type = FractalType::julia_classic;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::orange_valley);
+    palette = get_palette(PaletteType::neon);
 }
 
 // render method
