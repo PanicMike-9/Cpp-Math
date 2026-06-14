@@ -4,8 +4,8 @@
 
 // essential libs
 #include <algorithm>
-#include <cmath> // for future updates
-#include <cassert> // for future updates
+#include <cmath> 
+#include <cassert> 
 
 namespace vmath
 {
