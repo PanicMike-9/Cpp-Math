@@ -2,10 +2,10 @@
 #ifndef INTERPOLATION_UTILS_HPP
 #define INTERPOLATION_UTILS_HPP
 
-// includes
-#include <stdexcept>
+// essential libs
 #include <algorithm>
 #include <cmath> // for future updates
+#include <cassert> // for future updates
 
 namespace vmath
 {
@@ -13,9 +13,7 @@ namespace vmath
 // linear interpolaion curve fitting
 inline float lerp(float start_value, float end_value, float time)
 {
-    if(time < 0.0f || time > 1.0f) 
-        throw std::runtime_error("Time must be between 0.0 and 1.0");
-    
+    assert(time >= 0.0f && time <= 1.0f);
     return (1.0f - time) * start_value + time * end_value;
 }
 
@@ -23,8 +21,7 @@ inline float lerp(float start_value, float end_value, float time)
 inline float inverse_lerp(float start_value, float end_value, float value)
 {
     float range = end_value - start_value;
-    if(range == 0.0f)
-        throw std::runtime_error("cannot divide with 0");
+    assert(range != 0.0f);
 
     return (value - start_value) / range;
 }
@@ -32,9 +29,7 @@ inline float inverse_lerp(float start_value, float end_value, float value)
 // clamp between two values
 inline float clamp(float value, float min_val, float max_val)
 {
-    if(min_val > max_val) 
-        throw std::runtime_error("minimum value cannot be larger than maximum value!");
-
+    assert(min_val <= max_val);
     return std::max(min_val, std::min(value, max_val));
 }
 
