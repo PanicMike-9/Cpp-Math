@@ -2,40 +2,43 @@
 
 #include <cmath>
 
-namespace vmath
+namespace geom
 {
-
-constexpr const float PI = 3.14159265358979323846f;
+const float PI = 3.14159265358979323846f;
 
 // convert radians to degrees
-inline constexpr float rad_to_deg(float radians)
+template<typename T>
+inline T rad_to_deg(T radians)
 {
     return radians * (180.0f / PI);
 }
 
 //convert degrees to radians
-inline constexpr float deg_to_rad(float degrees)
+template<typename T>
+inline constexpr T deg_to_rad(T degrees)
 {
     return degrees * (PI / 180.0f);
 }
 
+// use template for variable type
+template<typename T>
 class Vector2 
 {
     public:
-        float x;
-        float y;
+        T x;
+        T y;
 
         // constructor
-        constexpr Vector2(float x, float y) : x{x}, y{y} {}
+        constexpr Vector2(T x, T y) : x{x}, y{y} {}
 
         // find magnitude (sqaured)
-        constexpr float length_squared() const
+        constexpr T length_squared() const
         {
             return (x * x + y * y);
         }
 
         // find magnitude (with square root)
-        inline float length() const
+        inline T length() const
         {
            return std::sqrt(length_squared());  
         }
@@ -43,50 +46,50 @@ class Vector2
         // normalize magnitude aka unit vector
         inline Vector2 normalize() const
         {
-            float mag = length();
-            float inv = 1.0f / mag;
+            T mag = length();
+            T inv = 1.0f / mag;
 
             return Vector2(x * inv, y * inv);
         }
 
         // dot product
-        constexpr float dot(const Vector2& other) const
+        constexpr T dot(const Vector2& other) const
         {
             return (x * other.x) + (y * other.y);
         }
 
         // calculate distance
-        inline float distance(const Vector2& other) const
+        inline T distance(const Vector2& other) const
         {
             return (*this - other).length();
         }
 
         // returns distance sqaured 
-        constexpr float distance_squared(const Vector2& other) const
+        constexpr T distance_squared(const Vector2& other) const
         {
             return (*this - other).length_squared();
         }
 
         // rotate
-        inline Vector2 rotate(float angle) const
+        inline Vector2 rotate(T angle) const
         {
-            float radians = deg_to_rad(angle);
+            T radians = deg_to_rad(angle);
 
-            float cos_a = std::cos(radians);
-            float sin_a = std::sin(radians);
+            T cos_a = std::cos(radians);
+            T sin_a = std::sin(radians);
             
             return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
         }
 
         // find angle between two vectors
-        inline float angle_between(const Vector2& other) const
+        inline T angle_between(const Vector2& other) const
         {
-            float calculate_dot = this->dot(other);
-            float mag_a = this->length();
-            float mag_b = other.length();
+            T calculate_dot = this->dot(other);
+            T mag_a = this->length();
+            T mag_b = other.length();
 
-            float cos_theta = calculate_dot / (mag_a * mag_b);
-            float inv_cosine = acos(cos_theta);
+            T cos_theta = calculate_dot / (mag_a * mag_b);
+            T inv_cosine = acos(cos_theta);
 
             return rad_to_deg(inv_cosine);
         }
@@ -97,7 +100,7 @@ class Vector2
             return Vector2{x + other.x, y + other.y};
         }
 
-        constexpr Vector2 operator+(float scalar) const
+        constexpr Vector2 operator+(T scalar) const
         {
             return Vector2{x + scalar, y + scalar};
         }
@@ -108,7 +111,7 @@ class Vector2
             return Vector2{x * other.x, y * other.y};
         }
 
-        constexpr Vector2 operator*(float scalar) const
+        constexpr Vector2 operator*(T scalar) const
         {
             return Vector2{x * scalar, y * scalar};
         }
@@ -119,7 +122,7 @@ class Vector2
             return Vector2{x - other.x, y - other.y};
         }
 
-        constexpr Vector2 operator-(float scalar) const
+        constexpr Vector2 operator-(T scalar) const
         {
             return Vector2{x - scalar, y - scalar};
         }
@@ -136,7 +139,7 @@ class Vector2
             return Vector2{x / other.x, y / other.y};
         }
 
-        constexpr Vector2 operator/(float scalar) const
+        constexpr Vector2 operator/(T scalar) const
         {
             return Vector2{x / scalar, y / scalar};
         }
@@ -179,9 +182,9 @@ class Vector2
             return *this;
         }
 
-        constexpr Vector2& operator/=(float scalar)
+        constexpr Vector2& operator/=(T scalar)
         {
-            float inv = 1.0f / scalar;
+            T inv = 1.0f / scalar;
             x *= inv;
             y *= inv;
             return *this;
@@ -194,5 +197,5 @@ class Vector2
         }
 };
 
-} // namespace vmath
+} // namespace geom
 
