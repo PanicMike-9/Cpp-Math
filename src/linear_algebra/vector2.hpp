@@ -38,18 +38,25 @@ class Vector2
         }
 
         // find magnitude (with square root)
-        inline T length() const
+        inline float length() const
         {
-           return std::sqrt(length_squared());  
+           return std::sqrt
+           (
+                static_cast<float>(length_squared())
+           );  
         }
 
         // normalize magnitude aka unit vector
-        inline Vector2 normalize() const
+        inline Vector2<float> normalize() const
         {
             T mag = length();
-            T inv = 1.0f / mag;
+            float inv = 1.0f / static_cast<float>(mag);
 
-            return Vector2(x * inv, y * inv);
+            return Vector2
+            (
+                static_cast<float>(x) * inv, 
+                static_cast<float>(y) * inv
+            );
         }
 
         // dot product
@@ -78,7 +85,11 @@ class Vector2
             T cos_a = std::cos(radians);
             T sin_a = std::sin(radians);
             
-            return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
+            return Vector2
+            ( 
+                x * cos_a - y * sin_a, 
+                x * sin_a + y * cos_a
+            );
         }
 
         // find angle between two vectors
@@ -97,34 +108,40 @@ class Vector2
         // operator add
         constexpr Vector2 operator+(const Vector2& other) const
         {
-            return Vector2{x + other.x, y + other.y};
+            return Vector2{x + other.x, 
+                           y + other.y};
         }
 
         constexpr Vector2 operator+(T scalar) const
         {
-            return Vector2{x + scalar, y + scalar};
+            return Vector2{x + scalar, 
+                           y + scalar};
         }
 
         // operator mutliply 
         constexpr Vector2 operator*(const Vector2& other) const
         {
-            return Vector2{x * other.x, y * other.y};
+            return Vector2{x * other.x, 
+                           y * other.y};
         }
 
         constexpr Vector2 operator*(T scalar) const
         {
-            return Vector2{x * scalar, y * scalar};
+            return Vector2{x * scalar, 
+                           y * scalar};
         }
 
         // operator minus
         constexpr Vector2 operator-(const Vector2& other) const
         {
-            return Vector2{x - other.x, y - other.y};
+            return Vector2{x - other.x, 
+                           y - other.y};
         }
 
         constexpr Vector2 operator-(T scalar) const
         {
-            return Vector2{x - scalar, y - scalar};
+            return Vector2{x - scalar, 
+                           y - scalar};
         }
 
         // unary -()
@@ -136,12 +153,14 @@ class Vector2
         // operator divide
         constexpr Vector2 operator/(const Vector2& other) const
         {
-            return Vector2{x / other.x, y / other.y};
+            return Vector2{x / other.x, 
+                           y / other.y};
         }
 
         constexpr Vector2 operator/(T scalar) const
         {
-            return Vector2{x / scalar, y / scalar};
+            return Vector2{x / scalar, 
+                           y / scalar};
         }
 
         // comparison == operator
@@ -184,7 +203,7 @@ class Vector2
 
         constexpr Vector2& operator/=(T scalar)
         {
-            T inv = 1.0f / scalar;
+            float inv = 1.0f / scalar;
             x *= inv;
             y *= inv;
             return *this;
