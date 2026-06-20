@@ -37,10 +37,7 @@ class Vector2
         // find magnitude (with square root)
         inline float length() const
         {
-           return std::sqrt
-           (
-                static_cast<float>(length_squared())
-           );  
+           return std::sqrt(length_squared());
         }
 
         // normalize magnitude aka unit vector
