@@ -26,6 +26,9 @@ class Vector3
         float y;
         float z;
 
+        // default constructor
+        Vector3() : x{0.0f}, y{0.0f}, z{0.0f} {}
+
         // constructor
         Vector3(float x, float y, float z) : x{x}, y{y}, z{z} {}
 };
