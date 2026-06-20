@@ -44,7 +44,7 @@ class Vector2
         inline Vector2 normalize() const
         {
             float mag = length();
-            float inv = 1.0f / static_cast<float>(mag);
+            float inv = 1.0f / mag;
 
             return Vector2(x * inv, y * inv);
         }
