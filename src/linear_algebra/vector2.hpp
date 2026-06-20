@@ -29,7 +29,7 @@ class Vector2
         constexpr Vector2(float x, float y) : x{x}, y{y} {}
 
         // find magnitude (sqaured)
-        constexpr float length_squared() const
+        constexpr inline float length_squared() const
         {
             return (x * x + y * y);
         }
