@@ -46,11 +46,7 @@ class Vector2
             float mag = length();
             float inv = 1.0f / static_cast<float>(mag);
 
-            return Vector2
-            (
-                static_cast<float>(x) * inv, 
-                static_cast<float>(y) * inv
-            );
+            return Vector2(x * inv, y * inv);
         }
 
         // dot product
@@ -79,11 +75,7 @@ class Vector2
             float cos_a = std::cos(radians);
             float sin_a = std::sin(radians);
             
-            return Vector2
-            ( 
-                x * cos_a - y * sin_a, 
-                x * sin_a + y * cos_a
-            );
+            return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
         }
 
         // find angle between two vectors
@@ -102,40 +94,34 @@ class Vector2
         // operator add
         constexpr Vector2 operator+(const Vector2& other) const
         {
-            return Vector2{x + other.x, 
-                           y + other.y};
+            return Vector2{x + other.x, y + other.y};
         }
 
         constexpr Vector2 operator+(float scalar) const
         {
-            return Vector2{x + scalar, 
-                           y + scalar};
+            return Vector2{x + scalar, y + scalar};
         }
 
         // operator mutliply 
         constexpr Vector2 operator*(const Vector2& other) const
         {
-            return Vector2{x * other.x, 
-                           y * other.y};
+            return Vector2{x * other.x, y * other.y};
         }
 
         constexpr Vector2 operator*(float scalar) const
         {
-            return Vector2{x * scalar, 
-                           y * scalar};
+            return Vector2{x * scalar, y * scalar};
         }
 
         // operator minus
         constexpr Vector2 operator-(const Vector2& other) const
         {
-            return Vector2{x - other.x, 
-                           y - other.y};
+            return Vector2{x - other.x, y - other.y};
         }
 
         constexpr Vector2 operator-(float scalar) const
         {
-            return Vector2{x - scalar, 
-                           y - scalar};
+            return Vector2{x - scalar, y - scalar};
         }
 
         // unary -()
@@ -147,14 +133,12 @@ class Vector2
         // operator divide
         constexpr Vector2 operator/(const Vector2& other) const
         {
-            return Vector2{x / other.x, 
-                           y / other.y};
+            return Vector2{x / other.x, y / other.y};
         }
 
         constexpr Vector2 operator/(float scalar) const
         {
-            return Vector2{x / scalar, 
-                           y / scalar};
+            return Vector2{x / scalar, y / scalar};
         }
 
         // comparison == operator
