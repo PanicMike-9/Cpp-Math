@@ -4,6 +4,7 @@
 
 namespace geom
 {
+
 const float PI = 3.14159265358979323846f;
 
 // convert radians to degrees
@@ -49,24 +50,6 @@ class Vector2
             return Vector2(x * inv, y * inv);
         }
 
-        // dot product
-        constexpr float dot(const Vector2& other) const
-        {
-            return (x * other.x) + (y * other.y);
-        }
-
-        // calculate distance
-        inline float distance(const Vector2& other) const
-        {
-            return (*this - other).length();
-        }
-
-        // returns distance sqaured 
-        constexpr float distance_squared(const Vector2& other) const
-        {
-            return (*this - other).length_squared();
-        }
-
         // rotate
         inline Vector2 rotate(float angle) const
         {
@@ -76,6 +59,12 @@ class Vector2
             float sin_a = std::sin(radians);
             
             return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
+        }
+
+        // dot using member
+        inline float dot(const Vector2 &other) const
+        {
+            return (x * other.x) + (y * other.y);
         }
 
         // find angle between two vectors
@@ -193,6 +182,23 @@ class Vector2
             return !(*this == other);
         }
 };
+
+// free functions //
+
+inline float dot(const Vector2 &a, const Vector2 &b)
+{
+    return (a.x * b.x) + (a.y * b.y);
+}
+
+inline float distance(const Vector2 &a, const Vector2 &b)
+{
+    return (a - b).length();
+}
+
+inline float distance_squared(const Vector2 &a, const Vector2 &b)
+{
+    return (a - b).length_squared();
+}
 
 } // namespace geom
 
