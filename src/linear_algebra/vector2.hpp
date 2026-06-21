@@ -62,7 +62,7 @@ class Vector2
         }
 
         // dot using member
-        inline float dot(const Vector2 &other) const
+        inline float m_dot(const Vector2 &other) const
         {
             return (x * other.x) + (y * other.y);
         }
@@ -70,7 +70,7 @@ class Vector2
         // find angle between two vectors
         inline float angle_between(const Vector2& other) const
         {
-            float calculate_dot = this->dot(other);
+            float calculate_dot = this->m_dot(other);
             float mag_a = this->length();
             float mag_b = other.length();
 
