@@ -26,6 +26,9 @@ class Vector2
         float x;
         float y;
 
+        // default constructor
+        constexpr Vector2() : x{0.0f}, y{0.0f} {}
+
         // constructor
         constexpr Vector2(float x, float y) : x{x}, y{y} {}
 
@@ -60,6 +63,8 @@ class Vector2
             
             return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
         }
+
+        // ** operator overloads ** //
 
         // operator add
         constexpr Vector2 operator+(const Vector2& other) const
@@ -164,23 +169,23 @@ class Vector2
         }
 };
 
-// free functions //
+// ** free functions ** //
 
 inline float dot(const Vector2 &a, const Vector2 &b)
 {
     return (a.x * b.x) + (a.y * b.y);
 }
 
-inline float distance(const Vector2 &a, const Vector2 &b)
-{
-    Vector2 d = a - b;
-    return d.length_squared();
-}
-
 inline float distance_squared(const Vector2 &a, const Vector2 &b)
 {
-    Vector2 d = a - b;
-    return d.length_squared();
+    Vector2 displacement = a - b;
+    return displacement.length_squared();
+}
+
+inline float distance(const Vector2 &a, const Vector2 &b)
+{
+    Vector2 displacement = a - b;
+    return displacement.length();
 }
 
 // find angle between two vectors
