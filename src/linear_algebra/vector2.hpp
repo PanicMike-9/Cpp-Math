@@ -105,11 +105,6 @@ class Vector2
             return Vector2{-x, -y};
         }
 
-        // operator divide
-        constexpr Vector2 operator/(const Vector2& other) const
-        {
-            return Vector2{x / other.x, y / other.y};
-        }
 
         constexpr Vector2 operator/(float scalar) const
         {
@@ -170,6 +165,16 @@ class Vector2
 };
 
 // ** free functions ** //
+
+// basic function call for vector to vector division, no operator overload
+inline Vector2 component_div(const Vector2 &a, const Vector2 &b)
+{
+    return
+    {
+        a.x / b.x,
+        a.y / b.y
+    };
+}
 
 inline float dot(const Vector2 &a, const Vector2 &b)
 {
