@@ -61,25 +61,6 @@ class Vector2
             return Vector2(x * cos_a - y * sin_a, x * sin_a + y * cos_a);
         }
 
-        // dot using member
-        inline float dot(const Vector2 &other) const
-        {
-            return (x * other.x) + (y * other.y);
-        }
-
-        // find angle between two vectors
-        inline float angle_between(const Vector2& other) const
-        {
-            float calculate_dot = this->dot(other);
-            float mag_a = this->length();
-            float mag_b = other.length();
-
-            float cos_theta = calculate_dot / (mag_a * mag_b);
-            float inv_cosine = acos(cos_theta);
-
-            return rad_to_deg(inv_cosine);
-        }
-
         // operator add
         constexpr Vector2 operator+(const Vector2& other) const
         {
@@ -198,7 +179,21 @@ inline float distance(const Vector2 &a, const Vector2 &b)
 
 inline float distance_squared(const Vector2 &a, const Vector2 &b)
 {
-    return (a - b).length_squared();
+    Vector2 d = a - b;
+    return d.length_squared();
+}
+
+// find angle between two vectors
+inline float angle_between(const Vector2 &a, const Vector2 &b) 
+{
+    float calculate_dot = dot(a, b);
+    float mag_a = a.length();
+    float mag_b = b.length();
+
+    float cos_theta = calculate_dot / (mag_a * mag_b);
+    float inv_cosine = acos(cos_theta);
+
+    return rad_to_deg(inv_cosine);
 }
 
 } // namespace geom
