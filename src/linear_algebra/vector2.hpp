@@ -106,7 +106,6 @@ class Vector2
             return Vector2{-x, -y};
         }
 
-
         constexpr Vector2 operator/(float scalar) const
         {
             assert(std::abs(scalar) > 0.0f);
