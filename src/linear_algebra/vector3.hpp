@@ -58,6 +58,7 @@ class Vector3
 
         constexpr Vector3 operator/(float scalar) const
         {
+            assert(std::abs(scalar) > 0.0f);
             return Vector3{x / scalar, y / scalar, z / scalar};
         }
 
