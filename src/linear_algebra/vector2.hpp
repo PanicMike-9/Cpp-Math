@@ -6,7 +6,7 @@
 namespace geom
 {
 
-const float PI = 3.14159265358979323846f;
+constexpr float PI = 3.14159265358979323846f;
 
 // convert radians to degrees
 inline float rad_to_deg(float radians)
@@ -18,6 +18,21 @@ inline float rad_to_deg(float radians)
 inline float deg_to_rad(float degrees)
 {
     return degrees * (PI / 180.0f);
+}
+
+// 1e-6f = 0.000001
+constexpr float EPSILON = 1e-6f;
+
+// handling comparison in the presence of floating-point error
+inline bool is_zero(float a)
+{
+    return std::abs(a) < EPSILON;
+}
+
+// values small enough to be equal
+inline bool nearly_equal(float a, float b)
+{
+    return std::abs(a - b) < EPSILON;
 }
 
 // use template for variable type
