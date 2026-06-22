@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <cassert>
 
 namespace geom
 {
@@ -53,7 +54,32 @@ class Vector3
             return Vector3(x * inv, y * inv, z * inv);
         }
 
-        // ** operator overloads ** //
+        // ** operator overloads ** // 
+
+        constexpr Vector3 operator/(float scalar) const
+        {
+            return Vector3{x / scalar, y / scalar, z / scalar};
+        }
+
+        constexpr Vector3 operator*(float scalar) const
+        {
+            return Vector3{x * scalar, y * scalar, z * scalar};
+        }
+
+        constexpr Vector3 operator*(const Vector3 &other) const
+        {
+            return Vector3{x * other.x, y * other.y, z * other.z};
+        }
+
+        constexpr Vector3 operator+(float scalar) const
+        {
+            return Vector3{x + scalar, y + scalar, z + scalar};
+        }
+
+        constexpr Vector3 operator+(const Vector3 &other) const
+        {
+            return Vector3{ x + other.x, y + other.y, z + other.z};
+        }
 
         constexpr Vector3 operator-(float scalar) const
         {
@@ -66,22 +92,34 @@ class Vector3
         }
 };
 
-// find squared distance of two vectors
-inline float distance_squared(const Vector3 &a, const Vector3 &b) 
+// ** free functions ** //
+
+// basic function call for vector to vector division, no operator overload
+inline Vector3 component_div(const Vector3 &a, const Vector3 &b) 
 {
-    return (a - b).length_squared();
+    return 
+    {
+        a.x / b.x,
+        a.y / b.y,
+        a.z / b.z
+    };
 }
 
-// find distance of two vectors
-inline float distance(const Vector3 &a, const Vector3 &b) 
-{
-    return (a - b).length();
-}
-
-// find dot product
 inline float dot(const Vector3 &a, const Vector3 &b) 
 {
     return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
+}
+
+inline float distance_squared(const Vector3 &a, const Vector3 &b) 
+{
+    Vector3 displacement = a - b;
+    return displacement.length_squared();
+}
+
+inline float distance(const Vector3 &a, const Vector3 &b) 
+{
+    Vector3 displacement = a - b;
+    return displacement.length();
 }
 
 } // namespace geom
