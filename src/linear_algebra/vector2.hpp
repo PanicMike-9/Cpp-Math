@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <cassert>
 
 namespace geom
 {
@@ -108,6 +109,7 @@ class Vector2
 
         constexpr Vector2 operator/(float scalar) const
         {
+            assert(std::abs(scalar) > 0.0f);
             return Vector2{x / scalar, y / scalar};
         }
 
