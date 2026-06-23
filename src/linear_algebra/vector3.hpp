@@ -138,4 +138,7 @@ inline float distance(const Vector3 &a, const Vector3 &b)
     return displacement.length();
 }
 
+// todo: write cross-product function
+inline float cross(const Vector3 &a, const Vector3 &b);  
+
 } // namespace geom
