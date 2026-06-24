@@ -43,16 +43,16 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     // base fractal set view values
     //view.center_real = -0.8; // new experiment, change the camera position to view different parts of the set
     //view.center_real = 0.0; // original values
-    view.center_real = -0.5; // experimental value for different parts of Julia set
-    view.center_img = 0.1;
+    view.center_real = 0.0; // experimental value for different parts of Julia set
+    view.center_img = 0.0;
     //view.center_img = 0.0; // original values
-    view.real_span = 3.0 * zoom_factor;
+    view.real_span = 3.0 / zoom_factor;
 
     // set fractal type
     curr_fractal_type = FractalType::julia_classic;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::neon);
+    palette = get_palette(PaletteType::rainbow);
 }
 
 // render method
@@ -180,9 +180,9 @@ void Mandelbrot::render_color(const std::string& file_name)
             double t = iteration_num * inv_max_iteration;
 
             // color palette smoothening using std::sin()
-            r = (int)(255 * (0.5 + 0.5 * std::sin(TAU * (t + palette.r_phase))));
-            g = (int)(255 * (0.5 + 0.5 * std::sin(TAU * (t + palette.g_phase))));
-            b = (int)(255 * (0.5 + 0.5 * std::sin(TAU * (t + palette.b_phase))));
+            r = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.r_phase))));
+            g = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.g_phase))));
+            b = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.b_phase))));
         }
 
         ofs.write(reinterpret_cast<char*>(&r), 1);
