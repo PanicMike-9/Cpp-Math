@@ -148,4 +148,15 @@ inline Vector3 cross(const Vector3 &a, const Vector3 &b)
     };
 }
 
+// scale vectors
+inline Vector3 scale(const Vector3 &a, const Vector3 &b) 
+{
+    return Vector3
+        (
+         a.x * b.x, 
+         a.y * b.y, 
+         a.z * b.z
+        );
+}
+
 } // namespace geom
