@@ -14,7 +14,7 @@ inline float rad_to_deg(float radians)
     return radians * (180.0f / PI);
 }
 
-//convert degrees to radians
+// convert degrees to radians
 inline float deg_to_rad(float degrees)
 {
     return degrees * (PI / 180.0f);
@@ -207,6 +207,11 @@ inline float distance(const Vector2 &a, const Vector2 &b)
 {
     Vector2 displacement = a - b;
     return displacement.length();
+}
+
+inline Vector2 scale(const Vector2 &a, const Vector2 &b) 
+{
+    return Vector2(a.x * b.x, a.y * b.y);
 }
 
 // find angle between two vectors
