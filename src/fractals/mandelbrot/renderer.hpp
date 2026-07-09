@@ -7,6 +7,8 @@
 enum class FractalType
 {
     mandelbrot,
+    mandelbrot_p3,
+    mandelbar,
     julia_classic,
     julia_flower,
     julia_cone,
