@@ -47,7 +47,7 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     view.real_span = 3.0 / zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::mandelbrot_cos;
+    curr_fractal_type = FractalType::mandelbrot_sin;
     
     // set fractal color palette
     palette = get_palette(PaletteType::rainbow);
@@ -104,6 +104,11 @@ void Mandelbrot::render_fractal()
                     z = 0;
                 break;
 
+                case FractalType::mandelbrot_sin:
+                    c = pixel;
+                    z = 0;
+                break;
+
                 case FractalType::julia_classic:
                     z = pixel;
                     c = std::complex<double>(-0.8, 0.156);
@@ -150,7 +155,11 @@ void Mandelbrot::render_fractal()
                 }
                 else if(curr_fractal_type == FractalType::mandelbrot_cos)
                 {
-                    z = std::cos(z) * std::cos(z) + c;
+                    z = std::cos(z * z) + c;
+                }
+                else if(curr_fractal_type == FractalType::mandelbrot_sin)
+                {
+                    z = std::sin(z * z) + c;
                 }
                 else
                 {
