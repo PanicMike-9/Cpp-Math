@@ -47,10 +47,10 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     view.real_span = 3.0 / zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::mandelbar;
+    curr_fractal_type = FractalType::mandelbrot_cos;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::orange_valley);
+    palette = get_palette(PaletteType::rainbow);
 }
 
 // render method
@@ -99,6 +99,11 @@ void Mandelbrot::render_fractal()
                     z = 0;
                 break;
 
+                case FractalType::mandelbrot_cos:
+                    c = pixel;
+                    z = 0;
+                break;
+
                 case FractalType::julia_classic:
                     z = pixel;
                     c = std::complex<double>(-0.8, 0.156);
@@ -142,6 +147,10 @@ void Mandelbrot::render_fractal()
                 else if(curr_fractal_type == FractalType::mandelbar)
                 {
                     z = std::conj(z * z) + c;
+                }
+                else if(curr_fractal_type == FractalType::mandelbrot_cos)
+                {
+                    z = std::cos(z) * std::cos(z) + c;
                 }
                 else
                 {
@@ -198,7 +207,7 @@ void Mandelbrot::render_color(const std::string& file_name)
         {
             double t = iteration_num * inv_max_iteration;
 
-            // color palette smoothening using std::sin()
+            // color palette smoothening using std::cos()
             r = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.r_phase))));
             g = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.g_phase))));
             b = (int)(255 * (0.5 + 0.5 * std::cos(TAU * (t + palette.b_phase))));
