@@ -41,15 +41,16 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     image.resize(width * height);
 
     // base fractal set view values
-    view.center_real = -0.75; // x axis(horizontal)
-    view.center_img = 0.1; // y axis(vertical)
+    /* seahorse valley MB- r: -0.75, i: 0.1 */
+    view.center_real = -0.5; // x axis(horizontal)
+    view.center_img = 0.0; // y axis(vertical)
     view.real_span = 3.0 / zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::mandelbrot;
+    curr_fractal_type = FractalType::mandelbar;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::rainbow);
+    palette = get_palette(PaletteType::orange_valley);
 }
 
 // render method
@@ -84,6 +85,16 @@ void Mandelbrot::render_fractal()
             switch(curr_fractal_type)
             {
                 case FractalType::mandelbrot: 
+                    c = pixel;
+                    z = 0;
+                break;
+
+                case FractalType::mandelbrot_p3:
+                    c = pixel;
+                    z = 0;
+                break;
+
+                case FractalType::mandelbar:
                     c = pixel;
                     z = 0;
                 break;
@@ -124,7 +135,18 @@ void Mandelbrot::render_fractal()
             // main formula loop
             while (std::abs(z) <= 2 && iterator < max_iteration)
             {
-                z = (z * z) + c;
+                if(curr_fractal_type == FractalType::mandelbrot_p3) 
+                {
+                    z = (z * z * z) + c;
+                }
+                else if(curr_fractal_type == FractalType::mandelbar)
+                {
+                    z = std::conj(z * z) + c;
+                }
+                else
+                {
+                    z = (z * z) + c;
+                }
                 iterator++;
             }
 
