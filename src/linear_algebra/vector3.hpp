@@ -82,7 +82,7 @@ class Vector3
             return Vector3{x * scalar, y * scalar, z * scalar};
         }
 
-        constexpr Vector3 operator*(const Vector3 &other) const
+        constexpr Vector3 operator*(const Vector3& other) const
         {
             return Vector3{x * other.x, y * other.y, z * other.z};
         }
@@ -92,7 +92,7 @@ class Vector3
             return Vector3{x + scalar, y + scalar, z + scalar};
         }
 
-        constexpr Vector3 operator+(const Vector3 &other) const
+        constexpr Vector3 operator+(const Vector3& other) const
         {
             return Vector3{ x + other.x, y + other.y, z + other.z};
         }
@@ -102,7 +102,7 @@ class Vector3
             return Vector3{x - scalar, y - scalar, z - scalar};
         }
 
-        constexpr Vector3 operator-(const Vector3 &other) const
+        constexpr Vector3 operator-(const Vector3& other) const
         {
             return Vector3{x - other.x, y - other.y, z - other.z};
         }
@@ -111,7 +111,7 @@ class Vector3
 // ** free functions ** //
 
 // basic function call for vector to vector division, no operator overload
-inline Vector3 component_div(const Vector3 &a, const Vector3 &b) 
+inline Vector3 component_div(const Vector3& a, const Vector3& b) 
 {
     return 
     {
@@ -121,24 +121,24 @@ inline Vector3 component_div(const Vector3 &a, const Vector3 &b)
     };
 }
 
-inline float dot(const Vector3 &a, const Vector3 &b) 
+inline float dot(const Vector3& a, const Vector3& b) 
 {
     return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 }
 
-inline float distance_squared(const Vector3 &a, const Vector3 &b) 
+inline float distance_squared(const Vector3& a, const Vector3& b) 
 {
     Vector3 displacement = a - b;
     return displacement.length_squared();
 }
 
-inline float distance(const Vector3 &a, const Vector3 &b) 
+inline float distance(const Vector3& a, const Vector3& b) 
 {
     Vector3 displacement = a - b;
     return displacement.length();
 }
 
-inline Vector3 cross(const Vector3 &a, const Vector3 &b)  
+inline Vector3 cross(const Vector3& a, const Vector3& b)  
 {
     return
     {
@@ -149,7 +149,7 @@ inline Vector3 cross(const Vector3 &a, const Vector3 &b)
 }
 
 // scale vectors
-inline Vector3 scale(const Vector3 &a, const Vector3 &b) 
+inline Vector3 scale(const Vector3& a, const Vector3& b) 
 {
     return Vector3
         (
