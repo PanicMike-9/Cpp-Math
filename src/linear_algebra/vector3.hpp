@@ -38,9 +38,9 @@ inline bool nearly_equal(float a, float b)
 class Vector3
 {
     public:
-        float x;
-        float y;
-        float z;
+        float x {};
+        float y {};
+        float z {};
 
         // default constructor
         constexpr Vector3() : x{0.0f}, y{0.0f}, z{0.0f} {}
@@ -157,6 +157,18 @@ inline Vector3 scale(const Vector3& a, const Vector3& b)
          a.y * b.y, 
          a.z * b.z
         );
+}
+
+inline float angle_between(const Vector3& a, const Vector3& b)
+{
+    float calculate_dot = dot(a, b);
+    float mag_a = a.length();
+    float mag_b = b.length();
+
+    float cos_theta = calculate_dot / (mag_a * mag_b);
+    float inv_cosine = acos(cos_theta);
+
+    return rad_to_deg(inv_cosine);
 }
 
 } // namespace geom
