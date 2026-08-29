@@ -3,6 +3,8 @@
 #include <cmath>
 #include <cassert>
 
+#include "interpolation_utils.hpp"
+
 namespace geom
 {
 
@@ -217,12 +219,21 @@ inline Vector2 scale(const Vector2 &a, const Vector2 &b)
 // find angle between two vectors
 inline float angle_between(const Vector2 &a, const Vector2 &b) 
 {
-    float calculate_dot = dot(a, b);
     float mag_a = a.length();
     float mag_b = b.length();
 
+    // safe guard against floating point precision error
+    if (is_zero(mag_a) || is_zero(mag_b))
+    {
+        return 0.0f;
+    }
+
+    float calculate_dot = dot(a, b);
     float cos_theta = calculate_dot / (mag_a * mag_b);
-    float inv_cosine = acos(cos_theta);
+
+    float clamp_cos_theta = geom::clamp(cos_theta, -1.0f, 1.0f);
+
+    float inv_cosine = acos(clamp_cos_theta);
 
     return rad_to_deg(inv_cosine);
 }
