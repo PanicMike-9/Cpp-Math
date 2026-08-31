@@ -94,9 +94,19 @@ class Vector3
             return Vector3{x + scalar, y + scalar, z + scalar};
         }
 
+        constexpr Vector3 operator+=(float scalar) 
+        {
+            return Vector3{x += scalar, y += scalar, z += scalar};
+        }
+
         constexpr Vector3 operator+(const Vector3& other) const
         {
             return Vector3{ x + other.x, y + other.y, z + other.z};
+        }
+
+        constexpr Vector3 operator+=(const Vector3& other) 
+        {
+            return Vector3{ x += other.x, y += other.y, z += other.z};
         }
 
         constexpr Vector3 operator-(float scalar) const
