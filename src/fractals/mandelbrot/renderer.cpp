@@ -27,6 +27,7 @@ Palette get_palette(PaletteType type)
         case PaletteType::elec_magenta:  return {0.10, 0.50, 0.10};
         case PaletteType::emerald:       return {0.50, 0.20, 0.25};
         case PaletteType::elec_blue:     return {0.50, 0.10, 0.00};
+        case PaletteType::type1:         return {0.66, 0.01, 0.66};
     }
 
     // fallback
@@ -47,10 +48,10 @@ Mandelbrot::Mandelbrot(int width, int height, int max_iteration, double zoom_fac
     view.real_span = 3.0 / zoom_factor;
 
     // set fractal type
-    curr_fractal_type = FractalType::mandelbrot_sin;
+    curr_fractal_type = FractalType::julia_classic;
     
     // set fractal color palette
-    palette = get_palette(PaletteType::rainbow);
+    palette = get_palette(PaletteType::type1);
 }
 
 // render method

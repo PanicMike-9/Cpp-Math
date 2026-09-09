@@ -1,13 +1,10 @@
-// header guards
-#ifndef INTERPOLATION_UTILS_HPP
-#define INTERPOLATION_UTILS_HPP
+#pragma once
 
-// essential libs
 #include <algorithm>
 #include <cmath> 
 #include <cassert> 
 
-namespace vmath
+namespace geom
 {
 
 // linear interpolaion curve fitting
@@ -45,5 +42,3 @@ inline float remap(float value, float old_min, float old_max,
 }
 
 } // namespace vmath
-
-#endif // INTERPOLATION_UTILS_HPP

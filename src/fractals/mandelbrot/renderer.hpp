@@ -9,6 +9,8 @@ enum class FractalType
     mandelbrot,
     mandelbrot_p3,
     mandelbar,
+    mandelbrot_cos,
+    mandelbrot_sin,
     julia_classic,
     julia_flower,
     julia_cone,
@@ -31,6 +33,7 @@ enum class PaletteType
     elec_magenta,
     emerald,
     elec_blue,
+    type1,
 };
 
 // palette phases struct
