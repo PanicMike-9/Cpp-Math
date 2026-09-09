@@ -11,14 +11,18 @@
 
 using vec2 = geom::Vector2;
 
-void test_length()
+inline void test_length()
 {
     vec2 test_vec(3.0f, 4.0f);
-    std::cout << "test length\n"
-              << "x: " << test_vec.x << '\n'
-              << "y: " << test_vec.y << '\n'
-              << "length: " << test_vec.length() << '\n'
-              << "length squared: " << test_vec.length_squared() << '\n';
+    println("Test Length");
+    print
+    (
+      "x: {:2.2f}\n" 
+      "y: {:2.2f}\n"
+      test_vec.x, test_vec.y
+    );
+    println("Length: {}", test_vec.length());
+    println("Length Squared: {}", test_vec.length_squared());
 }
 
 int main()
@@ -29,7 +33,7 @@ int main()
 ```
 ### compile and run
 ``` bash
-g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector3.cpp -o run && ./run
+g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector2.cpp -o run && ./run
 ```
 - More detailed tests are here: [linear_algebra/test_vector2.cpp](./src/linear_algebra/test_vector2.cpp)
 
