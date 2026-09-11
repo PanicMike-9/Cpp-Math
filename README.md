@@ -133,10 +133,15 @@ AVX2 256-bit float 'b' array multiplication with const float scalar: 100
 1900 2700 4300 5100 5900 6700 7500 8300
 ```
 ### Compile & Run
+With -O3 flag (remove them if needed)
+
 ``` Bash
-With -O3 flag
 g++ -mavx2 -std=c++23 -O3 main.cpp -o run && ./run
+```
 or
+
+``` Bash
 clang++ -mavx2 -std=c++23 -O3 main.cpp -o run && ./run
 ```
+
 - More detailed tests are here: [simd/main.cpp](./src/simd/main.cpp)
