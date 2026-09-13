@@ -123,17 +123,6 @@ int main()
     return 0;
 }
 ```
-### Program output
-``` Bash
-SSE 128-bit float multiplication
-64 256 1024 1600
-AVX2 256-bit float multiplication
-64 256 1024 1600 2304 3136 4096 5184
-AVX2 256-bit float 'a' array multiplication with const float scalar: 100
-800 1600 3200 4000 4800 5600 6400 7200
-AVX2 256-bit float 'b' array multiplication with const float scalar: 100
-1900 2700 4300 5100 5900 6700 7500 8300
-```
 ### Compile & Run
 With -O3 flag (remove them if needed)
 
