@@ -83,7 +83,7 @@ g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector3.cpp -o run && ./run
 ### Quick Test
 ``` C++
 #include <print>
-#include "simd_multiply_floats.hpp"
+#include "simd_math.hpp"
 
 int main()
 {
@@ -91,7 +91,7 @@ int main()
     alignas(16) float b_128[4] {8.0f, 16.0f, 32.0f, 40.0f};
     alignas(16) float result_128[4];
 
-    simd::sse_multiply_floats_128(a_128, b_128, result_128);
+    simd::multiply_floats_128(a_128, b_128, result_128);
 
     std::println("SSE 128-bit float multiplication");
     for (const float i : result_128)
@@ -104,7 +104,7 @@ int main()
     alignas(32) float b_256[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
     alignas(32) float result_256[8];
 
-    simd::avx2_multiply_floats_256(a_256, b_256, result_256);
+    simd::multiply_floats_256(a_256, b_256, result_256);
 
     std::println("AVX2 256-bit float multiplication");
     for (const float i : result_256)
@@ -117,8 +117,8 @@ int main()
     alignas(32) float b_sc_256[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
     const float scalar {100.0f};
 
-    simd::avx2_vec_multiply_scalar_256(a_sc_256, 8, scalar);
-    simd::avx2_vec_multiply_scalar_256(b_sc_256, 8, scalar);
+    simd::array_multiply_scalar_256(a_sc_256, 8, scalar);
+    simd::array_multiply_scalar_256(b_sc_256, 8, scalar);
 
     return 0;
 }
