@@ -60,25 +60,25 @@ int main()
     std::println();
 
     // aligna 64 = 16 float * 4
-    alignas(32) float a_scalar_256[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
-    alignas(32) float b_scalar_256[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
+    alignas(32) float a_sc_256[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
+    alignas(32) float b_sc_256[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
     const float scalar {100.0f};
     //alignas(32) const std::size_t size_of_a {sizeof(a_scalar_256) / sizeof(a_scalar_256[0])};
 
     // causes core dumped, stack smashing error with GCC when array size is not known at compile time, no issues with Clang
-    simd::avx2_vec_multiply_scalar_256(a_scalar_256, 8, scalar);
+    simd::avx2_vec_multiply_scalar_256(a_sc_256, 8, scalar);
 
     std::println("AVX2 256-bit float 'a' array multiplication with const float scalar: {}", scalar);
-    for (const float i : a_scalar_256)
+    for (const float i : a_sc_256)
     {
         std::print("{} ", i);
     }
     std::println();
 
-    simd::avx2_vec_multiply_scalar_256(b_scalar_256, 8, scalar);
+    simd::avx2_vec_multiply_scalar_256(b_sc_256, 8, scalar);
 
     std::println("AVX2 256-bit float 'b' array multiplication with const float scalar: {}", scalar);
-    for (const float i : b_scalar_256)
+    for (const float i : b_sc_256)
     {
         std::print("{} ", i);
     }
