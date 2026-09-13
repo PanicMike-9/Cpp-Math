@@ -47,6 +47,8 @@ g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector2.cpp -o run && ./run
 #include <format>
 #include "vector3.hpp"
 
+using vec3 = geom::Vector3;
+
 inline void test_length()
 {
     vec3 test_vec(3.0f, 4.0f, 1.0f);
