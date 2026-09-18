@@ -1,7 +1,6 @@
 #pragma once
 
-#include <print>
-#include <xmmintrin.h>
+// #include <xmmintrin.h> // maybe not required
 #include <immintrin.h> // works for GCC, Clang and MSVC
 
 namespace simd
@@ -15,6 +14,15 @@ inline void multiply_floats_128(const float a[4], const float b[4], float result
     __m128 arr_b = _mm_loadu_ps(b);
 
     __m128 calculate = _mm_mul_ps(arr_a, arr_b);
+    _mm_storeu_ps(result, calculate);
+}
+
+inline void add_floats_128(const float a[4], const float b[4], float result[4])
+{
+    __m128 arr_a {_mm_loadu_ps(a)};
+    __m128 arr_b {_mm_loadu_ps(b)};
+
+    __m128 calculate {_mm_add_ps(arr_a, arr_b)};
     _mm_storeu_ps(result, calculate);
 }
 
