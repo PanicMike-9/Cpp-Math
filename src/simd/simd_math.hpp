@@ -73,6 +73,15 @@ inline void multiply_floats_256(const float a[8], const float b[8], float result
     _mm256_storeu_ps(result, calculate);
 }
 
+inline void add_floats_256(const float a[8], const float b[8], float result[8])
+{
+    __m256 arr_a {_mm256_loadu_ps(a)};
+    __m256 arr_b {_mm256_loadu_ps(b)};
+
+    __m256 calculate {_mm256_add_ps(arr_a, arr_b)};
+    _mm256_storeu_ps(result, calculate);
+}
+
 inline void array_multiply_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
 {
     const __m256 arr_scalar = _mm256_set1_ps(scalar);
