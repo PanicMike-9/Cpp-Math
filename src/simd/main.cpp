@@ -5,6 +5,7 @@
 // quick check at runtime
 inline bool supports_avx2();
 
+inline void test_256f_addition();
 inline void test_256f_scalar_multiplication();
 inline void test_256f_multiplication();
 inline void test_128f_addition();
@@ -13,9 +14,26 @@ inline void test_128f_multiplication();
 int main()
 {
     test_128f_addition();
+    test_256f_addition();
     test_256f_multiplication();          
     test_128f_multiplication();
     test_256f_scalar_multiplication();
+}
+
+inline void test_256f_addition()
+{
+    alignas(32) float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
+    alignas(32) float b[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
+    alignas(32) float result[8];
+
+    simd::add_floats_256(a, b, result);
+
+    std::println("256-bit addition");
+    for (const float i : result)
+    {
+        std::print("{} ", i);
+    }
+    std::println();
 }
 
 inline void test_256f_scalar_multiplication()
