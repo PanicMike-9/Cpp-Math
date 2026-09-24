@@ -62,10 +62,6 @@ inline void array_add_scalar_128(float* a, const std::size_t n, const float scal
     }
 }
 
-inline void multiply_add_floats_128(const float a[4], const float b[4], const float c[4], const float result[4]) noexcept
-{
-}
-
 // ---- AVX2 256-bit Functions ----
 
 inline void multiply_floats_256(const float a[8], const float b[8], float result[8])
@@ -124,7 +120,7 @@ inline void array_add_scalar_256(float* a, const std::size_t n, const float scal
     }
 }
 
-inline void multiply_add_floats_256(const float a[8], const float b[8], const float c[8], const float result[8]) noexcept
+inline void multiply_add_floats_256(const float a[8], const float b[8], const float result[8], std::size_t n) noexcept
 {
 }
 
