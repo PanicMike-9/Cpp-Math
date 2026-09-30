@@ -121,6 +121,7 @@ inline void array_add_scalar_256(float* a, const std::size_t n, const float scal
 }
 
 // TODO: Use fused multiply-add(FMADD), in this function 
+// Filling the gaps
 inline void multiply_add_floats_256(const float a[8], const float b[8], const float result[8], std::size_t n) noexcept
 {
 }
