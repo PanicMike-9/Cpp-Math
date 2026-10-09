@@ -120,26 +120,5 @@ inline void array_add_scalar_256(float* a, const std::size_t n, const float scal
     }
 }
 
-#if 0
-// incorrect function, will be rewriting it after better understanding...
-inline float multiply_add_floats_256(const float a[8], const float b[8], std::size_t n) noexcept
-{
-    __m256 sum {_mm256_setzero_ps()};
-
-    for (std::size_t i {}; i < n; i += 8)
-    {
-        __m256 arr_a {_mm256_loadu_ps(&a[i])};
-        __m256 arr_b {_mm256_loadu_ps(&b[i])};
-
-        sum = _mm256_fmadd_ps(arr_a, arr_b, sum);
-    }
-
-    float* farr {(float*)&sum};
-    float final_sum {farr[0] + farr[1] + farr[2] + farr[3] + farr[4] + farr[5] + farr[6] + farr[7]};
-
-    return final_sum;
-}
-#endif
-
 }// namespace simd
 
