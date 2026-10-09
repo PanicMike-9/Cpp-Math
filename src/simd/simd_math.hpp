@@ -6,7 +6,7 @@
 namespace simd
 {
 
-// ---- SSE 128-bit Functions ----
+// ---- AVX1 128-bit Functions ----
     
 inline void multiply_floats_128(const float a[4], const float b[4], float result[4])
 {
