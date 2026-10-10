@@ -120,5 +120,7 @@ inline void array_add_scalar_256(float* a, const std::size_t n, const float scal
     }
 }
 
+// TODO: add vector dot product for AVX2 and AXV1
+
 }// namespace simd
 
