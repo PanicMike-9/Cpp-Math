@@ -8,7 +8,7 @@ namespace simd
 
 // ---- AVX1 128-bit Functions ----
     
-inline void multiply_floats_128(const float a[4], const float b[4], float result[4])
+[[gnu::always_inline]] inline void multiply_floats_128(const float a[4], const float b[4], float result[4])
 {
     __m128 arr_a  = _mm_loadu_ps(a);
     __m128 arr_b = _mm_loadu_ps(b);
@@ -17,7 +17,7 @@ inline void multiply_floats_128(const float a[4], const float b[4], float result
     _mm_storeu_ps(result, calculate);
 }
 
-inline void add_floats_128(const float a[4], const float b[4], float result[4])
+[[gnu::always_inline]] inline void add_floats_128(const float a[4], const float b[4], float result[4])
 {
     __m128 arr_a {_mm_loadu_ps(a)};
     __m128 arr_b {_mm_loadu_ps(b)};
@@ -26,7 +26,7 @@ inline void add_floats_128(const float a[4], const float b[4], float result[4])
     _mm_storeu_ps(result, calculate);
 }
 
-inline void array_multiply_scalar_128(float* a, const std::size_t n, const float scalar) noexcept
+[[gnu::always_inline]] inline void array_multiply_scalar_128(float* a, const std::size_t n, const float scalar) noexcept
 {
     const __m128 arr_scalar = _mm_set1_ps(scalar);
     std::size_t i {0};
@@ -44,7 +44,7 @@ inline void array_multiply_scalar_128(float* a, const std::size_t n, const float
     }
 }
 
-inline void array_add_scalar_128(float* a, const std::size_t n, const float scalar) noexcept
+[[gnu::always_inline]] inline void array_add_scalar_128(float* a, const std::size_t n, const float scalar) noexcept
 {
     const __m128 arr_scalar = _mm_set1_ps(scalar);
     std::size_t i {0};
@@ -64,7 +64,7 @@ inline void array_add_scalar_128(float* a, const std::size_t n, const float scal
 
 // ---- AVX2 256-bit Functions ----
 
-inline void multiply_floats_256(const float a[8], const float b[8], float result[8])
+[[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8])
 {
     __m256 arr_a = _mm256_loadu_ps(a);
     __m256 arr_b = _mm256_loadu_ps(b);
@@ -73,7 +73,7 @@ inline void multiply_floats_256(const float a[8], const float b[8], float result
     _mm256_storeu_ps(result, calculate);
 }
 
-inline void add_floats_256(const float a[8], const float b[8], float result[8])
+[[gnu::always_inline]] inline void add_floats_256(const float a[8], const float b[8], float result[8])
 {
     __m256 arr_a {_mm256_loadu_ps(a)};
     __m256 arr_b {_mm256_loadu_ps(b)};
@@ -82,7 +82,7 @@ inline void add_floats_256(const float a[8], const float b[8], float result[8])
     _mm256_storeu_ps(result, calculate);
 }
 
-inline void array_multiply_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
+[[gnu::always_inline]] inline void array_multiply_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
 {
     const __m256 arr_scalar = _mm256_set1_ps(scalar);
     std::size_t i {0};
@@ -101,7 +101,7 @@ inline void array_multiply_scalar_256(float* a, const std::size_t n, const float
     }
 }
 
-inline void array_add_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
+[[gnu::always_inline]] inline void array_add_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
 {
     const __m256 arr_scalar = _mm256_set1_ps(scalar);
     std::size_t i {0};
