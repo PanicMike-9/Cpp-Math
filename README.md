@@ -6,7 +6,7 @@
 
 ### Quick Test
 ``` C++
-#include <iostream>
+#include <print>
 #include "vector2.hpp"
 
 using vec2 = geom::Vector2;
@@ -14,15 +14,15 @@ using vec2 = geom::Vector2;
 inline void test_length()
 {
     vec2 test_vec(3.0f, 4.0f);
-    println("Test Length");
-    print
+    std::println("Test Length");
+    std::print
     (
       "x: {:2.2f}\n" 
       "y: {:2.2f}\n"
       test_vec.x, test_vec.y
     );
-    println("Length: {}", test_vec.length());
-    println("Length Squared: {}", test_vec.length_squared());
+    std::println("Length: {}", test_vec.length());
+    std::println("Length Squared: {}", test_vec.length_squared());
 }
 
 int main()

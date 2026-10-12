@@ -1,9 +1,11 @@
 #include <iostream>
 #include "vector2.hpp"
 
+using vec2 = geom::Vector2;
+
 void test_length()
 {
-    geom::Vector2 test_vec(3.0f, 4.0f);
+    vec2 test_vec(3.0f, 4.0f);
     std::cout << "test length\n"
               << "x: " << test_vec.x << '\n'
               << "y: " << test_vec.y << '\n'
@@ -15,9 +17,9 @@ void test_normalize()
 {
     float x = 3.0f, y = 4.0f;
 
-    geom::Vector2 my_vec(x, y);
+    vec2 my_vec(x, y);
 
-    geom::Vector2 my_vec_norm = my_vec.normalize();
+    vec2 my_vec_norm = my_vec.normalize();
     std::cout << "normalized\n" 
               << "x: " << my_vec_norm.x << ' ' 
               << "y: " << my_vec_norm.y << '\n';
@@ -25,12 +27,13 @@ void test_normalize()
 
 void test_dot_product()
 {
-    geom::Vector2 v1(1.0f, 3.0f);
-    geom::Vector2 v2(4.0f, -2.0f);
+    vec2 v1(1.0f, 3.0f);
+    vec2 v2(4.0f, -2.0f);
 
-    float dot_result = v1.dot(v2);
-    float dist = v1.distance(v2);
-    float dist_sqr = v1.distance_squared(v2);
+    float dot_result = dot(v1,v2);
+    float dist = distance(v1, v2);
+    float dist_sqr = distance_squared(v1, v2);
+
     float len = v1.length();
     float len_sqr = v1.length_squared();
 
@@ -43,19 +46,19 @@ void test_dot_product()
 
 void test_operator_overloads()
 {
-    geom::Vector2 v3(10.0f, 100.0f);
-    geom::Vector2 v4(5.0f, 50.0f);
+    vec2 v3(10.0f, 100.0f);
+    vec2 v4(5.0f, 50.0f);
 
-    geom::Vector2 div_eql = v4 /= v3;
+    vec2 div_eql = v4 /= v3;
     std::cout << "divide equal /=\n"
               << "x: " << div_eql.x << '\n'
               << "y: " << div_eql.y << '\n';
 
-    geom::Vector2 v5(10.0f, 20.0f);
-    geom::Vector2 v6(10.0f, 20.0f);
+    vec2 v5(10.0f, 20.0f);
+    vec2 v6(10.0f, 20.0f);
     float div_by = 2.0f;
 
-    geom::Vector2 div_vec = v5/v6;
+    vec2 div_vec = component_div(v5, v6);
     std::cout << "divide /\n"
               << "x: " << div_vec.x << '\n'
               << "y: " << div_vec.y << '\n';
@@ -76,13 +79,13 @@ void test_operator_overloads()
 
 void test_rotate()
 {
-    geom::Vector2 v1(10.0f, 20.0f);
-    geom::Vector2 v2(5.0f, 10.0f);
+    vec2 v1(10.0f, 20.0f);
+    vec2 v2(5.0f, 10.0f);
 
     float angle = 10; // 10 degrees
 
-    geom::Vector2 v1_rot = v1.rotate(angle);
-    geom::Vector2 v2_rot = v2.rotate(angle);
+    vec2 v1_rot = v1.rotate(angle);
+    vec2 v2_rot = v2.rotate(angle);
 
     std::cout << "Initial Vector values\n" 
               << "v1 x: " << v1.x << '\n'

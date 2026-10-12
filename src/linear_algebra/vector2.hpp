@@ -175,11 +175,7 @@ class Vector2
             return *this;
         }
 
-        // assignment operator !=
-        constexpr bool operator!=(const Vector2& other) const
-        {
-            return !(*this == other);
-        }
+        // no need to check for assignment operator !=
 };
 
 // ** free functions ** //
