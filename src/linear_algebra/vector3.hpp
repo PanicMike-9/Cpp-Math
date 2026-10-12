@@ -118,6 +118,16 @@ class Vector3
         {
             return Vector3{x - other.x, y - other.y, z - other.z};
         }
+
+        constexpr bool operator==(const Vector3& other) const
+        {
+            return (x == other.x && y == other.y && z == other.z);
+        }
+
+        constexpr Vector3 operator-() const
+        {
+            return Vector3{-x, -y, -z}; 
+        }
 };
 
 // ** free functions ** //
