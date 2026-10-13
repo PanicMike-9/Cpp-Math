@@ -149,4 +149,4 @@ or
 clang++ -mavx2 -std=c++23 -O3 main.cpp -o run && ./run
 ```
 
-- More detailed tests are here: [simd/simd_test.hpp](./src/simd/simd_test.hpp)
+- More detailed tests are here: [simd/test_simd.hpp](./src/simd/test_simd.hpp)
