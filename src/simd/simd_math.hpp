@@ -10,10 +10,10 @@ namespace simd
     
 [[gnu::always_inline]] inline void multiply_floats_128(const float a[4], const float b[4], float result[4])
 {
-    __m128 arr_a  = _mm_loadu_ps(a);
-    __m128 arr_b = _mm_loadu_ps(b);
+    __m128 arr_a {_mm_loadu_ps(a)};
+    __m128 arr_b {_mm_loadu_ps(b)};
 
-    __m128 calculate = _mm_mul_ps(arr_a, arr_b);
+    __m128 calculate {_mm_mul_ps(arr_a, arr_b)};
     _mm_storeu_ps(result, calculate);
 }
 
@@ -28,7 +28,7 @@ namespace simd
 
 [[gnu::always_inline]] inline void array_multiply_scalar_128(float* a, const std::size_t n, const float scalar) noexcept
 {
-    const __m128 arr_scalar = _mm_set1_ps(scalar);
+    const __m128 arr_scalar {_mm_set1_ps(scalar)};
     std::size_t i {0};
     for (; i + 3 < n; i += 4)
     {
@@ -46,7 +46,7 @@ namespace simd
 
 [[gnu::always_inline]] inline void array_add_scalar_128(float* a, const std::size_t n, const float scalar) noexcept
 {
-    const __m128 arr_scalar = _mm_set1_ps(scalar);
+    const __m128 arr_scalar {_mm_set1_ps(scalar)};
     std::size_t i {0};
     for (; i + 3 < n; i += 4)
     {
@@ -66,10 +66,10 @@ namespace simd
 
 [[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8])
 {
-    __m256 arr_a = _mm256_loadu_ps(a);
-    __m256 arr_b = _mm256_loadu_ps(b);
+    __m256 arr_a {_mm256_loadu_ps(a)};
+    __m256 arr_b {_mm256_loadu_ps(b)};
 
-    __m256 calculate = _mm256_mul_ps(arr_a, arr_b);
+    __m256 calculate {_mm256_mul_ps(arr_a, arr_b)};
     _mm256_storeu_ps(result, calculate);
 }
 
@@ -84,7 +84,7 @@ namespace simd
 
 [[gnu::always_inline]] inline void array_multiply_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
 {
-    const __m256 arr_scalar = _mm256_set1_ps(scalar);
+    const __m256 arr_scalar {_mm256_set1_ps(scalar)};
     std::size_t i {0};
     for (; i + 7 < n; i += 8)
     {
@@ -103,7 +103,7 @@ namespace simd
 
 [[gnu::always_inline]] inline void array_add_scalar_256(float* a, const std::size_t n, const float scalar) noexcept
 {
-    const __m256 arr_scalar = _mm256_set1_ps(scalar);
+    const __m256 arr_scalar {_mm256_set1_ps(scalar)};
     std::size_t i {0};
     for (; i + 7 < n; i += 8)
     {
