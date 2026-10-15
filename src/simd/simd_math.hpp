@@ -62,6 +62,17 @@ namespace simd
     }
 }
 
+[[gnu::always_inline]] inline float vector_dot_floats_128(const float a[4], const float b[4])
+{
+    __m128 arr_a {_mm_loadu_ps(a)};
+    __m128 arr_b {_mm_loadu_ps(b)};
+
+    // _mm_dp_ps is not the best choice here, because of high latency (rewrite required)
+    __m128 dot_product {_mm_dp_ps(arr_a, arr_b, 0xF1)}; 
+
+    return _mm_cvtss_f32(dot_product);
+}
+
 // ---- AVX2 256-bit Functions ----
 
 [[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8])
