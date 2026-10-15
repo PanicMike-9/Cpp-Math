@@ -8,7 +8,7 @@ namespace simd
 
 // ---- AVX1 128-bit Functions ----
     
-[[gnu::always_inline]] inline void multiply_floats_128(const float a[4], const float b[4], float result[4])
+[[gnu::always_inline]] inline void multiply_floats_128(const float a[4], const float b[4], float result[4]) noexcept
 {
     __m128 arr_a {_mm_loadu_ps(a)};
     __m128 arr_b {_mm_loadu_ps(b)};
@@ -17,7 +17,7 @@ namespace simd
     _mm_storeu_ps(result, calculate);
 }
 
-[[gnu::always_inline]] inline void add_floats_128(const float a[4], const float b[4], float result[4])
+[[gnu::always_inline]] inline void add_floats_128(const float a[4], const float b[4], float result[4]) noexcept
 {
     __m128 arr_a {_mm_loadu_ps(a)};
     __m128 arr_b {_mm_loadu_ps(b)};
@@ -62,7 +62,7 @@ namespace simd
     }
 }
 
-[[gnu::always_inline]] inline float vector_dot_floats_128(const float a[4], const float b[4])
+[[gnu::always_inline]] inline float vector_dot_floats_128(const float a[4], const float b[4]) noexcept
 {
     __m128 arr_a {_mm_loadu_ps(a)};
     __m128 arr_b {_mm_loadu_ps(b)};
@@ -75,7 +75,7 @@ namespace simd
 
 // ---- AVX2 256-bit Functions ----
 
-[[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8])
+[[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8]) noexcept
 {
     __m256 arr_a {_mm256_loadu_ps(a)};
     __m256 arr_b {_mm256_loadu_ps(b)};
@@ -84,7 +84,7 @@ namespace simd
     _mm256_storeu_ps(result, calculate);
 }
 
-[[gnu::always_inline]] inline void add_floats_256(const float a[8], const float b[8], float result[8])
+[[gnu::always_inline]] inline void add_floats_256(const float a[8], const float b[8], float result[8]) noexcept
 {
     __m256 arr_a {_mm256_loadu_ps(a)};
     __m256 arr_b {_mm256_loadu_ps(b)};
@@ -131,7 +131,7 @@ namespace simd
     }
 }
 
-// TODO: add vector dot product for AVX2 and AXV1
+// TODO: add vector dot product for 256-bit, using loop unrolling or fused-multiply-add (FMA)
 
 }// namespace simd
 
