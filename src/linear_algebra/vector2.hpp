@@ -11,13 +11,13 @@ namespace geom
 constexpr float PI = 3.14159265358979323846f;
 
 // convert radians to degrees
-[[gnu::always_inline]] inline float rad_to_deg(float radians)
+inline float rad_to_deg(float radians)
 {
     return radians * (180.0f / PI);
 }
 
 // convert degrees to radians
-[[gnu::always_inline]] inline float deg_to_rad(float degrees)
+inline float deg_to_rad(float degrees)
 {
     return degrees * (PI / 180.0f);
 }
@@ -26,13 +26,13 @@ constexpr float PI = 3.14159265358979323846f;
 constexpr float EPSILON = 1e-6f;
 
 // handling comparison in the presence of floating-point error
-[[gnu::always_inline]] inline bool is_zero(float a)
+inline bool is_zero(float a)
 {
     return std::abs(a) < EPSILON;
 }
 
 // values small enough to be equal
-[[gnu::always_inline]] inline bool nearly_equal(float a, float b)
+inline bool nearly_equal(float a, float b)
 {
     return std::abs(a - b) < EPSILON;
 }
@@ -57,13 +57,13 @@ class Vector2
         }
 
         // find magnitude (with square root)
-        [[gnu::always_inline]] inline float length() const
+        inline float length() const
         {
            return std::sqrt(length_squared());
         }
 
         // normalize magnitude aka unit vector
-        [[gnu::always_inline]] inline Vector2 normalize() const
+        inline Vector2 normalize() const
         {
             float mag = length();
             float inv = 1.0f / mag;
@@ -72,7 +72,7 @@ class Vector2
         }
 
         // rotate
-        [[gnu::always_inline]] inline Vector2 rotate(float angle) const
+        inline Vector2 rotate(float angle) const
         {
             float radians = deg_to_rad(angle);
 
@@ -181,7 +181,7 @@ class Vector2
 // ** free functions ** //
 
 // basic function call for vector to vector division, no operator overload
-[[gnu::always_inline]] inline Vector2 component_div(const Vector2 &a, const Vector2 &b)
+inline Vector2 component_div(const Vector2 &a, const Vector2 &b)
 {
     return
     {
@@ -190,30 +190,30 @@ class Vector2
     };
 }
 
-[[gnu::always_inline]] inline float dot(const Vector2 &a, const Vector2 &b)
+inline float dot(const Vector2 &a, const Vector2 &b)
 {
     return (a.x * b.x) + (a.y * b.y);
 }
 
-[[gnu::always_inline]] inline float distance_squared(const Vector2 &a, const Vector2 &b)
+inline float distance_squared(const Vector2 &a, const Vector2 &b)
 {
     Vector2 displacement = a - b;
     return displacement.length_squared();
 }
 
-[[gnu::always_inline]] inline float distance(const Vector2 &a, const Vector2 &b)
+inline float distance(const Vector2 &a, const Vector2 &b)
 {
     Vector2 displacement = a - b;
     return displacement.length();
 }
 
-[[gnu::always_inline]] inline Vector2 scale(const Vector2 &a, const Vector2 &b) 
+inline Vector2 scale(const Vector2 &a, const Vector2 &b) 
 {
     return Vector2(a.x * b.x, a.y * b.y);
 }
 
 // find angle between two vectors
-[[gnu::always_inline]] inline float angle_between(const Vector2 &a, const Vector2 &b) 
+inline float angle_between(const Vector2 &a, const Vector2 &b) 
 {
     float mag_a = a.length();
     float mag_b = b.length();
