@@ -11,7 +11,7 @@
 
 using vec2 = geom::Vector2;
 
-inline void test_length()
+void test_length()
 {
     vec2 test_vec(3.0f, 4.0f);
     std::println("Test Length");
@@ -49,7 +49,7 @@ g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector2.cpp -o run && ./run
 
 using vec3 = geom::Vector3;
 
-inline void test_length()
+void test_length()
 {
     vec3 test_vec(3.0f, 4.0f, 1.0f);
     println("Test Length");
@@ -85,8 +85,8 @@ g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector3.cpp -o run && ./run
 #include <print>
 #include "simd_math.hpp"
 
-inline void test_256f_scalar_multiplication();
-inline void test_256f_multiplication();
+void test_256f_scalar_multiplication();
+void test_256f_multiplication();
 
 int main()
 {
@@ -94,7 +94,7 @@ int main()
     test_256f_multiplication();          
 }
 
-inline void test_256f_scalar_multiplication()
+void test_256f_scalar_multiplication()
 {
     alignas(32) float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
     alignas(32) float b[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
@@ -120,7 +120,7 @@ inline void test_256f_scalar_multiplication()
     std::println();
 }
 
-inline void test_256f_multiplication()
+void test_256f_multiplication()
 {
     // alignas 32 = 8 floats * 4 
     alignas(32) float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
