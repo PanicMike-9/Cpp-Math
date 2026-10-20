@@ -35,7 +35,7 @@ int main()
 ``` bash
 g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector2.cpp -o run && ./run
 ```
-- More detailed tests are here: [linear_algebra/test_vector2.cpp](./src/linear_algebra/test_vector2.cpp)
+- More detailed tests are here: [linear_algebra/function_tests/test_vector2.cpp](./src/linear_algebra/function_tests/test_vector2.cpp)
 
 ## Vector3
 
@@ -74,7 +74,7 @@ int main()
 ``` bash
 g++ -Wall -Wextra -Wpedantic -std=c++23 test_vector3.cpp -o run && ./run
 ```
-- More detailed tests are here: [linear_algebra/test_vector3.cpp](./src/linear_algebra/test_vector3.cpp)
+- More detailed tests are here: [linear_algebra/function_tests/test_vector3.cpp](./src/linear_algebra/function_tests/test_vector3.cpp)
 
 ## SIMD Vectorization
 
