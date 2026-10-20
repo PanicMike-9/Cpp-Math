@@ -131,7 +131,29 @@ namespace simd
     }
 }
 
-// TODO: add vector dot product for 256-bit, using loop unrolling or fused-multiply-add (FMA)
+// very likely the function is incorrect, not tested yet
+[[gnu::always_inline]] inline float fma_vec_dot_256(float* a, float* b, std::size_t n)
+{
+    __m256 sumdst {_mm256_setzero_ps()};
+
+    std::size_t i {};
+    for (; i + 7 < n; i += 8)
+    {
+        __m256 arr_a = _mm256_loadu_ps(&a[i]);
+        __m256 arr_b = _mm256_loadu_ps(&b[i]);
+
+        sumdst = _mm256_fmadd_ps(arr_a, arr_b, sumdst);
+    }
+
+    float sum {};
+    for (;i < n; ++i)
+    {
+        a[i] += sum;
+        b[i] += sum;
+    }
+
+    return sum;
+}
 
 }// namespace simd
 
