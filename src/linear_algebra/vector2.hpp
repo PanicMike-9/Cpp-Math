@@ -51,19 +51,19 @@ class Vector2
         constexpr Vector2(float x, float y) : x{x}, y{y} {}
 
         // find magnitude (squared)
-        constexpr float length_squared() const
+        constexpr float length_squared() const noexcept
         {
             return (x * x + y * y);
         }
 
         // find magnitude (with square root)
-        inline float length() const
+        inline float length() const noexcept
         {
            return std::sqrt(length_squared());
         }
 
         // normalize magnitude aka unit vector
-        inline Vector2 normalize() const
+        inline Vector2 normalize() const noexcept
         {
             float mag = length();
             float inv = 1.0f / mag;
@@ -72,7 +72,7 @@ class Vector2
         }
 
         // rotate
-        inline Vector2 rotate(float angle) const
+        inline Vector2 rotate(float angle) const noexcept
         {
             float radians = deg_to_rad(angle);
 

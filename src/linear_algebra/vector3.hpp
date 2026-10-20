@@ -51,19 +51,19 @@ class Vector3
         constexpr Vector3(float x, float y, float z) : x{x}, y{y}, z{z} {}
 
         // find magnitude squared
-        inline float length_squared() const
+        inline float length_squared() const noexcept
         {
             return (x * x + y * y + z * z);
         }
 
         // find magnitude 
-        inline float length() const
+        inline float length() const noexcept
         {
             return std::sqrt(length_squared());
         }
 
         // find unit vector/normalize vector
-        inline Vector3 normalize() const
+        inline Vector3 normalize() const noexcept
         {
             float mag = length();
             float inv = 1.0f / mag;
