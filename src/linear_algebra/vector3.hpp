@@ -11,13 +11,13 @@ namespace geom
 constexpr float PI = 3.14159265358979323846f;
 
 // convert radians to degrees
-inline float rad_to_deg(float radians)
+[[gnu::always_inline]] inline float rad_to_deg(float radians)
 {
     return radians * (180.0f / PI);
 }
 
 // convert degrees to radians
-inline float deg_to_rad(float degrees)
+[[gnu::always_inline]] inline float deg_to_rad(float degrees)
 {
     return degrees * (PI / 180.0f);
 }
@@ -26,13 +26,13 @@ inline float deg_to_rad(float degrees)
 constexpr float EPSILON = 1e-6f;
 
 // handling comparison in presence of floating-point error
-inline bool is_zero(float a)
+[[gnu::always_inline]] inline bool is_zero(float a)
 {
     return std::abs(a) < EPSILON;
 }
 
 // values small enough to be equal
-inline bool nearly_equal(float a, float b)
+[[gnu::always_inline]] inline bool nearly_equal(float a, float b)
 {
     return std::abs(a - b) < EPSILON;
 }
@@ -51,19 +51,19 @@ class Vector3
         constexpr Vector3(float x, float y, float z) : x{x}, y{y}, z{z} {}
 
         // find magnitude squared
-        inline float length_squared() const
+        [[gnu::always_inline]] inline float length_squared() const
         {
             return (x * x + y * y + z * z);
         }
 
         // find magnitude 
-        inline float length() const
+        [[gnu::always_inline]] inline float length() const
         {
             return std::sqrt(length_squared());
         }
 
         // find unit vector/normalize vector
-        inline Vector3 normalize() const
+        [[gnu::always_inline]] inline Vector3 normalize() const
         {
             float mag = length();
             float inv = 1.0f / mag;
@@ -133,7 +133,7 @@ class Vector3
 // ** free functions ** //
 
 // basic function call for vector to vector division, no operator overload
-inline Vector3 component_div(const Vector3& a, const Vector3& b) 
+[[gnu::always_inline]] inline Vector3 component_div(const Vector3& a, const Vector3& b) 
 {
     return 
     {
@@ -143,24 +143,24 @@ inline Vector3 component_div(const Vector3& a, const Vector3& b)
     };
 }
 
-inline float dot(const Vector3& a, const Vector3& b) 
+[[gnu::always_inline]] inline float dot(const Vector3& a, const Vector3& b) 
 {
     return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 }
 
-inline float distance_squared(const Vector3& a, const Vector3& b) 
+[[gnu::always_inline]] inline float distance_squared(const Vector3& a, const Vector3& b) 
 {
     Vector3 displacement = a - b;
     return displacement.length_squared();
 }
 
-inline float distance(const Vector3& a, const Vector3& b) 
+[[gnu::always_inline]] inline float distance(const Vector3& a, const Vector3& b) 
 {
     Vector3 displacement = a - b;
     return displacement.length();
 }
 
-inline Vector3 cross(const Vector3& a, const Vector3& b)  
+[[gnu::always_inline]] inline Vector3 cross(const Vector3& a, const Vector3& b)  
 {
     return
     {
@@ -171,7 +171,7 @@ inline Vector3 cross(const Vector3& a, const Vector3& b)
 }
 
 // scale vectors
-inline Vector3 scale(const Vector3& a, const Vector3& b) 
+[[gnu::always_inline]] inline Vector3 scale(const Vector3& a, const Vector3& b) 
 {
     return Vector3
         (
@@ -181,7 +181,7 @@ inline Vector3 scale(const Vector3& a, const Vector3& b)
         );
 }
 
-inline float angle_between(const Vector3& a, const Vector3& b)
+[[gnu::always_inline]] inline float angle_between(const Vector3& a, const Vector3& b)
 {
     float mag_a = a.length();
     float mag_b = b.length();
