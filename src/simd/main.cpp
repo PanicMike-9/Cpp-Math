@@ -16,4 +16,7 @@ int main()
 
     std::println("256-bit float scalar multiplication");
     test_256f_scalar_multiplication();
+
+    std::println("256-bit float vec dot product");
+    test_256f_vecdot();
 }
