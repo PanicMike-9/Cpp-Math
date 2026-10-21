@@ -23,16 +23,16 @@ inline float deg_to_rad(float degrees)
 }
 
 // 1e-6f = 0.000001
-constexpr float EPSILON = 1e-6f;
+constexpr float EPSILON {1e-6f};
 
 // handling comparison in the presence of floating-point error
-inline bool is_zero(float a)
+inline bool is_zero(const float a)
 {
     return std::abs(a) < EPSILON;
 }
 
 // values small enough to be equal
-inline bool nearly_equal(float a, float b)
+inline bool nearly_equal(const float a, const float b)
 {
     return std::abs(a - b) < EPSILON;
 }
