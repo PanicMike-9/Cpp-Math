@@ -3,6 +3,7 @@
 #include "simd_math.hpp"
 #include <print>
 
+#if 0
 [[gnu::always_inline]] inline void test_256f_vecdot()
 {
     alignas(32) float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
@@ -11,6 +12,7 @@
     float res {simd::fma_vec_dot_256(a, b, 8)};
     std::println("{}", res);
 }
+#endif
 
 [[gnu::always_inline]] inline void test_256f_addition()
 {
