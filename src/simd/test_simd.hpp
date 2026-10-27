@@ -4,8 +4,17 @@
 #include <print>
 
 // TODO: test vector dot product
+inline void test_128f_vec_dot()
+{
+    alignas(16) constexpr float a[4] {8.0f, 16.0f, 32.0f, 40.0f};
+    alignas(16) constexpr float b[4] {19.0f, 27.0f, 43.0f, 51.0f};
 
-[[gnu::always_inline]] inline void test_256f_addition()
+    alignas(16) float result {simd::vector_dot_floats_128(a, b)};
+    
+    std::println("{} ", result);
+}
+
+inline void test_256f_addition()
 {
     alignas(32) constexpr float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
     alignas(32) constexpr float b[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
@@ -20,7 +29,7 @@
     std::println();
 }
 
-[[gnu::always_inline]] inline void test_256f_scalar_multiplication()
+inline void test_256f_scalar_multiplication()
 {
     alignas(32) float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
     alignas(32) float b[8] {19.0f, 27.0f, 43.0f, 51.0f, 59.0f, 67.0f, 75.0f, 83.0f};
@@ -44,7 +53,7 @@
     std::println();
 }
 
-[[gnu::always_inline]] inline void test_256f_multiplication()
+inline void test_256f_multiplication()
 {
     // alignas 32 = 8 floats * 4 
     alignas(32) float a[8] {8.0f, 16.0f, 32.0f, 40.0f, 48.0f, 56.0f, 64.0f, 72.0f};
@@ -60,7 +69,7 @@
     std::println();
 }
 
-[[gnu::always_inline]] inline void test_128f_addition()
+inline void test_128f_addition()
 {
     alignas(16) float a[4] {88.0f, 1600.0f, 44.0f, 4000.49f};
     alignas(16) float b[4] {7.0f, 14.0f, 302.0f, 21.98f};
@@ -74,7 +83,7 @@
     std::println();
 }
 
-[[gnu::always_inline]] inline void test_128f_multiplication()
+inline void test_128f_multiplication()
 {
     // alignas 16 = 4 floats * 4 
     alignas(16) float a[4] {8.0f, 16.0f, 32.0f, 40.0f};
