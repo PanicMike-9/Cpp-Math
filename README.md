@@ -138,7 +138,7 @@ void test_256f_multiplication()
 }
 ```
 ### Compile & Run
-With -O3 flag (remove them if needed)
+With -O3 flag (optional for testing)
 
 ``` Bash
 g++ -mavx2 -std=c++23 -O3 main.cpp -o run && ./run
