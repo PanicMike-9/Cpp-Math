@@ -131,7 +131,7 @@ namespace simd
     }
 }
 
-//TODO: add vector dot product function
+// TODO: use FMA for 256-bit dot product
 
 }// namespace simd
 
