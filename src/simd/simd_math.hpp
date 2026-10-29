@@ -141,7 +141,15 @@ namespace simd
     }
 }
 
-// TODO: use FMA for 256-bit dot product
+[[gnu::always_inline]] inline __m256 min_256(__m256 a, __m256 b) noexcept
+{
+    return _mm256_min_ps(a, b);
+}
+
+[[gnu::always_inline]] inline __m256 max_256(__m256 a, __m256 b) noexcept
+{
+    return _mm256_max_ps(a, b);
+}
 
 }// namespace simd
 
