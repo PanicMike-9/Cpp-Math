@@ -73,6 +73,16 @@ namespace simd
     return _mm_cvtss_f32(dot_product);
 }
 
+[[gnu::always_inline]] inline __m128 min_128(__m128 a, __m128 b) noexcept
+{
+    return _mm_min_ps(a, b);
+}
+
+[[gnu::always_inline]] inline __m128 max_128(__m128 a, __m128 b) noexcept
+{
+    return _mm_max_ps(a, b);
+}
+
 // ---- AVX2 256-bit Functions ----
 
 [[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8]) noexcept
