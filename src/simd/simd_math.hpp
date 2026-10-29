@@ -83,6 +83,12 @@ namespace simd
     return _mm_max_ps(a, b);
 }
 
+[[gnu::always_inline]] inline __m128 clamp_128(__m128 value, __m128 min_val, __m128 max_val) noexcept
+{
+    // add assertion, using _mm_cmple_ps and _mm_movemask_ps, with #ifndef check for NDEBUG
+    return _mm_max_ps(min_val, _mm_min_ps(value, max_val));
+}
+
 // ---- AVX2 256-bit Functions ----
 
 [[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8]) noexcept
