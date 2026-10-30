@@ -169,7 +169,7 @@ namespace simd
 #ifndef NDEBUG
 
     __m256 cmp {_mm256_cmp_ps(min_val, max_val, _CMP_LE_OQ)};
-    assert(_mm256_movemask_ps(cmp) == 0xF && "clamp_256: min_val must be <= max_val");
+    assert(_mm256_movemask_ps(cmp) == 0xFF && "clamp_256: min_val must be <= max_val");
 
 #endif
 
