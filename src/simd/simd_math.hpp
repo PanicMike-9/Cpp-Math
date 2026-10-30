@@ -87,6 +87,13 @@ namespace simd
 [[gnu::always_inline]] inline __m128 clamp_128(__m128 value, __m128 min_val, __m128 max_val) noexcept
 {
     // add assertion, using _mm_cmple_ps and _mm_movemask_ps, with #ifndef check for NDEBUG
+#ifndef NDEBUG
+
+    __m128 cmp {_mm_cmple_ps(min_val, max_val)};
+    assert(_mm_movemask_ps(cmp) == 0xF && "clamp_128: min_val must be <= max_val");
+
+#endif
+
     return _mm_max_ps(min_val, _mm_min_ps(value, max_val));
 }
 
@@ -160,7 +167,6 @@ namespace simd
 
 [[gnu::always_inline]] inline __m256 clamp_256(__m256 value, __m256 min_val, __m256 max_val) noexcept
 {
-    // add assertion, using _mm_cmple_ps and _mm_movemask_ps, with #ifndef check for NDEBUG
     return _mm256_max_ps(min_val, _mm256_min_ps(value, max_val));
 }
 
