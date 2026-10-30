@@ -3,7 +3,8 @@
 #include "simd_math.hpp"
 #include <print>
 
-// TODO: test vector dot product
+// TODO: test min, max, clamp functions
+
 inline void test_128f_vec_dot()
 {
     alignas(16) constexpr float a[4] {8.0f, 16.0f, 32.0f, 40.0f};
