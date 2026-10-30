@@ -2,11 +2,12 @@
 
 // #include <xmmintrin.h> // maybe not required
 #include <immintrin.h> // works for GCC, Clang and MSVC
+#include <cassert>
 
 namespace simd
 {
 
-// ---- AVX1 128-bit Functions ----
+// ---- SSE 128-bit Functions ----
     
 [[gnu::always_inline]] inline void multiply_floats_128(const float a[4], const float b[4], float result[4]) noexcept
 {
@@ -155,6 +156,12 @@ namespace simd
 [[gnu::always_inline]] inline __m256 max_256(__m256 a, __m256 b) noexcept
 {
     return _mm256_max_ps(a, b);
+}
+
+[[gnu::always_inline]] inline __m256 clamp_256(__m256 value, __m256 min_val, __m256 max_val) noexcept
+{
+    // add assertion, using _mm_cmple_ps and _mm_movemask_ps, with #ifndef check for NDEBUG
+    return _mm256_max_ps(min_val, _mm256_min_ps(value, max_val));
 }
 
 }// namespace simd
