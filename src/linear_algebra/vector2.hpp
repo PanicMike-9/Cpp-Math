@@ -45,10 +45,10 @@ class Vector2
         float y;
 
         // default constructor
-        constexpr Vector2() : x{0.0f}, y{0.0f} {}
+        constexpr Vector2() noexcept : x{0.0f}, y{0.0f} {}
 
         // constructor
-        constexpr Vector2(float x, float y) : x{x}, y{y} {}
+        constexpr Vector2(float x, float y) noexcept : x{x}, y{y} {}
 
         // find magnitude (squared)
         constexpr float length_squared() const noexcept
