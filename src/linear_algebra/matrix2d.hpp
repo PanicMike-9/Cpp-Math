@@ -5,6 +5,8 @@
 
 #include "vector2.hpp"
 
+using vec2 = geom::Vector2;
+
 namespace geom
 {
 
@@ -32,6 +34,24 @@ class Mat2
                 {c1_r0, c1_r1} // column 1
             }
         {}
+
+        constexpr Mat2(const vec2& a, const vec2& b) noexcept
+            : data
+            {
+                {a.x, a.y},
+                {b.x, b.y}
+            }
+        {}
+
+        [[nodiscard]] constexpr float* operator[](int col) noexcept
+        {
+            return data[col];
+        }
+
+        [[nodiscard]] constexpr const float* operator[](int col) const noexcept 
+        {
+            return data[col];
+        }
 };
 
 } // namespace geom
