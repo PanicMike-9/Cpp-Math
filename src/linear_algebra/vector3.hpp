@@ -45,10 +45,10 @@ class Vector3
         float z {};
 
         // default constructor
-        constexpr Vector3() : x{0.0f}, y{0.0f}, z{0.0f} {}
+        constexpr Vector3() noexcept : x{0.0f}, y{0.0f}, z{0.0f} {}
 
         // constructor
-        constexpr Vector3(float x, float y, float z) : x{x}, y{y}, z{z} {}
+        constexpr Vector3(float x, float y, float z) noexcept : x{x}, y{y}, z{z} {}
 
         // find magnitude squared
         inline float length_squared() const noexcept
