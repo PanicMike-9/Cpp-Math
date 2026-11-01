@@ -52,6 +52,16 @@ class Mat2
         {
             return data[col];
         }
+
+        [[nodiscard]] constexpr float& operator()(int col, int row) noexcept
+        {
+            return (data[col][row]);
+        }
+
+        [[nodiscard]] constexpr const float& operator()(int col, int row) const noexcept
+        {
+            return (data[col][row]);
+        }
 };
 
 } // namespace geom
