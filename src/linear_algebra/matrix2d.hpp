@@ -62,6 +62,8 @@ class Mat2
         {
             return (data[col][row]);
         }
+
+        // TODO: add operator '*' overload for matrix multiplication, scalar-matrix multiplication and vector-matrix mulitplication
 };
 
 } // namespace geom
