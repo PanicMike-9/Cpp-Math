@@ -62,6 +62,8 @@ class Mat2
         {
             return (data[col][row]);
         }
+        
+        [[nodiscard]] constexpr float& operator*();
 
         // TODO: add operator '*' overload for matrix multiplication, scalar-matrix multiplication and vector-matrix mulitplication
 };
