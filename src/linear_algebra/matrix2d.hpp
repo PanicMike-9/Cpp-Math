@@ -64,8 +64,6 @@ class Mat2
         }
         
         [[nodiscard]] constexpr float& operator*();
-
-        // TODO: add operator '*' overload for matrix multiplication, scalar-matrix multiplication and vector-matrix mulitplication
 };
 
 } // namespace geom
