@@ -88,7 +88,8 @@ namespace simd
 {
 #ifndef NDEBUG
 
-    __m128 cmp {_mm_cmple_ps(min_val, max_val)};
+    __m128 cmp {_mm_cmple_ps(min_val, max_val)}; // _CMP_LE_OQ: comparison less than or equal ordered, quite
+    // 0xF 4 1's or 0's
     assert(_mm_movemask_ps(cmp) == 0xF && "clamp_128: min_val must be <= max_val");
 
 #endif
@@ -168,13 +169,16 @@ namespace simd
 {
 #ifndef NDEBUG
 
-    __m256 cmp {_mm256_cmp_ps(min_val, max_val, _CMP_LE_OQ)};
+    __m256 cmp {_mm256_cmp_ps(min_val, max_val, _CMP_LE_OQ)}; // _CMP_LE_OQ: comparison less than or equal ordered, quite
+    // 0xFF 8 1's or 0's
     assert(_mm256_movemask_ps(cmp) == 0xFF && "clamp_256: min_val must be <= max_val");
 
 #endif
 
     return _mm256_max_ps(min_val, _mm256_min_ps(value, max_val));
 }
+
+// add sqrt and rsqrt for 256-bit 
 
 }// namespace simd
 
