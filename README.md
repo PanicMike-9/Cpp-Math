@@ -18,7 +18,7 @@ void test_length()
     std::print
     (
       "x: {:2.2f}\n" 
-      "y: {:2.2f}\n"
+      "y: {:2.2f}\n",
       test_vec.x, test_vec.y
     );
     std::println("Length: {}", test_vec.length());
