@@ -63,7 +63,9 @@ class Mat2
             return (data[col][row]);
         }
         
-        [[nodiscard]] constexpr float& operator*();
+        [[nodiscard]] constexpr float& operator*(const Mat2 a, const Mat2 b)
+        {
+        }
 };
 
 } // namespace geom
