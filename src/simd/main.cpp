@@ -19,4 +19,7 @@ int main()
 
     std::println("256-bit float vec dot product");
     test_128f_vec_dot();
+
+    test_128_sqrt();
+    test_256_sqrt();
 }
