@@ -102,6 +102,11 @@ namespace simd
     return _mm_sqrt_ps(value);
 }
 
+[[gnu::always_inline]] inline __m128 inv_sqrt_128(__m128 value)
+{
+    return _mm_rsqrt_ps(value);
+}
+
 // ---- AVX2 256-bit Functions ----
 
 [[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8]) noexcept
@@ -186,6 +191,11 @@ namespace simd
 [[gnu::always_inline]] inline __m256 sqrt_256(__m256 value)
 {
     return _mm256_sqrt_ps(value);
+}
+
+[[gnu::always_inline]] inline __m256 inv_sqrt_256(__m256 value)
+{
+    return _mm256_rsqrt_ps(value);
 }
 
 // add sqrt and rsqrt for 256-bit 
