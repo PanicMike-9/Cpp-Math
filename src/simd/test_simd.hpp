@@ -5,6 +5,36 @@
 
 // TODO: test min, max, clamp functions
 
+inline void test_128_sqrt()
+{
+    __m128 input {_mm_setr_ps(1.0f, 4.0f, 9.0f, 16.0f)};
+    __m128 result {simd::sqrt_128(input)};
+
+    alignas(16) float output[4];
+    _mm_store_ps(output, result);
+
+    for (int i {}; i < 4; ++i)
+    {
+        std::print("{} ", output[i]);
+    }
+    std::println();
+}
+
+inline void test_256_sqrt()
+{
+    __m256 input {_mm256_setr_ps(1.0f, 4.0f, 9.0f, 16.0f, 1.0f, 4.0f, 9.0f, 16.0f)};
+    __m256 result {simd::sqrt_256(input)};
+
+    alignas(32) float output[8];
+    _mm256_store_ps(output, result);
+
+    for (int i {}; i < 8; ++i)
+    {
+        std::print("{} ", output[i]);
+    }
+    std::println();
+}
+
 inline void test_128f_vec_dot()
 {
     alignas(16) constexpr float a[4] {8.0f, 16.0f, 32.0f, 40.0f};
