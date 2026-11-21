@@ -3,8 +3,6 @@
 #include "simd_math.hpp"
 #include <print>
 
-// TODO: test min, max, clamp functions
-
 inline void test_128_sqrt()
 {
     __m128 input {_mm_setr_ps(1.0f, 4.0f, 9.0f, 16.0f)};
