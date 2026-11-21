@@ -97,12 +97,12 @@ namespace simd
     return _mm_max_ps(min_val, _mm_min_ps(value, max_val));
 }
 
-[[gnu::always_inline]] inline __m128 sqrt_128(__m128 value)
+[[gnu::always_inline]] inline __m128 sqrt_128(__m128 value) noexcept
 {
     return _mm_sqrt_ps(value);
 }
 
-[[gnu::always_inline]] inline __m128 inv_sqrt_128(__m128 value)
+[[gnu::always_inline]] inline __m128 inv_sqrt_128(__m128 value) noexcept
 {
     return _mm_rsqrt_ps(value);
 }
@@ -188,17 +188,15 @@ namespace simd
     return _mm256_max_ps(min_val, _mm256_min_ps(value, max_val));
 }
 
-[[gnu::always_inline]] inline __m256 sqrt_256(__m256 value)
+[[gnu::always_inline]] inline __m256 sqrt_256(__m256 value) noexcept
 {
     return _mm256_sqrt_ps(value);
 }
 
-[[gnu::always_inline]] inline __m256 inv_sqrt_256(__m256 value)
+[[gnu::always_inline]] inline __m256 inv_sqrt_256(__m256 value) noexcept
 {
     return _mm256_rsqrt_ps(value);
 }
-
-// add sqrt and rsqrt for 256-bit 
 
 }// namespace simd
 
