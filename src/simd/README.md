@@ -18,7 +18,7 @@ The `xmm` registers can contain **Scalar data** or **Packed data**.
     - Sixteen 8-bit bytes or characters
 
 ## AVX (Advanced Vector Extenions)
-Which is an extension of SSE, AVX registers are double the size of `xmm`, they are called `ymm` registers, which contain 32 additional 256-bit registers, which are `ymm0`-`ymm31`.
+Which is an extension of SSE, AVX registers are double the size of `xmm`, they are called `ymm` registers, which contain 16 additional 256-bit registers, which are `ymm0`-`ymm15`.
 
 ## Function naming conventions
 
