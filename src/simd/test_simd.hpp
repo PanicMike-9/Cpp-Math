@@ -3,6 +3,66 @@
 #include "simd_math.hpp"
 #include <print>
 
+inline void test_128_min_max()
+{
+    __m128 val1 {_mm_setr_ps(1.0, 7.0f, 9.0f, 16.0f)};
+    __m128 val2 {_mm_setr_ps(2.0, 5.0f, 10.0f, 14.0f)};
+
+    __m128 res_min {simd::min_128(val1, val2)};
+
+    alignas(16) float out_min[4];
+    _mm_store_ps(out_min, res_min);
+
+    std::print("128-bit Min values: ");
+    for (int i {}; i < 4; ++i)
+    {
+        std::print("{} ", out_min[i]);
+    }
+    std::println();
+
+    __m128 res_max {simd::max_128(val1, val2)};
+
+    alignas(16) float out_max[4];
+    _mm_store_ps(out_max, res_max);
+
+    std::print("128-bit Max values: ");
+    for (int i {}; i < 4; ++i)
+    {
+        std::print("{} ", out_max[i]);
+    }
+    std::println();
+}
+
+inline void test_256_min_max()
+{
+    __m256 val1 {_mm256_setr_ps(1.0, 7.0f, 9.0f, 16.0f, 8.0f, 99.0f, 44.1f, 52.9f)};
+    __m256 val2 {_mm256_setr_ps(2.0, 5.0f, 10.0f, 14.0f, 6.0f, 101.2f, 29.9f, 52.8f)};
+
+    __m256 res_min {simd::min_256(val1, val2)};
+
+    alignas(32) float out_min[8];
+    _mm256_store_ps(out_min, res_min);
+
+    std::print("256-bit Min values: ");
+    for (int i {}; i < 8; ++i)
+    {
+        std::print("{} ", out_min[i]);
+    }
+    std::println();
+
+    __m256 res_max {simd::max_256(val1, val2)};
+
+    alignas(32) float out_max[8];
+    _mm256_store_ps(out_max, res_max);
+
+    std::print("256-bit Max values: ");
+    for (int i {}; i < 8; ++i)
+    {
+        std::print("{} ", out_max[i]);
+    }
+    std::println();
+}
+
 inline void test_128_sqrt()
 {
     __m128 input {_mm_setr_ps(1.0f, 4.0f, 9.0f, 16.0f)};
