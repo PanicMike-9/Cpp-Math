@@ -22,4 +22,7 @@ int main()
 
     test_128_sqrt();
     test_256_sqrt();
+
+    test_128_min_max();
+    test_256_min_max();
 }
