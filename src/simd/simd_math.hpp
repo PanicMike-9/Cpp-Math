@@ -107,6 +107,18 @@ namespace simd
     return _mm_rsqrt_ps(value);
 }
 
+#if defined(__FMA__)
+[[gnu::always_inline]] inline __m128 fmadd_128(__m128 a, __m128 b, __m128 c) noexcept
+{
+    return _mm_fmadd_ps(a, b, c);
+}
+#endif
+
+[[gnu::always_inline]] inline __m128 fmadd_128(__m128 a, __m128 b, __m128 c) noexcept
+{
+    return _mm_add_ps(_mm_mul_ps(a, b), c);
+}
+
 // ---- AVX2 256-bit Functions ----
 
 [[gnu::always_inline]] inline void multiply_floats_256(const float a[8], const float b[8], float result[8]) noexcept
