@@ -210,5 +210,17 @@ namespace simd
     return _mm256_rsqrt_ps(value);
 }
 
+#if defined(__FMA__)
+[[gnu::always_inline]] inline __m256 fmadd_256(__m256 a, __m256 b, __m256 c) noexcept
+{
+    return _mm256_fmadd_ps(a, b, c);
+}
+#endif
+
+[[gnu::always_inline]] inline __m256 fmadd_256(__m256 a, __m256 b, __m256 c) noexcept
+{
+    return _mm256_add_ps(_mm256_mul_ps(a, b), c);
+}
+
 }// namespace simd
 
